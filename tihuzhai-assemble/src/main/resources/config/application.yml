@@ -1,0 +1,67 @@
+spring:
+  profiles:
+    active: localhost
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      initial-size: 10
+      min-idle: 10
+      max-active: 100
+      max-wait: 60000
+      time-between-eviction-runs-millis: 2000
+      min-evictable-idle-time-millis: 300000
+      validation-query: SELECT 'x'
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      remove-abandoned: true
+      remove-abandoned-timeout: 1800
+      log-abandoned: true
+      pool-prepared-statements: true
+      max-open-prepared-statements: 20
+      web-stat-filter:
+        exclusions: "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*"
+      stat-view-servlet:
+        login-username: druid
+        login-password: druid
+
+mybatis:
+  mapper-locations: classpath:automapperxmls/**/*.xml
+  type-aliases-package: com.shusheng.tihuzhai.dao.autoentity
+
+server:
+  port: 8899
+  servlet:
+      context-path: /tihuzhai
+  session:
+    timeout: 3600
+
+---
+#spring:
+spring:
+  profiles: localhost
+  datasource:
+    url: jdbc:mysql://47.106.102.151:3306/mandarin_test?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true
+    username: root
+    password: aaaa1111
+
+
+
+---
+#spring:
+spring:
+  profiles: test
+  datasource:
+    url: jdbc:mysql://47.106.102.151:3306/mandarin_test?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true
+    username: root
+    password: aaaa1111
+
+---
+#spring:
+spring:
+  profiles: online
+  datasource:
+    url: jdbc:mysql://47.106.102.151:3306/mandarin_test?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true
+    username: root
+    password: aaaa1111
+

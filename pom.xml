@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- Inherit defaults from Spring Boot -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.5.8.RELEASE</version>
+    </parent>
+
+    <groupId>com.shusheng.tihuzhai</groupId>
+    <artifactId>tihuzhai-parent</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <packaging>pom</packaging>
+
+    <name>tihuzhai Maven Webapp</name>
+    <url>http://maven.apache.org</url>
+
+    <properties>
+
+        <tihuzhai.assemble.version>1.0.2018122501</tihuzhai.assemble.version>
+        <tihuzhai.biz.version>1.0.2018122501</tihuzhai.biz.version>
+        <tihuzhai.common.version>1.0.2018122501</tihuzhai.common.version>
+        <tihuzhai.dal.version>1.0.2018122501</tihuzhai.dal.version>
+        <tihuzhai.facade.version>1.0.2018122501</tihuzhai.facade.version>
+        <tihuzhai.facadedubbo.version>1.0.2018122501</tihuzhai.facadedubbo.version>
+        <tihuzhai.integration.version>1.0.2018122501</tihuzhai.integration.version>
+        <tihuzhai.privatecommon.version>1.0.2018122501</tihuzhai.privatecommon.version>
+        <tihuzhai.test.version>1.0.2018122501</tihuzhai.test.version>
+        <tihuzhai.web.version>1.0.2018122501</tihuzhai.web.version>
+
+        <java.version>1.8</java.version>
+        <javax.serverlet.version>3.1.0</javax.serverlet.version>
+        <shiro.version>1.2.4</shiro.version>
+
+    </properties>
+
+    <dependencies>
+
+        <!-- springboot start 包含了spring webmvc和tomcat等web开发的特性-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <!-- springboot end -->
+
+        <!--阿里巴巴fastjson依赖 start-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.30</version>
+        </dependency>
+        <!--阿里巴巴fastjson依赖 end-->
+
+        <!--导入配置文件处理器，配置文件进行绑定就会有提示 start-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <!--导入配置文件处理器，配置文件进行绑定就会有提示 end-->
+
+    </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- tihuzhai -->
+            <dependency>
+                <groupId>com.shusheng.tihuzhai</groupId>
+                <artifactId>tihuzhai-assemble</artifactId>
+                <version>${tihuzhai.assemble.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.shusheng.tihuzhai</groupId>
+                <artifactId>tihuzhai-biz</artifactId>
+                <version>${tihuzhai.biz.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.shusheng.tihuzhai</groupId>
+                <artifactId>tihuzhai-common</artifactId>
+                <version>${tihuzhai.common.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.shusheng.tihuzhai</groupId>
+                <artifactId>tihuzhai-dal</artifactId>
+                <version>${tihuzhai.dal.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.shusheng.tihuzhai</groupId>
+                <artifactId>tihuzhai-facade</artifactId>
+                <version>${tihuzhai.facade.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.shusheng.tihuzhai</groupId>
+                <artifactId>tihuzhai-facadedubbo</artifactId>
+                <version>${tihuzhai.facadedubbo.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.shusheng.tihuzhai</groupId>
+                <artifactId>tihuzhai-integration</artifactId>
+                <version>${tihuzhai.integration.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.shusheng.tihuzhai</groupId>
+                <artifactId>tihuzhai-privatecommon</artifactId>
+                <version>${tihuzhai.privatecommon.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.shusheng.tihuzhai</groupId>
+                <artifactId>tihuzhai-test</artifactId>
+                <version>${tihuzhai.test.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.shusheng.tihuzhai</groupId>
+                <artifactId>tihuzhai-web</artifactId>
+                <version>${tihuzhai.web.version}</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <distributionManagement>
+                <snapshotRepository>
+                    <id>nexus-snapshot</id>
+                    <name>Internal snapshot Repository</name>
+                    <url>http://192.168.45.35:8081/nexus/content/repositories/snapshots/</url>
+                </snapshotRepository>
+                <repository>
+                    <id>nexus-releases</id>
+                    <name>Internal Release Repository</name>
+                    <url>http://192.168.45.35:8081/nexus/content/repositories/releases/</url>
+                </repository>
+            </distributionManagement>
+        </profile>
+        <profile>
+            <id>online</id>
+            <distributionManagement>
+                <snapshotRepository>
+                    <id>nexus-snapshot</id>
+                    <name>Internal snapshot Repository</name>
+                    <url>http://192.168.45.35:8081/nexus/content/repositories/snapshots/</url>
+                </snapshotRepository>
+                <repository>
+                    <id>nexus-releases</id>
+                    <name>Internal Release Repository</name>
+                    <url>http://192.168.45.35:8081/nexus/content/repositories/releases/</url>
+                </repository>
+            </distributionManagement>
+        </profile>
+    </profiles>
+
+    <modules>
+        <module>tihuzhai-assemble</module>
+        <module>tihuzhai-biz</module>
+        <module>tihuzhai-common</module>
+        <module>tihuzhai-dal</module>
+        <module>tihuzhai-facade</module>
+        <module>tihuzhai-facadedubbo</module>
+        <module>tihuzhai-integration</module>
+        <module>tihuzhai-test</module>
+        <module>tihuzhai-web</module>
+    </modules>
+
+</project>

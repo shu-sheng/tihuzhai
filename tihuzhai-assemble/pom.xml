@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>tihuzhai-parent</artifactId>
+        <groupId>com.shusheng.tihuzhai</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>tihuzhai-assemble</artifactId>
+    <groupId>com.shusheng.tihuzhai</groupId>
+    <version>${tihuzhai.assemble.version}</version>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>com.shusheng.tihuzhai</groupId>
+            <artifactId>tihuzhai-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.shusheng.tihuzhai</groupId>
+            <artifactId>tihuzhai-facadedubbo</artifactId>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <finalName>tihuzhai</finalName>
+
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+
+    </build>
+
+
+</project>
