@@ -1,6 +1,6 @@
 package com.shusheng.tihuzhai.biz.base;
 
-import com.shusheng.tihuzhai.enums.MandarinResultEnum;
+import com.shusheng.tihuzhai.enums.TiHuZhaiResultEnum;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
@@ -12,7 +12,7 @@ import java.io.Serializable;
  * @Email shusheng@yiji.com
  * @date 2018/12/26 18:59
  */
-public class MandarinResultBase implements Serializable {
+public class TiHuZhaiResultBase implements Serializable {
     private static final long serialVersionUID = -6510311788884425848L;
 
     /** 成功状态 */
@@ -22,7 +22,7 @@ public class MandarinResultBase implements Serializable {
     private String message = "";
 
     /** 返回结果码 */
-    MandarinResultEnum mandarinResultEnum = MandarinResultEnum.UN_KNOWN_EXCEPTION;
+    TiHuZhaiResultEnum tiHuZhaiResultEnum = TiHuZhaiResultEnum.UN_KNOWN_EXCEPTION;
 
     public boolean isSuccess() {
         return success;
@@ -40,12 +40,12 @@ public class MandarinResultBase implements Serializable {
         this.message = message;
     }
 
-    public MandarinResultEnum getMandarinResultEnum() {
-        return mandarinResultEnum;
+    public TiHuZhaiResultEnum getTiHuZhaiResultEnum() {
+        return tiHuZhaiResultEnum;
     }
 
-    public void setMandarinResultEnum(MandarinResultEnum mandarinResultEnum) {
-        this.mandarinResultEnum = mandarinResultEnum;
+    public void setTiHuZhaiResultEnum(TiHuZhaiResultEnum tiHuZhaiResultEnum) {
+        this.tiHuZhaiResultEnum = tiHuZhaiResultEnum;
     }
 
     @Override

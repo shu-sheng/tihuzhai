@@ -9,7 +9,7 @@ import java.util.List;
  * @Email shusheng@yiji.com
  * @date 2018/12/26 19:03
  */
-public enum TihuzhaiResultEnum {
+public enum TiHuZhaiResultEnum {
 
     /** 未知异常 */
     UN_KNOWN_EXCEPTION("UN_KNOWN_EXCEPTION", "未知异常"),
@@ -43,7 +43,7 @@ public enum TihuzhaiResultEnum {
      * @param code
      * @param message
      */
-    private TihuzhaiResultEnum(String code, String message) {
+    private TiHuZhaiResultEnum(String code, String message) {
         this.code = code;
         this.message = message;
     }
@@ -82,8 +82,8 @@ public enum TihuzhaiResultEnum {
      * @param code
      * @return MandarinResultEnum
      */
-    public static TihuzhaiResultEnum getByCode(String code) {
-        for (TihuzhaiResultEnum _enum : values()) {
+    public static TiHuZhaiResultEnum getByCode(String code) {
+        for (TiHuZhaiResultEnum _enum : values()) {
             if (_enum.getCode().equals(code)) {
                 return _enum;
             }
@@ -96,9 +96,9 @@ public enum TihuzhaiResultEnum {
      *
      * @return List<MandarinResultEnum>
      */
-    public List<TihuzhaiResultEnum> getAllEnum() {
-        List<TihuzhaiResultEnum> list = new ArrayList<TihuzhaiResultEnum>();
-        for (TihuzhaiResultEnum _enum : values()) {
+    public List<TiHuZhaiResultEnum> getAllEnum() {
+        List<TiHuZhaiResultEnum> list = new ArrayList<TiHuZhaiResultEnum>();
+        for (TiHuZhaiResultEnum _enum : values()) {
             list.add(_enum);
         }
         return list;
@@ -111,7 +111,7 @@ public enum TihuzhaiResultEnum {
      */
     public List<String> getAllEnumCode() {
         List<String> list = new ArrayList<String>();
-        for (TihuzhaiResultEnum _enum : values()) {
+        for (TiHuZhaiResultEnum _enum : values()) {
             list.add(_enum.code());
         }
         return list;

@@ -1,6 +1,6 @@
 package com.shusheng.tihuzhai.biz.admin.user.info;
 
-import com.shusheng.tihuzhai.biz.base.MandarinOrderBase;
+import com.shusheng.tihuzhai.biz.base.TiHuZhaiOrderBase;
 
 import java.util.Date;
 
@@ -10,7 +10,7 @@ import java.util.Date;
  * @Email shusheng@yiji.com
  * @date 2018/12/26 19:15
  */
-public class UserInfo extends MandarinOrderBase {
+public class UserInfo extends TiHuZhaiOrderBase {
     private static final long serialVersionUID = -1728609371204608432L;
 
     private Long id;

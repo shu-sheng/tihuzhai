@@ -11,7 +11,7 @@ import java.io.Serializable;
  * @Email shusheng@yiji.com
  * @date 2018/12/26 18:59
  */
-public class MandarinInfoBase implements Serializable {
+public class TiHuZhaiInfoBase implements Serializable {
     private static final long serialVersionUID = -1809200385698506519L;
 
     @Override
