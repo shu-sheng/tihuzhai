@@ -37,25 +37,25 @@ server:
 spring:
   profiles: localhost
   datasource:
-    url: jdbc:mysql://47.106.102.151:3306/mandarin_test?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true
-    username: root
-    password: aaaa1111
+    url: jdbc:mysql://47.96.128.191:5600/born_hichina?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true&serverTimezone=GMT%2B8
+    username: c_hichina
+    password: efH123K1dKh3sd
 
 ---
 #spring:
 spring:
   profiles: test
   datasource:
-    url: jdbc:mysql://47.106.102.151:3306/mandarin_test?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true
-    username: root
-    password: aaaa1111
+    url: jdbc:mysql://47.96.128.191:5600/born_hichina?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true&serverTimezone=GMT%2B8
+    username: c_hichina
+    password: efH123K1dKh3sd
 
 ---
 #spring:
 spring:
   profiles: online
   datasource:
-    url: jdbc:mysql://47.106.102.151:3306/mandarin_test?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true
-    username: root
-    password: aaaa1111
+    url: jdbc:mysql://47.96.128.191:5600/born_hichina?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true&serverTimezone=GMT%2B8
+    username: c_hichina
+    password: efH123K1dKh3sd
 

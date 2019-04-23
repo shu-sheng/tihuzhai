@@ -15,8 +15,8 @@
 
         <!--数据库链接URL，用户名、密码 -->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://47.106.102.151:3306/mandarin_test" userId="root"
-                        password="aaaa1111">
+                        connectionURL="jdbc:mysql://47.96.128.191:5600/born_hichina" userId="c_hichina"
+                        password="efH123K1dKh3sd">
         </jdbcConnection>
 
         <javaTypeResolver>
@@ -24,18 +24,18 @@
         </javaTypeResolver>
 
         <!-- 生成模型的包名和位置-->
-        <javaModelGenerator targetPackage="com.shusheng.tihuzhai.dao.autoentity" targetProject="src/main/java">
+        <javaModelGenerator targetPackage="com.shusheng.tihuzhai.dao.entity.auto" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
 
         <!-- 生成映射文件的包名和位置-->
-        <sqlMapGenerator targetPackage="automapperxmls" targetProject="src/main/resources">
+        <sqlMapGenerator targetPackage="auto" targetProject="src/main/resources">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
 
         <!-- 生成DAO的包名和位置-->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.shusheng.tihuzhai.dao.automappers"
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.shusheng.tihuzhai.dao.mappers.auto"
                              targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
