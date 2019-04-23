@@ -49,6 +49,14 @@
         </dependency>
         <!-- springboot end -->
 
+        <!-- springboot集成模板引擎thymeleaf start-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+        <!-- springboot集成模板引擎thymeleaf end-->
+
+
         <!--阿里巴巴fastjson依赖 start-->
         <dependency>
             <groupId>com.alibaba</groupId>
