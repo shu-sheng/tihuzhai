@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shusheng.tihuzhai.dao.mappers.auto.PointsGoodsDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.shusheng.tihuzhai.dao.entity.auto.PointsGoodsDetail" >
+    <id column="points_goods_id" property="pointsGoodsId" jdbcType="BIGINT" />
+    <result column="points_detail_id" property="pointsDetailId" jdbcType="BIGINT" />
+    <result column="delivery_company" property="deliveryCompany" jdbcType="VARCHAR" />
+    <result column="billno" property="billno" jdbcType="VARCHAR" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    points_goods_id, points_detail_id, delivery_company, billno, remarks, add_time, update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shusheng.tihuzhai.dao.entity.auto.PointsGoodsDetailExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from points_goods_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from points_goods_detail
+    where points_goods_id = #{pointsGoodsId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from points_goods_detail
+    where points_goods_id = #{pointsGoodsId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shusheng.tihuzhai.dao.entity.auto.PointsGoodsDetailExample" >
+    delete from points_goods_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shusheng.tihuzhai.dao.entity.auto.PointsGoodsDetail" >
+    insert into points_goods_detail (points_goods_id, points_detail_id, delivery_company, 
+      billno, remarks, add_time, 
+      update_time)
+    values (#{pointsGoodsId,jdbcType=BIGINT}, #{pointsDetailId,jdbcType=BIGINT}, #{deliveryCompany,jdbcType=VARCHAR}, 
+      #{billno,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shusheng.tihuzhai.dao.entity.auto.PointsGoodsDetail" >
+    insert into points_goods_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pointsGoodsId != null" >
+        points_goods_id,
+      </if>
+      <if test="pointsDetailId != null" >
+        points_detail_id,
+      </if>
+      <if test="deliveryCompany != null" >
+        delivery_company,
+      </if>
+      <if test="billno != null" >
+        billno,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pointsGoodsId != null" >
+        #{pointsGoodsId,jdbcType=BIGINT},
+      </if>
+      <if test="pointsDetailId != null" >
+        #{pointsDetailId,jdbcType=BIGINT},
+      </if>
+      <if test="deliveryCompany != null" >
+        #{deliveryCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="billno != null" >
+        #{billno,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shusheng.tihuzhai.dao.entity.auto.PointsGoodsDetailExample" resultType="java.lang.Integer" >
+    select count(*) from points_goods_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update points_goods_detail
+    <set >
+      <if test="record.pointsGoodsId != null" >
+        points_goods_id = #{record.pointsGoodsId,jdbcType=BIGINT},
+      </if>
+      <if test="record.pointsDetailId != null" >
+        points_detail_id = #{record.pointsDetailId,jdbcType=BIGINT},
+      </if>
+      <if test="record.deliveryCompany != null" >
+        delivery_company = #{record.deliveryCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="record.billno != null" >
+        billno = #{record.billno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remarks != null" >
+        remarks = #{record.remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addTime != null" >
+        add_time = #{record.addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update points_goods_detail
+    set points_goods_id = #{record.pointsGoodsId,jdbcType=BIGINT},
+      points_detail_id = #{record.pointsDetailId,jdbcType=BIGINT},
+      delivery_company = #{record.deliveryCompany,jdbcType=VARCHAR},
+      billno = #{record.billno,jdbcType=VARCHAR},
+      remarks = #{record.remarks,jdbcType=VARCHAR},
+      add_time = #{record.addTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shusheng.tihuzhai.dao.entity.auto.PointsGoodsDetail" >
+    update points_goods_detail
+    <set >
+      <if test="pointsDetailId != null" >
+        points_detail_id = #{pointsDetailId,jdbcType=BIGINT},
+      </if>
+      <if test="deliveryCompany != null" >
+        delivery_company = #{deliveryCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="billno != null" >
+        billno = #{billno,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where points_goods_id = #{pointsGoodsId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shusheng.tihuzhai.dao.entity.auto.PointsGoodsDetail" >
+    update points_goods_detail
+    set points_detail_id = #{pointsDetailId,jdbcType=BIGINT},
+      delivery_company = #{deliveryCompany,jdbcType=VARCHAR},
+      billno = #{billno,jdbcType=VARCHAR},
+      remarks = #{remarks,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where points_goods_id = #{pointsGoodsId,jdbcType=BIGINT}
+  </update>
+</mapper>

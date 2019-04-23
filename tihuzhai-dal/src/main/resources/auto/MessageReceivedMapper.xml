@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shusheng.tihuzhai.dao.mappers.auto.MessageReceivedMapper" >
+  <resultMap id="BaseResultMap" type="com.shusheng.tihuzhai.dao.entity.auto.MessageReceived" >
+    <id column="received_id" property="receivedId" jdbcType="BIGINT" />
+    <result column="message_id" property="messageId" jdbcType="BIGINT" />
+    <result column="message_title" property="messageTitle" jdbcType="VARCHAR" />
+    <result column="message_type" property="messageType" jdbcType="VARCHAR" />
+    <result column="message_subject" property="messageSubject" jdbcType="VARCHAR" />
+    <result column="notification_object" property="notificationObject" jdbcType="VARCHAR" />
+    <result column="view_type" property="viewType" jdbcType="VARCHAR" />
+    <result column="link_url" property="linkUrl" jdbcType="VARCHAR" />
+    <result column="message_received_date" property="messageReceivedDate" jdbcType="TIMESTAMP" />
+    <result column="message_sender_id" property="messageSenderId" jdbcType="BIGINT" />
+    <result column="message_received_name" property="messageReceivedName" jdbcType="VARCHAR" />
+    <result column="message_received_id" property="messageReceivedId" jdbcType="BIGINT" />
+    <result column="message_received_status" property="messageReceivedStatus" jdbcType="VARCHAR" />
+    <result column="raw_add_time" property="rawAddTime" jdbcType="TIMESTAMP" />
+    <result column="raw_update_time" property="rawUpdateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.shusheng.tihuzhai.dao.entity.auto.MessageReceived" extends="BaseResultMap" >
+    <result column="message_content" property="messageContent" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    received_id, message_id, message_title, message_type, message_subject, notification_object, 
+    view_type, link_url, message_received_date, message_sender_id, message_received_name, 
+    message_received_id, message_received_status, raw_add_time, raw_update_time
+  </sql>
+  <sql id="Blob_Column_List" >
+    message_content
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.shusheng.tihuzhai.dao.entity.auto.MessageReceivedExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from message_received
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shusheng.tihuzhai.dao.entity.auto.MessageReceivedExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from message_received
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from message_received
+    where received_id = #{receivedId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from message_received
+    where received_id = #{receivedId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shusheng.tihuzhai.dao.entity.auto.MessageReceivedExample" >
+    delete from message_received
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shusheng.tihuzhai.dao.entity.auto.MessageReceived" >
+    insert into message_received (received_id, message_id, message_title, 
+      message_type, message_subject, notification_object, 
+      view_type, link_url, message_received_date, 
+      message_sender_id, message_received_name, message_received_id, 
+      message_received_status, raw_add_time, raw_update_time, 
+      message_content)
+    values (#{receivedId,jdbcType=BIGINT}, #{messageId,jdbcType=BIGINT}, #{messageTitle,jdbcType=VARCHAR}, 
+      #{messageType,jdbcType=VARCHAR}, #{messageSubject,jdbcType=VARCHAR}, #{notificationObject,jdbcType=VARCHAR}, 
+      #{viewType,jdbcType=VARCHAR}, #{linkUrl,jdbcType=VARCHAR}, #{messageReceivedDate,jdbcType=TIMESTAMP}, 
+      #{messageSenderId,jdbcType=BIGINT}, #{messageReceivedName,jdbcType=VARCHAR}, #{messageReceivedId,jdbcType=BIGINT}, 
+      #{messageReceivedStatus,jdbcType=VARCHAR}, #{rawAddTime,jdbcType=TIMESTAMP}, #{rawUpdateTime,jdbcType=TIMESTAMP}, 
+      #{messageContent,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shusheng.tihuzhai.dao.entity.auto.MessageReceived" >
+    insert into message_received
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="receivedId != null" >
+        received_id,
+      </if>
+      <if test="messageId != null" >
+        message_id,
+      </if>
+      <if test="messageTitle != null" >
+        message_title,
+      </if>
+      <if test="messageType != null" >
+        message_type,
+      </if>
+      <if test="messageSubject != null" >
+        message_subject,
+      </if>
+      <if test="notificationObject != null" >
+        notification_object,
+      </if>
+      <if test="viewType != null" >
+        view_type,
+      </if>
+      <if test="linkUrl != null" >
+        link_url,
+      </if>
+      <if test="messageReceivedDate != null" >
+        message_received_date,
+      </if>
+      <if test="messageSenderId != null" >
+        message_sender_id,
+      </if>
+      <if test="messageReceivedName != null" >
+        message_received_name,
+      </if>
+      <if test="messageReceivedId != null" >
+        message_received_id,
+      </if>
+      <if test="messageReceivedStatus != null" >
+        message_received_status,
+      </if>
+      <if test="rawAddTime != null" >
+        raw_add_time,
+      </if>
+      <if test="rawUpdateTime != null" >
+        raw_update_time,
+      </if>
+      <if test="messageContent != null" >
+        message_content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="receivedId != null" >
+        #{receivedId,jdbcType=BIGINT},
+      </if>
+      <if test="messageId != null" >
+        #{messageId,jdbcType=BIGINT},
+      </if>
+      <if test="messageTitle != null" >
+        #{messageTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="messageType != null" >
+        #{messageType,jdbcType=VARCHAR},
+      </if>
+      <if test="messageSubject != null" >
+        #{messageSubject,jdbcType=VARCHAR},
+      </if>
+      <if test="notificationObject != null" >
+        #{notificationObject,jdbcType=VARCHAR},
+      </if>
+      <if test="viewType != null" >
+        #{viewType,jdbcType=VARCHAR},
+      </if>
+      <if test="linkUrl != null" >
+        #{linkUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="messageReceivedDate != null" >
+        #{messageReceivedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="messageSenderId != null" >
+        #{messageSenderId,jdbcType=BIGINT},
+      </if>
+      <if test="messageReceivedName != null" >
+        #{messageReceivedName,jdbcType=VARCHAR},
+      </if>
+      <if test="messageReceivedId != null" >
+        #{messageReceivedId,jdbcType=BIGINT},
+      </if>
+      <if test="messageReceivedStatus != null" >
+        #{messageReceivedStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="rawAddTime != null" >
+        #{rawAddTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rawUpdateTime != null" >
+        #{rawUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="messageContent != null" >
+        #{messageContent,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shusheng.tihuzhai.dao.entity.auto.MessageReceivedExample" resultType="java.lang.Integer" >
+    select count(*) from message_received
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update message_received
+    <set >
+      <if test="record.receivedId != null" >
+        received_id = #{record.receivedId,jdbcType=BIGINT},
+      </if>
+      <if test="record.messageId != null" >
+        message_id = #{record.messageId,jdbcType=BIGINT},
+      </if>
+      <if test="record.messageTitle != null" >
+        message_title = #{record.messageTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.messageType != null" >
+        message_type = #{record.messageType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.messageSubject != null" >
+        message_subject = #{record.messageSubject,jdbcType=VARCHAR},
+      </if>
+      <if test="record.notificationObject != null" >
+        notification_object = #{record.notificationObject,jdbcType=VARCHAR},
+      </if>
+      <if test="record.viewType != null" >
+        view_type = #{record.viewType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.linkUrl != null" >
+        link_url = #{record.linkUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.messageReceivedDate != null" >
+        message_received_date = #{record.messageReceivedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.messageSenderId != null" >
+        message_sender_id = #{record.messageSenderId,jdbcType=BIGINT},
+      </if>
+      <if test="record.messageReceivedName != null" >
+        message_received_name = #{record.messageReceivedName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.messageReceivedId != null" >
+        message_received_id = #{record.messageReceivedId,jdbcType=BIGINT},
+      </if>
+      <if test="record.messageReceivedStatus != null" >
+        message_received_status = #{record.messageReceivedStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rawAddTime != null" >
+        raw_add_time = #{record.rawAddTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.rawUpdateTime != null" >
+        raw_update_time = #{record.rawUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.messageContent != null" >
+        message_content = #{record.messageContent,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update message_received
+    set received_id = #{record.receivedId,jdbcType=BIGINT},
+      message_id = #{record.messageId,jdbcType=BIGINT},
+      message_title = #{record.messageTitle,jdbcType=VARCHAR},
+      message_type = #{record.messageType,jdbcType=VARCHAR},
+      message_subject = #{record.messageSubject,jdbcType=VARCHAR},
+      notification_object = #{record.notificationObject,jdbcType=VARCHAR},
+      view_type = #{record.viewType,jdbcType=VARCHAR},
+      link_url = #{record.linkUrl,jdbcType=VARCHAR},
+      message_received_date = #{record.messageReceivedDate,jdbcType=TIMESTAMP},
+      message_sender_id = #{record.messageSenderId,jdbcType=BIGINT},
+      message_received_name = #{record.messageReceivedName,jdbcType=VARCHAR},
+      message_received_id = #{record.messageReceivedId,jdbcType=BIGINT},
+      message_received_status = #{record.messageReceivedStatus,jdbcType=VARCHAR},
+      raw_add_time = #{record.rawAddTime,jdbcType=TIMESTAMP},
+      raw_update_time = #{record.rawUpdateTime,jdbcType=TIMESTAMP},
+      message_content = #{record.messageContent,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update message_received
+    set received_id = #{record.receivedId,jdbcType=BIGINT},
+      message_id = #{record.messageId,jdbcType=BIGINT},
+      message_title = #{record.messageTitle,jdbcType=VARCHAR},
+      message_type = #{record.messageType,jdbcType=VARCHAR},
+      message_subject = #{record.messageSubject,jdbcType=VARCHAR},
+      notification_object = #{record.notificationObject,jdbcType=VARCHAR},
+      view_type = #{record.viewType,jdbcType=VARCHAR},
+      link_url = #{record.linkUrl,jdbcType=VARCHAR},
+      message_received_date = #{record.messageReceivedDate,jdbcType=TIMESTAMP},
+      message_sender_id = #{record.messageSenderId,jdbcType=BIGINT},
+      message_received_name = #{record.messageReceivedName,jdbcType=VARCHAR},
+      message_received_id = #{record.messageReceivedId,jdbcType=BIGINT},
+      message_received_status = #{record.messageReceivedStatus,jdbcType=VARCHAR},
+      raw_add_time = #{record.rawAddTime,jdbcType=TIMESTAMP},
+      raw_update_time = #{record.rawUpdateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shusheng.tihuzhai.dao.entity.auto.MessageReceived" >
+    update message_received
+    <set >
+      <if test="messageId != null" >
+        message_id = #{messageId,jdbcType=BIGINT},
+      </if>
+      <if test="messageTitle != null" >
+        message_title = #{messageTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="messageType != null" >
+        message_type = #{messageType,jdbcType=VARCHAR},
+      </if>
+      <if test="messageSubject != null" >
+        message_subject = #{messageSubject,jdbcType=VARCHAR},
+      </if>
+      <if test="notificationObject != null" >
+        notification_object = #{notificationObject,jdbcType=VARCHAR},
+      </if>
+      <if test="viewType != null" >
+        view_type = #{viewType,jdbcType=VARCHAR},
+      </if>
+      <if test="linkUrl != null" >
+        link_url = #{linkUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="messageReceivedDate != null" >
+        message_received_date = #{messageReceivedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="messageSenderId != null" >
+        message_sender_id = #{messageSenderId,jdbcType=BIGINT},
+      </if>
+      <if test="messageReceivedName != null" >
+        message_received_name = #{messageReceivedName,jdbcType=VARCHAR},
+      </if>
+      <if test="messageReceivedId != null" >
+        message_received_id = #{messageReceivedId,jdbcType=BIGINT},
+      </if>
+      <if test="messageReceivedStatus != null" >
+        message_received_status = #{messageReceivedStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="rawAddTime != null" >
+        raw_add_time = #{rawAddTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rawUpdateTime != null" >
+        raw_update_time = #{rawUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="messageContent != null" >
+        message_content = #{messageContent,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where received_id = #{receivedId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.shusheng.tihuzhai.dao.entity.auto.MessageReceived" >
+    update message_received
+    set message_id = #{messageId,jdbcType=BIGINT},
+      message_title = #{messageTitle,jdbcType=VARCHAR},
+      message_type = #{messageType,jdbcType=VARCHAR},
+      message_subject = #{messageSubject,jdbcType=VARCHAR},
+      notification_object = #{notificationObject,jdbcType=VARCHAR},
+      view_type = #{viewType,jdbcType=VARCHAR},
+      link_url = #{linkUrl,jdbcType=VARCHAR},
+      message_received_date = #{messageReceivedDate,jdbcType=TIMESTAMP},
+      message_sender_id = #{messageSenderId,jdbcType=BIGINT},
+      message_received_name = #{messageReceivedName,jdbcType=VARCHAR},
+      message_received_id = #{messageReceivedId,jdbcType=BIGINT},
+      message_received_status = #{messageReceivedStatus,jdbcType=VARCHAR},
+      raw_add_time = #{rawAddTime,jdbcType=TIMESTAMP},
+      raw_update_time = #{rawUpdateTime,jdbcType=TIMESTAMP},
+      message_content = #{messageContent,jdbcType=LONGVARCHAR}
+    where received_id = #{receivedId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shusheng.tihuzhai.dao.entity.auto.MessageReceived" >
+    update message_received
+    set message_id = #{messageId,jdbcType=BIGINT},
+      message_title = #{messageTitle,jdbcType=VARCHAR},
+      message_type = #{messageType,jdbcType=VARCHAR},
+      message_subject = #{messageSubject,jdbcType=VARCHAR},
+      notification_object = #{notificationObject,jdbcType=VARCHAR},
+      view_type = #{viewType,jdbcType=VARCHAR},
+      link_url = #{linkUrl,jdbcType=VARCHAR},
+      message_received_date = #{messageReceivedDate,jdbcType=TIMESTAMP},
+      message_sender_id = #{messageSenderId,jdbcType=BIGINT},
+      message_received_name = #{messageReceivedName,jdbcType=VARCHAR},
+      message_received_id = #{messageReceivedId,jdbcType=BIGINT},
+      message_received_status = #{messageReceivedStatus,jdbcType=VARCHAR},
+      raw_add_time = #{rawAddTime,jdbcType=TIMESTAMP},
+      raw_update_time = #{rawUpdateTime,jdbcType=TIMESTAMP}
+    where received_id = #{receivedId,jdbcType=BIGINT}
+  </update>
+</mapper>

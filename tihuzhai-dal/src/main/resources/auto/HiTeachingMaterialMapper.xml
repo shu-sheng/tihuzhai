@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shusheng.tihuzhai.dao.mappers.auto.HiTeachingMaterialMapper" >
+  <resultMap id="BaseResultMap" type="com.shusheng.tihuzhai.dao.entity.auto.HiTeachingMaterial" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="teaching_material_no" property="teachingMaterialNo" jdbcType="VARCHAR" />
+    <result column="teaching_material_name" property="teachingMaterialName" jdbcType="VARCHAR" />
+    <result column="teaching_material_type_id" property="teachingMaterialTypeId" jdbcType="BIGINT" />
+    <result column="teaching_material_type_name" property="teachingMaterialTypeName" jdbcType="VARCHAR" />
+    <result column="sell_price" property="sellPrice" jdbcType="VARCHAR" />
+    <result column="teaching_material_icon" property="teachingMaterialIcon" jdbcType="VARCHAR" />
+    <result column="is_recommend" property="isRecommend" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="memo" property="memo" jdbcType="VARCHAR" />
+    <result column="raw_add_time" property="rawAddTime" jdbcType="TIMESTAMP" />
+    <result column="raw_update_time" property="rawUpdateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, teaching_material_no, teaching_material_name, teaching_material_type_id, teaching_material_type_name, 
+    sell_price, teaching_material_icon, is_recommend, status, memo, raw_add_time, raw_update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shusheng.tihuzhai.dao.entity.auto.HiTeachingMaterialExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from hi_teaching_material
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from hi_teaching_material
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from hi_teaching_material
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shusheng.tihuzhai.dao.entity.auto.HiTeachingMaterialExample" >
+    delete from hi_teaching_material
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shusheng.tihuzhai.dao.entity.auto.HiTeachingMaterial" >
+    insert into hi_teaching_material (id, teaching_material_no, teaching_material_name, 
+      teaching_material_type_id, teaching_material_type_name, 
+      sell_price, teaching_material_icon, is_recommend, 
+      status, memo, raw_add_time, 
+      raw_update_time)
+    values (#{id,jdbcType=BIGINT}, #{teachingMaterialNo,jdbcType=VARCHAR}, #{teachingMaterialName,jdbcType=VARCHAR}, 
+      #{teachingMaterialTypeId,jdbcType=BIGINT}, #{teachingMaterialTypeName,jdbcType=VARCHAR}, 
+      #{sellPrice,jdbcType=VARCHAR}, #{teachingMaterialIcon,jdbcType=VARCHAR}, #{isRecommend,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{memo,jdbcType=VARCHAR}, #{rawAddTime,jdbcType=TIMESTAMP}, 
+      #{rawUpdateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shusheng.tihuzhai.dao.entity.auto.HiTeachingMaterial" >
+    insert into hi_teaching_material
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="teachingMaterialNo != null" >
+        teaching_material_no,
+      </if>
+      <if test="teachingMaterialName != null" >
+        teaching_material_name,
+      </if>
+      <if test="teachingMaterialTypeId != null" >
+        teaching_material_type_id,
+      </if>
+      <if test="teachingMaterialTypeName != null" >
+        teaching_material_type_name,
+      </if>
+      <if test="sellPrice != null" >
+        sell_price,
+      </if>
+      <if test="teachingMaterialIcon != null" >
+        teaching_material_icon,
+      </if>
+      <if test="isRecommend != null" >
+        is_recommend,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="memo != null" >
+        memo,
+      </if>
+      <if test="rawAddTime != null" >
+        raw_add_time,
+      </if>
+      <if test="rawUpdateTime != null" >
+        raw_update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="teachingMaterialNo != null" >
+        #{teachingMaterialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="teachingMaterialName != null" >
+        #{teachingMaterialName,jdbcType=VARCHAR},
+      </if>
+      <if test="teachingMaterialTypeId != null" >
+        #{teachingMaterialTypeId,jdbcType=BIGINT},
+      </if>
+      <if test="teachingMaterialTypeName != null" >
+        #{teachingMaterialTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="sellPrice != null" >
+        #{sellPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="teachingMaterialIcon != null" >
+        #{teachingMaterialIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="isRecommend != null" >
+        #{isRecommend,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="rawAddTime != null" >
+        #{rawAddTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rawUpdateTime != null" >
+        #{rawUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shusheng.tihuzhai.dao.entity.auto.HiTeachingMaterialExample" resultType="java.lang.Integer" >
+    select count(*) from hi_teaching_material
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update hi_teaching_material
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.teachingMaterialNo != null" >
+        teaching_material_no = #{record.teachingMaterialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.teachingMaterialName != null" >
+        teaching_material_name = #{record.teachingMaterialName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.teachingMaterialTypeId != null" >
+        teaching_material_type_id = #{record.teachingMaterialTypeId,jdbcType=BIGINT},
+      </if>
+      <if test="record.teachingMaterialTypeName != null" >
+        teaching_material_type_name = #{record.teachingMaterialTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sellPrice != null" >
+        sell_price = #{record.sellPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="record.teachingMaterialIcon != null" >
+        teaching_material_icon = #{record.teachingMaterialIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isRecommend != null" >
+        is_recommend = #{record.isRecommend,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memo != null" >
+        memo = #{record.memo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rawAddTime != null" >
+        raw_add_time = #{record.rawAddTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.rawUpdateTime != null" >
+        raw_update_time = #{record.rawUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update hi_teaching_material
+    set id = #{record.id,jdbcType=BIGINT},
+      teaching_material_no = #{record.teachingMaterialNo,jdbcType=VARCHAR},
+      teaching_material_name = #{record.teachingMaterialName,jdbcType=VARCHAR},
+      teaching_material_type_id = #{record.teachingMaterialTypeId,jdbcType=BIGINT},
+      teaching_material_type_name = #{record.teachingMaterialTypeName,jdbcType=VARCHAR},
+      sell_price = #{record.sellPrice,jdbcType=VARCHAR},
+      teaching_material_icon = #{record.teachingMaterialIcon,jdbcType=VARCHAR},
+      is_recommend = #{record.isRecommend,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=VARCHAR},
+      memo = #{record.memo,jdbcType=VARCHAR},
+      raw_add_time = #{record.rawAddTime,jdbcType=TIMESTAMP},
+      raw_update_time = #{record.rawUpdateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shusheng.tihuzhai.dao.entity.auto.HiTeachingMaterial" >
+    update hi_teaching_material
+    <set >
+      <if test="teachingMaterialNo != null" >
+        teaching_material_no = #{teachingMaterialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="teachingMaterialName != null" >
+        teaching_material_name = #{teachingMaterialName,jdbcType=VARCHAR},
+      </if>
+      <if test="teachingMaterialTypeId != null" >
+        teaching_material_type_id = #{teachingMaterialTypeId,jdbcType=BIGINT},
+      </if>
+      <if test="teachingMaterialTypeName != null" >
+        teaching_material_type_name = #{teachingMaterialTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="sellPrice != null" >
+        sell_price = #{sellPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="teachingMaterialIcon != null" >
+        teaching_material_icon = #{teachingMaterialIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="isRecommend != null" >
+        is_recommend = #{isRecommend,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        memo = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="rawAddTime != null" >
+        raw_add_time = #{rawAddTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rawUpdateTime != null" >
+        raw_update_time = #{rawUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shusheng.tihuzhai.dao.entity.auto.HiTeachingMaterial" >
+    update hi_teaching_material
+    set teaching_material_no = #{teachingMaterialNo,jdbcType=VARCHAR},
+      teaching_material_name = #{teachingMaterialName,jdbcType=VARCHAR},
+      teaching_material_type_id = #{teachingMaterialTypeId,jdbcType=BIGINT},
+      teaching_material_type_name = #{teachingMaterialTypeName,jdbcType=VARCHAR},
+      sell_price = #{sellPrice,jdbcType=VARCHAR},
+      teaching_material_icon = #{teachingMaterialIcon,jdbcType=VARCHAR},
+      is_recommend = #{isRecommend,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      memo = #{memo,jdbcType=VARCHAR},
+      raw_add_time = #{rawAddTime,jdbcType=TIMESTAMP},
+      raw_update_time = #{rawUpdateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shusheng.tihuzhai.dao.mappers.auto.HiQaBestBuyDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.shusheng.tihuzhai.dao.entity.auto.HiQaBestBuyDetail" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="answer_id" property="answerId" jdbcType="BIGINT" />
+    <result column="user_base_id" property="userBaseId" jdbcType="VARCHAR" />
+    <result column="lock_status" property="lockStatus" jdbcType="VARCHAR" />
+    <result column="raw_add_time" property="rawAddTime" jdbcType="TIMESTAMP" />
+    <result column="raw_update_time" property="rawUpdateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, answer_id, user_base_id, lock_status, raw_add_time, raw_update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shusheng.tihuzhai.dao.entity.auto.HiQaBestBuyDetailExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from hi_qa_best_buy_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from hi_qa_best_buy_detail
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from hi_qa_best_buy_detail
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shusheng.tihuzhai.dao.entity.auto.HiQaBestBuyDetailExample" >
+    delete from hi_qa_best_buy_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shusheng.tihuzhai.dao.entity.auto.HiQaBestBuyDetail" >
+    insert into hi_qa_best_buy_detail (id, answer_id, user_base_id, 
+      lock_status, raw_add_time, raw_update_time
+      )
+    values (#{id,jdbcType=BIGINT}, #{answerId,jdbcType=BIGINT}, #{userBaseId,jdbcType=VARCHAR}, 
+      #{lockStatus,jdbcType=VARCHAR}, #{rawAddTime,jdbcType=TIMESTAMP}, #{rawUpdateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.shusheng.tihuzhai.dao.entity.auto.HiQaBestBuyDetail" >
+    insert into hi_qa_best_buy_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="answerId != null" >
+        answer_id,
+      </if>
+      <if test="userBaseId != null" >
+        user_base_id,
+      </if>
+      <if test="lockStatus != null" >
+        lock_status,
+      </if>
+      <if test="rawAddTime != null" >
+        raw_add_time,
+      </if>
+      <if test="rawUpdateTime != null" >
+        raw_update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="answerId != null" >
+        #{answerId,jdbcType=BIGINT},
+      </if>
+      <if test="userBaseId != null" >
+        #{userBaseId,jdbcType=VARCHAR},
+      </if>
+      <if test="lockStatus != null" >
+        #{lockStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="rawAddTime != null" >
+        #{rawAddTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rawUpdateTime != null" >
+        #{rawUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shusheng.tihuzhai.dao.entity.auto.HiQaBestBuyDetailExample" resultType="java.lang.Integer" >
+    select count(*) from hi_qa_best_buy_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update hi_qa_best_buy_detail
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.answerId != null" >
+        answer_id = #{record.answerId,jdbcType=BIGINT},
+      </if>
+      <if test="record.userBaseId != null" >
+        user_base_id = #{record.userBaseId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lockStatus != null" >
+        lock_status = #{record.lockStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rawAddTime != null" >
+        raw_add_time = #{record.rawAddTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.rawUpdateTime != null" >
+        raw_update_time = #{record.rawUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update hi_qa_best_buy_detail
+    set id = #{record.id,jdbcType=BIGINT},
+      answer_id = #{record.answerId,jdbcType=BIGINT},
+      user_base_id = #{record.userBaseId,jdbcType=VARCHAR},
+      lock_status = #{record.lockStatus,jdbcType=VARCHAR},
+      raw_add_time = #{record.rawAddTime,jdbcType=TIMESTAMP},
+      raw_update_time = #{record.rawUpdateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shusheng.tihuzhai.dao.entity.auto.HiQaBestBuyDetail" >
+    update hi_qa_best_buy_detail
+    <set >
+      <if test="answerId != null" >
+        answer_id = #{answerId,jdbcType=BIGINT},
+      </if>
+      <if test="userBaseId != null" >
+        user_base_id = #{userBaseId,jdbcType=VARCHAR},
+      </if>
+      <if test="lockStatus != null" >
+        lock_status = #{lockStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="rawAddTime != null" >
+        raw_add_time = #{rawAddTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rawUpdateTime != null" >
+        raw_update_time = #{rawUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shusheng.tihuzhai.dao.entity.auto.HiQaBestBuyDetail" >
+    update hi_qa_best_buy_detail
+    set answer_id = #{answerId,jdbcType=BIGINT},
+      user_base_id = #{userBaseId,jdbcType=VARCHAR},
+      lock_status = #{lockStatus,jdbcType=VARCHAR},
+      raw_add_time = #{rawAddTime,jdbcType=TIMESTAMP},
+      raw_update_time = #{rawUpdateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

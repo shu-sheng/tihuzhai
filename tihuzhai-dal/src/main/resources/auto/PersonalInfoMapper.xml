@@ -1,0 +1,655 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shusheng.tihuzhai.dao.mappers.auto.PersonalInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.shusheng.tihuzhai.dao.entity.auto.PersonalInfo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="user_base_id" property="userBaseId" jdbcType="VARCHAR" />
+    <result column="real_name" property="realName" jdbcType="VARCHAR" />
+    <result column="cert_no" property="certNo" jdbcType="VARCHAR" />
+    <result column="business_period" property="businessPeriod" jdbcType="VARCHAR" />
+    <result column="cert_front_path" property="certFrontPath" jdbcType="VARCHAR" />
+    <result column="cert_back_path" property="certBackPath" jdbcType="VARCHAR" />
+    <result column="bank_open_name" property="bankOpenName" jdbcType="VARCHAR" />
+    <result column="bank_card_no" property="bankCardNo" jdbcType="VARCHAR" />
+    <result column="bank_type" property="bankType" jdbcType="VARCHAR" />
+    <result column="bank_key" property="bankKey" jdbcType="VARCHAR" />
+    <result column="bank_province" property="bankProvince" jdbcType="VARCHAR" />
+    <result column="bank_city" property="bankCity" jdbcType="VARCHAR" />
+    <result column="bank_address" property="bankAddress" jdbcType="VARCHAR" />
+    <result column="gender" property="gender" jdbcType="INTEGER" />
+    <result column="referees" property="referees" jdbcType="VARCHAR" />
+    <result column="customer_source" property="customerSource" jdbcType="VARCHAR" />
+    <result column="birthday" property="birthday" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="graduated_school" property="graduatedSchool" jdbcType="VARCHAR" />
+    <result column="academic_career" property="academicCareer" jdbcType="VARCHAR" />
+    <result column="language_skills" property="languageSkills" jdbcType="VARCHAR" />
+    <result column="introduction" property="introduction" jdbcType="VARCHAR" />
+    <result column="motto" property="motto" jdbcType="VARCHAR" />
+    <result column="mandarin_level" property="mandarinLevel" jdbcType="VARCHAR" />
+    <result column="mandarin_qualification_url" property="mandarinQualificationUrl" jdbcType="VARCHAR" />
+    <result column="record_url" property="recordUrl" jdbcType="VARCHAR" />
+    <result column="teaching_experience" property="teachingExperience" jdbcType="VARCHAR" />
+    <result column="other_materials_url" property="otherMaterialsUrl" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="raw_add_time" property="rawAddTime" jdbcType="TIMESTAMP" />
+    <result column="raw_update_time" property="rawUpdateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, user_base_id, real_name, cert_no, business_period, cert_front_path, cert_back_path, 
+    bank_open_name, bank_card_no, bank_type, bank_key, bank_province, bank_city, bank_address, 
+    gender, referees, customer_source, birthday, mobile, email, graduated_school, academic_career, 
+    language_skills, introduction, motto, mandarin_level, mandarin_qualification_url, 
+    record_url, teaching_experience, other_materials_url, status, raw_add_time, raw_update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shusheng.tihuzhai.dao.entity.auto.PersonalInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from personal_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from personal_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from personal_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shusheng.tihuzhai.dao.entity.auto.PersonalInfoExample" >
+    delete from personal_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shusheng.tihuzhai.dao.entity.auto.PersonalInfo" >
+    insert into personal_info (id, user_base_id, real_name, 
+      cert_no, business_period, cert_front_path, 
+      cert_back_path, bank_open_name, bank_card_no, 
+      bank_type, bank_key, bank_province, 
+      bank_city, bank_address, gender, 
+      referees, customer_source, birthday, 
+      mobile, email, graduated_school, 
+      academic_career, language_skills, introduction, 
+      motto, mandarin_level, mandarin_qualification_url, 
+      record_url, teaching_experience, other_materials_url, 
+      status, raw_add_time, raw_update_time
+      )
+    values (#{id,jdbcType=BIGINT}, #{userBaseId,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR}, 
+      #{certNo,jdbcType=VARCHAR}, #{businessPeriod,jdbcType=VARCHAR}, #{certFrontPath,jdbcType=VARCHAR}, 
+      #{certBackPath,jdbcType=VARCHAR}, #{bankOpenName,jdbcType=VARCHAR}, #{bankCardNo,jdbcType=VARCHAR}, 
+      #{bankType,jdbcType=VARCHAR}, #{bankKey,jdbcType=VARCHAR}, #{bankProvince,jdbcType=VARCHAR}, 
+      #{bankCity,jdbcType=VARCHAR}, #{bankAddress,jdbcType=VARCHAR}, #{gender,jdbcType=INTEGER}, 
+      #{referees,jdbcType=VARCHAR}, #{customerSource,jdbcType=VARCHAR}, #{birthday,jdbcType=VARCHAR}, 
+      #{mobile,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{graduatedSchool,jdbcType=VARCHAR}, 
+      #{academicCareer,jdbcType=VARCHAR}, #{languageSkills,jdbcType=VARCHAR}, #{introduction,jdbcType=VARCHAR}, 
+      #{motto,jdbcType=VARCHAR}, #{mandarinLevel,jdbcType=VARCHAR}, #{mandarinQualificationUrl,jdbcType=VARCHAR}, 
+      #{recordUrl,jdbcType=VARCHAR}, #{teachingExperience,jdbcType=VARCHAR}, #{otherMaterialsUrl,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{rawAddTime,jdbcType=TIMESTAMP}, #{rawUpdateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.shusheng.tihuzhai.dao.entity.auto.PersonalInfo" >
+    insert into personal_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userBaseId != null" >
+        user_base_id,
+      </if>
+      <if test="realName != null" >
+        real_name,
+      </if>
+      <if test="certNo != null" >
+        cert_no,
+      </if>
+      <if test="businessPeriod != null" >
+        business_period,
+      </if>
+      <if test="certFrontPath != null" >
+        cert_front_path,
+      </if>
+      <if test="certBackPath != null" >
+        cert_back_path,
+      </if>
+      <if test="bankOpenName != null" >
+        bank_open_name,
+      </if>
+      <if test="bankCardNo != null" >
+        bank_card_no,
+      </if>
+      <if test="bankType != null" >
+        bank_type,
+      </if>
+      <if test="bankKey != null" >
+        bank_key,
+      </if>
+      <if test="bankProvince != null" >
+        bank_province,
+      </if>
+      <if test="bankCity != null" >
+        bank_city,
+      </if>
+      <if test="bankAddress != null" >
+        bank_address,
+      </if>
+      <if test="gender != null" >
+        gender,
+      </if>
+      <if test="referees != null" >
+        referees,
+      </if>
+      <if test="customerSource != null" >
+        customer_source,
+      </if>
+      <if test="birthday != null" >
+        birthday,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="graduatedSchool != null" >
+        graduated_school,
+      </if>
+      <if test="academicCareer != null" >
+        academic_career,
+      </if>
+      <if test="languageSkills != null" >
+        language_skills,
+      </if>
+      <if test="introduction != null" >
+        introduction,
+      </if>
+      <if test="motto != null" >
+        motto,
+      </if>
+      <if test="mandarinLevel != null" >
+        mandarin_level,
+      </if>
+      <if test="mandarinQualificationUrl != null" >
+        mandarin_qualification_url,
+      </if>
+      <if test="recordUrl != null" >
+        record_url,
+      </if>
+      <if test="teachingExperience != null" >
+        teaching_experience,
+      </if>
+      <if test="otherMaterialsUrl != null" >
+        other_materials_url,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="rawAddTime != null" >
+        raw_add_time,
+      </if>
+      <if test="rawUpdateTime != null" >
+        raw_update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userBaseId != null" >
+        #{userBaseId,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null" >
+        #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="certNo != null" >
+        #{certNo,jdbcType=VARCHAR},
+      </if>
+      <if test="businessPeriod != null" >
+        #{businessPeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="certFrontPath != null" >
+        #{certFrontPath,jdbcType=VARCHAR},
+      </if>
+      <if test="certBackPath != null" >
+        #{certBackPath,jdbcType=VARCHAR},
+      </if>
+      <if test="bankOpenName != null" >
+        #{bankOpenName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCardNo != null" >
+        #{bankCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bankType != null" >
+        #{bankType,jdbcType=VARCHAR},
+      </if>
+      <if test="bankKey != null" >
+        #{bankKey,jdbcType=VARCHAR},
+      </if>
+      <if test="bankProvince != null" >
+        #{bankProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCity != null" >
+        #{bankCity,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAddress != null" >
+        #{bankAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        #{gender,jdbcType=INTEGER},
+      </if>
+      <if test="referees != null" >
+        #{referees,jdbcType=VARCHAR},
+      </if>
+      <if test="customerSource != null" >
+        #{customerSource,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="graduatedSchool != null" >
+        #{graduatedSchool,jdbcType=VARCHAR},
+      </if>
+      <if test="academicCareer != null" >
+        #{academicCareer,jdbcType=VARCHAR},
+      </if>
+      <if test="languageSkills != null" >
+        #{languageSkills,jdbcType=VARCHAR},
+      </if>
+      <if test="introduction != null" >
+        #{introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="motto != null" >
+        #{motto,jdbcType=VARCHAR},
+      </if>
+      <if test="mandarinLevel != null" >
+        #{mandarinLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="mandarinQualificationUrl != null" >
+        #{mandarinQualificationUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="recordUrl != null" >
+        #{recordUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="teachingExperience != null" >
+        #{teachingExperience,jdbcType=VARCHAR},
+      </if>
+      <if test="otherMaterialsUrl != null" >
+        #{otherMaterialsUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="rawAddTime != null" >
+        #{rawAddTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rawUpdateTime != null" >
+        #{rawUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shusheng.tihuzhai.dao.entity.auto.PersonalInfoExample" resultType="java.lang.Integer" >
+    select count(*) from personal_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update personal_info
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.userBaseId != null" >
+        user_base_id = #{record.userBaseId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.realName != null" >
+        real_name = #{record.realName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.certNo != null" >
+        cert_no = #{record.certNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessPeriod != null" >
+        business_period = #{record.businessPeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="record.certFrontPath != null" >
+        cert_front_path = #{record.certFrontPath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.certBackPath != null" >
+        cert_back_path = #{record.certBackPath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankOpenName != null" >
+        bank_open_name = #{record.bankOpenName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankCardNo != null" >
+        bank_card_no = #{record.bankCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankType != null" >
+        bank_type = #{record.bankType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankKey != null" >
+        bank_key = #{record.bankKey,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankProvince != null" >
+        bank_province = #{record.bankProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankCity != null" >
+        bank_city = #{record.bankCity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankAddress != null" >
+        bank_address = #{record.bankAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gender != null" >
+        gender = #{record.gender,jdbcType=INTEGER},
+      </if>
+      <if test="record.referees != null" >
+        referees = #{record.referees,jdbcType=VARCHAR},
+      </if>
+      <if test="record.customerSource != null" >
+        customer_source = #{record.customerSource,jdbcType=VARCHAR},
+      </if>
+      <if test="record.birthday != null" >
+        birthday = #{record.birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mobile != null" >
+        mobile = #{record.mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null" >
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.graduatedSchool != null" >
+        graduated_school = #{record.graduatedSchool,jdbcType=VARCHAR},
+      </if>
+      <if test="record.academicCareer != null" >
+        academic_career = #{record.academicCareer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.languageSkills != null" >
+        language_skills = #{record.languageSkills,jdbcType=VARCHAR},
+      </if>
+      <if test="record.introduction != null" >
+        introduction = #{record.introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="record.motto != null" >
+        motto = #{record.motto,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mandarinLevel != null" >
+        mandarin_level = #{record.mandarinLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mandarinQualificationUrl != null" >
+        mandarin_qualification_url = #{record.mandarinQualificationUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.recordUrl != null" >
+        record_url = #{record.recordUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.teachingExperience != null" >
+        teaching_experience = #{record.teachingExperience,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherMaterialsUrl != null" >
+        other_materials_url = #{record.otherMaterialsUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rawAddTime != null" >
+        raw_add_time = #{record.rawAddTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.rawUpdateTime != null" >
+        raw_update_time = #{record.rawUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update personal_info
+    set id = #{record.id,jdbcType=BIGINT},
+      user_base_id = #{record.userBaseId,jdbcType=VARCHAR},
+      real_name = #{record.realName,jdbcType=VARCHAR},
+      cert_no = #{record.certNo,jdbcType=VARCHAR},
+      business_period = #{record.businessPeriod,jdbcType=VARCHAR},
+      cert_front_path = #{record.certFrontPath,jdbcType=VARCHAR},
+      cert_back_path = #{record.certBackPath,jdbcType=VARCHAR},
+      bank_open_name = #{record.bankOpenName,jdbcType=VARCHAR},
+      bank_card_no = #{record.bankCardNo,jdbcType=VARCHAR},
+      bank_type = #{record.bankType,jdbcType=VARCHAR},
+      bank_key = #{record.bankKey,jdbcType=VARCHAR},
+      bank_province = #{record.bankProvince,jdbcType=VARCHAR},
+      bank_city = #{record.bankCity,jdbcType=VARCHAR},
+      bank_address = #{record.bankAddress,jdbcType=VARCHAR},
+      gender = #{record.gender,jdbcType=INTEGER},
+      referees = #{record.referees,jdbcType=VARCHAR},
+      customer_source = #{record.customerSource,jdbcType=VARCHAR},
+      birthday = #{record.birthday,jdbcType=VARCHAR},
+      mobile = #{record.mobile,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      graduated_school = #{record.graduatedSchool,jdbcType=VARCHAR},
+      academic_career = #{record.academicCareer,jdbcType=VARCHAR},
+      language_skills = #{record.languageSkills,jdbcType=VARCHAR},
+      introduction = #{record.introduction,jdbcType=VARCHAR},
+      motto = #{record.motto,jdbcType=VARCHAR},
+      mandarin_level = #{record.mandarinLevel,jdbcType=VARCHAR},
+      mandarin_qualification_url = #{record.mandarinQualificationUrl,jdbcType=VARCHAR},
+      record_url = #{record.recordUrl,jdbcType=VARCHAR},
+      teaching_experience = #{record.teachingExperience,jdbcType=VARCHAR},
+      other_materials_url = #{record.otherMaterialsUrl,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=VARCHAR},
+      raw_add_time = #{record.rawAddTime,jdbcType=TIMESTAMP},
+      raw_update_time = #{record.rawUpdateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shusheng.tihuzhai.dao.entity.auto.PersonalInfo" >
+    update personal_info
+    <set >
+      <if test="userBaseId != null" >
+        user_base_id = #{userBaseId,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null" >
+        real_name = #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="certNo != null" >
+        cert_no = #{certNo,jdbcType=VARCHAR},
+      </if>
+      <if test="businessPeriod != null" >
+        business_period = #{businessPeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="certFrontPath != null" >
+        cert_front_path = #{certFrontPath,jdbcType=VARCHAR},
+      </if>
+      <if test="certBackPath != null" >
+        cert_back_path = #{certBackPath,jdbcType=VARCHAR},
+      </if>
+      <if test="bankOpenName != null" >
+        bank_open_name = #{bankOpenName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCardNo != null" >
+        bank_card_no = #{bankCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bankType != null" >
+        bank_type = #{bankType,jdbcType=VARCHAR},
+      </if>
+      <if test="bankKey != null" >
+        bank_key = #{bankKey,jdbcType=VARCHAR},
+      </if>
+      <if test="bankProvince != null" >
+        bank_province = #{bankProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCity != null" >
+        bank_city = #{bankCity,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAddress != null" >
+        bank_address = #{bankAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        gender = #{gender,jdbcType=INTEGER},
+      </if>
+      <if test="referees != null" >
+        referees = #{referees,jdbcType=VARCHAR},
+      </if>
+      <if test="customerSource != null" >
+        customer_source = #{customerSource,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        birthday = #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="graduatedSchool != null" >
+        graduated_school = #{graduatedSchool,jdbcType=VARCHAR},
+      </if>
+      <if test="academicCareer != null" >
+        academic_career = #{academicCareer,jdbcType=VARCHAR},
+      </if>
+      <if test="languageSkills != null" >
+        language_skills = #{languageSkills,jdbcType=VARCHAR},
+      </if>
+      <if test="introduction != null" >
+        introduction = #{introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="motto != null" >
+        motto = #{motto,jdbcType=VARCHAR},
+      </if>
+      <if test="mandarinLevel != null" >
+        mandarin_level = #{mandarinLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="mandarinQualificationUrl != null" >
+        mandarin_qualification_url = #{mandarinQualificationUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="recordUrl != null" >
+        record_url = #{recordUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="teachingExperience != null" >
+        teaching_experience = #{teachingExperience,jdbcType=VARCHAR},
+      </if>
+      <if test="otherMaterialsUrl != null" >
+        other_materials_url = #{otherMaterialsUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="rawAddTime != null" >
+        raw_add_time = #{rawAddTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rawUpdateTime != null" >
+        raw_update_time = #{rawUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shusheng.tihuzhai.dao.entity.auto.PersonalInfo" >
+    update personal_info
+    set user_base_id = #{userBaseId,jdbcType=VARCHAR},
+      real_name = #{realName,jdbcType=VARCHAR},
+      cert_no = #{certNo,jdbcType=VARCHAR},
+      business_period = #{businessPeriod,jdbcType=VARCHAR},
+      cert_front_path = #{certFrontPath,jdbcType=VARCHAR},
+      cert_back_path = #{certBackPath,jdbcType=VARCHAR},
+      bank_open_name = #{bankOpenName,jdbcType=VARCHAR},
+      bank_card_no = #{bankCardNo,jdbcType=VARCHAR},
+      bank_type = #{bankType,jdbcType=VARCHAR},
+      bank_key = #{bankKey,jdbcType=VARCHAR},
+      bank_province = #{bankProvince,jdbcType=VARCHAR},
+      bank_city = #{bankCity,jdbcType=VARCHAR},
+      bank_address = #{bankAddress,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=INTEGER},
+      referees = #{referees,jdbcType=VARCHAR},
+      customer_source = #{customerSource,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      graduated_school = #{graduatedSchool,jdbcType=VARCHAR},
+      academic_career = #{academicCareer,jdbcType=VARCHAR},
+      language_skills = #{languageSkills,jdbcType=VARCHAR},
+      introduction = #{introduction,jdbcType=VARCHAR},
+      motto = #{motto,jdbcType=VARCHAR},
+      mandarin_level = #{mandarinLevel,jdbcType=VARCHAR},
+      mandarin_qualification_url = #{mandarinQualificationUrl,jdbcType=VARCHAR},
+      record_url = #{recordUrl,jdbcType=VARCHAR},
+      teaching_experience = #{teachingExperience,jdbcType=VARCHAR},
+      other_materials_url = #{otherMaterialsUrl,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      raw_add_time = #{rawAddTime,jdbcType=TIMESTAMP},
+      raw_update_time = #{rawUpdateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

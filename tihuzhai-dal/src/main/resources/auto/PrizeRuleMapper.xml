@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shusheng.tihuzhai.dao.mappers.auto.PrizeRuleMapper" >
+  <resultMap id="BaseResultMap" type="com.shusheng.tihuzhai.dao.entity.auto.PrizeRule" >
+    <id column="prize_rule_id" property="prizeRuleId" jdbcType="BIGINT" />
+    <result column="prize_rule_name" property="prizeRuleName" jdbcType="VARCHAR" />
+    <result column="winning_rate" property="winningRate" jdbcType="DOUBLE" />
+    <result column="prize_num" property="prizeNum" jdbcType="BIGINT" />
+    <result column="not_winning_num" property="notWinningNum" jdbcType="BIGINT" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="raw_add_time" property="rawAddTime" jdbcType="TIMESTAMP" />
+    <result column="raw_update_time" property="rawUpdateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    prize_rule_id, prize_rule_name, winning_rate, prize_num, not_winning_num, description, 
+    raw_add_time, raw_update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shusheng.tihuzhai.dao.entity.auto.PrizeRuleExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from prize_rule
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from prize_rule
+    where prize_rule_id = #{prizeRuleId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from prize_rule
+    where prize_rule_id = #{prizeRuleId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shusheng.tihuzhai.dao.entity.auto.PrizeRuleExample" >
+    delete from prize_rule
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shusheng.tihuzhai.dao.entity.auto.PrizeRule" >
+    insert into prize_rule (prize_rule_id, prize_rule_name, winning_rate, 
+      prize_num, not_winning_num, description, 
+      raw_add_time, raw_update_time)
+    values (#{prizeRuleId,jdbcType=BIGINT}, #{prizeRuleName,jdbcType=VARCHAR}, #{winningRate,jdbcType=DOUBLE}, 
+      #{prizeNum,jdbcType=BIGINT}, #{notWinningNum,jdbcType=BIGINT}, #{description,jdbcType=VARCHAR}, 
+      #{rawAddTime,jdbcType=TIMESTAMP}, #{rawUpdateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shusheng.tihuzhai.dao.entity.auto.PrizeRule" >
+    insert into prize_rule
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="prizeRuleId != null" >
+        prize_rule_id,
+      </if>
+      <if test="prizeRuleName != null" >
+        prize_rule_name,
+      </if>
+      <if test="winningRate != null" >
+        winning_rate,
+      </if>
+      <if test="prizeNum != null" >
+        prize_num,
+      </if>
+      <if test="notWinningNum != null" >
+        not_winning_num,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="rawAddTime != null" >
+        raw_add_time,
+      </if>
+      <if test="rawUpdateTime != null" >
+        raw_update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="prizeRuleId != null" >
+        #{prizeRuleId,jdbcType=BIGINT},
+      </if>
+      <if test="prizeRuleName != null" >
+        #{prizeRuleName,jdbcType=VARCHAR},
+      </if>
+      <if test="winningRate != null" >
+        #{winningRate,jdbcType=DOUBLE},
+      </if>
+      <if test="prizeNum != null" >
+        #{prizeNum,jdbcType=BIGINT},
+      </if>
+      <if test="notWinningNum != null" >
+        #{notWinningNum,jdbcType=BIGINT},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="rawAddTime != null" >
+        #{rawAddTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rawUpdateTime != null" >
+        #{rawUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shusheng.tihuzhai.dao.entity.auto.PrizeRuleExample" resultType="java.lang.Integer" >
+    select count(*) from prize_rule
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update prize_rule
+    <set >
+      <if test="record.prizeRuleId != null" >
+        prize_rule_id = #{record.prizeRuleId,jdbcType=BIGINT},
+      </if>
+      <if test="record.prizeRuleName != null" >
+        prize_rule_name = #{record.prizeRuleName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.winningRate != null" >
+        winning_rate = #{record.winningRate,jdbcType=DOUBLE},
+      </if>
+      <if test="record.prizeNum != null" >
+        prize_num = #{record.prizeNum,jdbcType=BIGINT},
+      </if>
+      <if test="record.notWinningNum != null" >
+        not_winning_num = #{record.notWinningNum,jdbcType=BIGINT},
+      </if>
+      <if test="record.description != null" >
+        description = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rawAddTime != null" >
+        raw_add_time = #{record.rawAddTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.rawUpdateTime != null" >
+        raw_update_time = #{record.rawUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update prize_rule
+    set prize_rule_id = #{record.prizeRuleId,jdbcType=BIGINT},
+      prize_rule_name = #{record.prizeRuleName,jdbcType=VARCHAR},
+      winning_rate = #{record.winningRate,jdbcType=DOUBLE},
+      prize_num = #{record.prizeNum,jdbcType=BIGINT},
+      not_winning_num = #{record.notWinningNum,jdbcType=BIGINT},
+      description = #{record.description,jdbcType=VARCHAR},
+      raw_add_time = #{record.rawAddTime,jdbcType=TIMESTAMP},
+      raw_update_time = #{record.rawUpdateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shusheng.tihuzhai.dao.entity.auto.PrizeRule" >
+    update prize_rule
+    <set >
+      <if test="prizeRuleName != null" >
+        prize_rule_name = #{prizeRuleName,jdbcType=VARCHAR},
+      </if>
+      <if test="winningRate != null" >
+        winning_rate = #{winningRate,jdbcType=DOUBLE},
+      </if>
+      <if test="prizeNum != null" >
+        prize_num = #{prizeNum,jdbcType=BIGINT},
+      </if>
+      <if test="notWinningNum != null" >
+        not_winning_num = #{notWinningNum,jdbcType=BIGINT},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="rawAddTime != null" >
+        raw_add_time = #{rawAddTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rawUpdateTime != null" >
+        raw_update_time = #{rawUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where prize_rule_id = #{prizeRuleId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shusheng.tihuzhai.dao.entity.auto.PrizeRule" >
+    update prize_rule
+    set prize_rule_name = #{prizeRuleName,jdbcType=VARCHAR},
+      winning_rate = #{winningRate,jdbcType=DOUBLE},
+      prize_num = #{prizeNum,jdbcType=BIGINT},
+      not_winning_num = #{notWinningNum,jdbcType=BIGINT},
+      description = #{description,jdbcType=VARCHAR},
+      raw_add_time = #{rawAddTime,jdbcType=TIMESTAMP},
+      raw_update_time = #{rawUpdateTime,jdbcType=TIMESTAMP}
+    where prize_rule_id = #{prizeRuleId,jdbcType=BIGINT}
+  </update>
+</mapper>

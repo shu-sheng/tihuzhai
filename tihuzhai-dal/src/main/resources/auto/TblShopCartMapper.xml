@@ -1,0 +1,496 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shusheng.tihuzhai.dao.mappers.auto.TblShopCartMapper" >
+  <resultMap id="BaseResultMap" type="com.shusheng.tihuzhai.dao.entity.auto.TblShopCart" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="product_id" property="productId" jdbcType="BIGINT" />
+    <result column="product_name" property="productName" jdbcType="VARCHAR" />
+    <result column="pic_path" property="picPath" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="BIGINT" />
+    <result column="quantity" property="quantity" jdbcType="BIGINT" />
+    <result column="total_price" property="totalPrice" jdbcType="BIGINT" />
+    <result column="is_delete" property="isDelete" jdbcType="VARCHAR" />
+    <result column="putin_date" property="putinDate" jdbcType="TIMESTAMP" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="supplier_id" property="supplierId" jdbcType="BIGINT" />
+    <result column="supplier_name" property="supplierName" jdbcType="VARCHAR" />
+    <result column="product_unit" property="productUnit" jdbcType="VARCHAR" />
+    <result column="is_bargain" property="isBargain" jdbcType="VARCHAR" />
+    <result column="raw_add_time" property="rawAddTime" jdbcType="TIMESTAMP" />
+    <result column="raw_update_time" property="rawUpdateTime" jdbcType="TIMESTAMP" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="user_nikename" property="userNikename" jdbcType="VARCHAR" />
+    <result column="pt_tag" property="ptTag" jdbcType="VARCHAR" />
+    <result column="product_sale_type" property="productSaleType" jdbcType="VARCHAR" />
+    <result column="market_unit" property="marketUnit" jdbcType="VARCHAR" />
+    <result column="product_market_scale" property="productMarketScale" jdbcType="BIGINT" />
+    <result column="product_unit_id" property="productUnitId" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, product_id, product_name, pic_path, price, quantity, total_price, is_delete, 
+    putin_date, user_id, supplier_id, supplier_name, product_unit, is_bargain, raw_add_time, 
+    raw_update_time, user_name, user_nikename, pt_tag, product_sale_type, market_unit, 
+    product_market_scale, product_unit_id
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shusheng.tihuzhai.dao.entity.auto.TblShopCartExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tbl_shop_cart
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_shop_cart
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from tbl_shop_cart
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shusheng.tihuzhai.dao.entity.auto.TblShopCartExample" >
+    delete from tbl_shop_cart
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shusheng.tihuzhai.dao.entity.auto.TblShopCart" >
+    insert into tbl_shop_cart (id, product_id, product_name, 
+      pic_path, price, quantity, 
+      total_price, is_delete, putin_date, 
+      user_id, supplier_id, supplier_name, 
+      product_unit, is_bargain, raw_add_time, 
+      raw_update_time, user_name, user_nikename, 
+      pt_tag, product_sale_type, market_unit, 
+      product_market_scale, product_unit_id)
+    values (#{id,jdbcType=BIGINT}, #{productId,jdbcType=BIGINT}, #{productName,jdbcType=VARCHAR}, 
+      #{picPath,jdbcType=VARCHAR}, #{price,jdbcType=BIGINT}, #{quantity,jdbcType=BIGINT}, 
+      #{totalPrice,jdbcType=BIGINT}, #{isDelete,jdbcType=VARCHAR}, #{putinDate,jdbcType=TIMESTAMP}, 
+      #{userId,jdbcType=BIGINT}, #{supplierId,jdbcType=BIGINT}, #{supplierName,jdbcType=VARCHAR}, 
+      #{productUnit,jdbcType=VARCHAR}, #{isBargain,jdbcType=VARCHAR}, #{rawAddTime,jdbcType=TIMESTAMP}, 
+      #{rawUpdateTime,jdbcType=TIMESTAMP}, #{userName,jdbcType=VARCHAR}, #{userNikename,jdbcType=VARCHAR}, 
+      #{ptTag,jdbcType=VARCHAR}, #{productSaleType,jdbcType=VARCHAR}, #{marketUnit,jdbcType=VARCHAR}, 
+      #{productMarketScale,jdbcType=BIGINT}, #{productUnitId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shusheng.tihuzhai.dao.entity.auto.TblShopCart" >
+    insert into tbl_shop_cart
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="productId != null" >
+        product_id,
+      </if>
+      <if test="productName != null" >
+        product_name,
+      </if>
+      <if test="picPath != null" >
+        pic_path,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="quantity != null" >
+        quantity,
+      </if>
+      <if test="totalPrice != null" >
+        total_price,
+      </if>
+      <if test="isDelete != null" >
+        is_delete,
+      </if>
+      <if test="putinDate != null" >
+        putin_date,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="supplierId != null" >
+        supplier_id,
+      </if>
+      <if test="supplierName != null" >
+        supplier_name,
+      </if>
+      <if test="productUnit != null" >
+        product_unit,
+      </if>
+      <if test="isBargain != null" >
+        is_bargain,
+      </if>
+      <if test="rawAddTime != null" >
+        raw_add_time,
+      </if>
+      <if test="rawUpdateTime != null" >
+        raw_update_time,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="userNikename != null" >
+        user_nikename,
+      </if>
+      <if test="ptTag != null" >
+        pt_tag,
+      </if>
+      <if test="productSaleType != null" >
+        product_sale_type,
+      </if>
+      <if test="marketUnit != null" >
+        market_unit,
+      </if>
+      <if test="productMarketScale != null" >
+        product_market_scale,
+      </if>
+      <if test="productUnitId != null" >
+        product_unit_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="productId != null" >
+        #{productId,jdbcType=BIGINT},
+      </if>
+      <if test="productName != null" >
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="picPath != null" >
+        #{picPath,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=BIGINT},
+      </if>
+      <if test="quantity != null" >
+        #{quantity,jdbcType=BIGINT},
+      </if>
+      <if test="totalPrice != null" >
+        #{totalPrice,jdbcType=BIGINT},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=VARCHAR},
+      </if>
+      <if test="putinDate != null" >
+        #{putinDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="supplierId != null" >
+        #{supplierId,jdbcType=BIGINT},
+      </if>
+      <if test="supplierName != null" >
+        #{supplierName,jdbcType=VARCHAR},
+      </if>
+      <if test="productUnit != null" >
+        #{productUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="isBargain != null" >
+        #{isBargain,jdbcType=VARCHAR},
+      </if>
+      <if test="rawAddTime != null" >
+        #{rawAddTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rawUpdateTime != null" >
+        #{rawUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userNikename != null" >
+        #{userNikename,jdbcType=VARCHAR},
+      </if>
+      <if test="ptTag != null" >
+        #{ptTag,jdbcType=VARCHAR},
+      </if>
+      <if test="productSaleType != null" >
+        #{productSaleType,jdbcType=VARCHAR},
+      </if>
+      <if test="marketUnit != null" >
+        #{marketUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="productMarketScale != null" >
+        #{productMarketScale,jdbcType=BIGINT},
+      </if>
+      <if test="productUnitId != null" >
+        #{productUnitId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shusheng.tihuzhai.dao.entity.auto.TblShopCartExample" resultType="java.lang.Integer" >
+    select count(*) from tbl_shop_cart
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tbl_shop_cart
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.productId != null" >
+        product_id = #{record.productId,jdbcType=BIGINT},
+      </if>
+      <if test="record.productName != null" >
+        product_name = #{record.productName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.picPath != null" >
+        pic_path = #{record.picPath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.price != null" >
+        price = #{record.price,jdbcType=BIGINT},
+      </if>
+      <if test="record.quantity != null" >
+        quantity = #{record.quantity,jdbcType=BIGINT},
+      </if>
+      <if test="record.totalPrice != null" >
+        total_price = #{record.totalPrice,jdbcType=BIGINT},
+      </if>
+      <if test="record.isDelete != null" >
+        is_delete = #{record.isDelete,jdbcType=VARCHAR},
+      </if>
+      <if test="record.putinDate != null" >
+        putin_date = #{record.putinDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=BIGINT},
+      </if>
+      <if test="record.supplierId != null" >
+        supplier_id = #{record.supplierId,jdbcType=BIGINT},
+      </if>
+      <if test="record.supplierName != null" >
+        supplier_name = #{record.supplierName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.productUnit != null" >
+        product_unit = #{record.productUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isBargain != null" >
+        is_bargain = #{record.isBargain,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rawAddTime != null" >
+        raw_add_time = #{record.rawAddTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.rawUpdateTime != null" >
+        raw_update_time = #{record.rawUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.userName != null" >
+        user_name = #{record.userName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userNikename != null" >
+        user_nikename = #{record.userNikename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ptTag != null" >
+        pt_tag = #{record.ptTag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.productSaleType != null" >
+        product_sale_type = #{record.productSaleType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.marketUnit != null" >
+        market_unit = #{record.marketUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.productMarketScale != null" >
+        product_market_scale = #{record.productMarketScale,jdbcType=BIGINT},
+      </if>
+      <if test="record.productUnitId != null" >
+        product_unit_id = #{record.productUnitId,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tbl_shop_cart
+    set id = #{record.id,jdbcType=BIGINT},
+      product_id = #{record.productId,jdbcType=BIGINT},
+      product_name = #{record.productName,jdbcType=VARCHAR},
+      pic_path = #{record.picPath,jdbcType=VARCHAR},
+      price = #{record.price,jdbcType=BIGINT},
+      quantity = #{record.quantity,jdbcType=BIGINT},
+      total_price = #{record.totalPrice,jdbcType=BIGINT},
+      is_delete = #{record.isDelete,jdbcType=VARCHAR},
+      putin_date = #{record.putinDate,jdbcType=TIMESTAMP},
+      user_id = #{record.userId,jdbcType=BIGINT},
+      supplier_id = #{record.supplierId,jdbcType=BIGINT},
+      supplier_name = #{record.supplierName,jdbcType=VARCHAR},
+      product_unit = #{record.productUnit,jdbcType=VARCHAR},
+      is_bargain = #{record.isBargain,jdbcType=VARCHAR},
+      raw_add_time = #{record.rawAddTime,jdbcType=TIMESTAMP},
+      raw_update_time = #{record.rawUpdateTime,jdbcType=TIMESTAMP},
+      user_name = #{record.userName,jdbcType=VARCHAR},
+      user_nikename = #{record.userNikename,jdbcType=VARCHAR},
+      pt_tag = #{record.ptTag,jdbcType=VARCHAR},
+      product_sale_type = #{record.productSaleType,jdbcType=VARCHAR},
+      market_unit = #{record.marketUnit,jdbcType=VARCHAR},
+      product_market_scale = #{record.productMarketScale,jdbcType=BIGINT},
+      product_unit_id = #{record.productUnitId,jdbcType=BIGINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shusheng.tihuzhai.dao.entity.auto.TblShopCart" >
+    update tbl_shop_cart
+    <set >
+      <if test="productId != null" >
+        product_id = #{productId,jdbcType=BIGINT},
+      </if>
+      <if test="productName != null" >
+        product_name = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="picPath != null" >
+        pic_path = #{picPath,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=BIGINT},
+      </if>
+      <if test="quantity != null" >
+        quantity = #{quantity,jdbcType=BIGINT},
+      </if>
+      <if test="totalPrice != null" >
+        total_price = #{totalPrice,jdbcType=BIGINT},
+      </if>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete,jdbcType=VARCHAR},
+      </if>
+      <if test="putinDate != null" >
+        putin_date = #{putinDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="supplierId != null" >
+        supplier_id = #{supplierId,jdbcType=BIGINT},
+      </if>
+      <if test="supplierName != null" >
+        supplier_name = #{supplierName,jdbcType=VARCHAR},
+      </if>
+      <if test="productUnit != null" >
+        product_unit = #{productUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="isBargain != null" >
+        is_bargain = #{isBargain,jdbcType=VARCHAR},
+      </if>
+      <if test="rawAddTime != null" >
+        raw_add_time = #{rawAddTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rawUpdateTime != null" >
+        raw_update_time = #{rawUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userNikename != null" >
+        user_nikename = #{userNikename,jdbcType=VARCHAR},
+      </if>
+      <if test="ptTag != null" >
+        pt_tag = #{ptTag,jdbcType=VARCHAR},
+      </if>
+      <if test="productSaleType != null" >
+        product_sale_type = #{productSaleType,jdbcType=VARCHAR},
+      </if>
+      <if test="marketUnit != null" >
+        market_unit = #{marketUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="productMarketScale != null" >
+        product_market_scale = #{productMarketScale,jdbcType=BIGINT},
+      </if>
+      <if test="productUnitId != null" >
+        product_unit_id = #{productUnitId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shusheng.tihuzhai.dao.entity.auto.TblShopCart" >
+    update tbl_shop_cart
+    set product_id = #{productId,jdbcType=BIGINT},
+      product_name = #{productName,jdbcType=VARCHAR},
+      pic_path = #{picPath,jdbcType=VARCHAR},
+      price = #{price,jdbcType=BIGINT},
+      quantity = #{quantity,jdbcType=BIGINT},
+      total_price = #{totalPrice,jdbcType=BIGINT},
+      is_delete = #{isDelete,jdbcType=VARCHAR},
+      putin_date = #{putinDate,jdbcType=TIMESTAMP},
+      user_id = #{userId,jdbcType=BIGINT},
+      supplier_id = #{supplierId,jdbcType=BIGINT},
+      supplier_name = #{supplierName,jdbcType=VARCHAR},
+      product_unit = #{productUnit,jdbcType=VARCHAR},
+      is_bargain = #{isBargain,jdbcType=VARCHAR},
+      raw_add_time = #{rawAddTime,jdbcType=TIMESTAMP},
+      raw_update_time = #{rawUpdateTime,jdbcType=TIMESTAMP},
+      user_name = #{userName,jdbcType=VARCHAR},
+      user_nikename = #{userNikename,jdbcType=VARCHAR},
+      pt_tag = #{ptTag,jdbcType=VARCHAR},
+      product_sale_type = #{productSaleType,jdbcType=VARCHAR},
+      market_unit = #{marketUnit,jdbcType=VARCHAR},
+      product_market_scale = #{productMarketScale,jdbcType=BIGINT},
+      product_unit_id = #{productUnitId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

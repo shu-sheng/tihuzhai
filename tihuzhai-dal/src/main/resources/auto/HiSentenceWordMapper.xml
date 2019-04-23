@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shusheng.tihuzhai.dao.mappers.auto.HiSentenceWordMapper" >
+  <resultMap id="BaseResultMap" type="com.shusheng.tihuzhai.dao.entity.auto.HiSentenceWord" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="sentence_id" property="sentenceId" jdbcType="BIGINT" />
+    <result column="word_id" property="wordId" jdbcType="BIGINT" />
+    <result column="start_index" property="startIndex" jdbcType="INTEGER" />
+    <result column="end_index" property="endIndex" jdbcType="INTEGER" />
+    <result column="is_example" property="isExample" jdbcType="VARCHAR" />
+    <result column="memo" property="memo" jdbcType="VARCHAR" />
+    <result column="raw_add_time" property="rawAddTime" jdbcType="TIMESTAMP" />
+    <result column="raw_update_time" property="rawUpdateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, sentence_id, word_id, start_index, end_index, is_example, memo, raw_add_time, 
+    raw_update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shusheng.tihuzhai.dao.entity.auto.HiSentenceWordExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from hi_sentence_word
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from hi_sentence_word
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from hi_sentence_word
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shusheng.tihuzhai.dao.entity.auto.HiSentenceWordExample" >
+    delete from hi_sentence_word
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shusheng.tihuzhai.dao.entity.auto.HiSentenceWord" >
+    insert into hi_sentence_word (id, sentence_id, word_id, 
+      start_index, end_index, is_example, 
+      memo, raw_add_time, raw_update_time
+      )
+    values (#{id,jdbcType=BIGINT}, #{sentenceId,jdbcType=BIGINT}, #{wordId,jdbcType=BIGINT}, 
+      #{startIndex,jdbcType=INTEGER}, #{endIndex,jdbcType=INTEGER}, #{isExample,jdbcType=VARCHAR}, 
+      #{memo,jdbcType=VARCHAR}, #{rawAddTime,jdbcType=TIMESTAMP}, #{rawUpdateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.shusheng.tihuzhai.dao.entity.auto.HiSentenceWord" >
+    insert into hi_sentence_word
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="sentenceId != null" >
+        sentence_id,
+      </if>
+      <if test="wordId != null" >
+        word_id,
+      </if>
+      <if test="startIndex != null" >
+        start_index,
+      </if>
+      <if test="endIndex != null" >
+        end_index,
+      </if>
+      <if test="isExample != null" >
+        is_example,
+      </if>
+      <if test="memo != null" >
+        memo,
+      </if>
+      <if test="rawAddTime != null" >
+        raw_add_time,
+      </if>
+      <if test="rawUpdateTime != null" >
+        raw_update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="sentenceId != null" >
+        #{sentenceId,jdbcType=BIGINT},
+      </if>
+      <if test="wordId != null" >
+        #{wordId,jdbcType=BIGINT},
+      </if>
+      <if test="startIndex != null" >
+        #{startIndex,jdbcType=INTEGER},
+      </if>
+      <if test="endIndex != null" >
+        #{endIndex,jdbcType=INTEGER},
+      </if>
+      <if test="isExample != null" >
+        #{isExample,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="rawAddTime != null" >
+        #{rawAddTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rawUpdateTime != null" >
+        #{rawUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shusheng.tihuzhai.dao.entity.auto.HiSentenceWordExample" resultType="java.lang.Integer" >
+    select count(*) from hi_sentence_word
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update hi_sentence_word
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.sentenceId != null" >
+        sentence_id = #{record.sentenceId,jdbcType=BIGINT},
+      </if>
+      <if test="record.wordId != null" >
+        word_id = #{record.wordId,jdbcType=BIGINT},
+      </if>
+      <if test="record.startIndex != null" >
+        start_index = #{record.startIndex,jdbcType=INTEGER},
+      </if>
+      <if test="record.endIndex != null" >
+        end_index = #{record.endIndex,jdbcType=INTEGER},
+      </if>
+      <if test="record.isExample != null" >
+        is_example = #{record.isExample,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memo != null" >
+        memo = #{record.memo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rawAddTime != null" >
+        raw_add_time = #{record.rawAddTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.rawUpdateTime != null" >
+        raw_update_time = #{record.rawUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update hi_sentence_word
+    set id = #{record.id,jdbcType=BIGINT},
+      sentence_id = #{record.sentenceId,jdbcType=BIGINT},
+      word_id = #{record.wordId,jdbcType=BIGINT},
+      start_index = #{record.startIndex,jdbcType=INTEGER},
+      end_index = #{record.endIndex,jdbcType=INTEGER},
+      is_example = #{record.isExample,jdbcType=VARCHAR},
+      memo = #{record.memo,jdbcType=VARCHAR},
+      raw_add_time = #{record.rawAddTime,jdbcType=TIMESTAMP},
+      raw_update_time = #{record.rawUpdateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shusheng.tihuzhai.dao.entity.auto.HiSentenceWord" >
+    update hi_sentence_word
+    <set >
+      <if test="sentenceId != null" >
+        sentence_id = #{sentenceId,jdbcType=BIGINT},
+      </if>
+      <if test="wordId != null" >
+        word_id = #{wordId,jdbcType=BIGINT},
+      </if>
+      <if test="startIndex != null" >
+        start_index = #{startIndex,jdbcType=INTEGER},
+      </if>
+      <if test="endIndex != null" >
+        end_index = #{endIndex,jdbcType=INTEGER},
+      </if>
+      <if test="isExample != null" >
+        is_example = #{isExample,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        memo = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="rawAddTime != null" >
+        raw_add_time = #{rawAddTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rawUpdateTime != null" >
+        raw_update_time = #{rawUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shusheng.tihuzhai.dao.entity.auto.HiSentenceWord" >
+    update hi_sentence_word
+    set sentence_id = #{sentenceId,jdbcType=BIGINT},
+      word_id = #{wordId,jdbcType=BIGINT},
+      start_index = #{startIndex,jdbcType=INTEGER},
+      end_index = #{endIndex,jdbcType=INTEGER},
+      is_example = #{isExample,jdbcType=VARCHAR},
+      memo = #{memo,jdbcType=VARCHAR},
+      raw_add_time = #{rawAddTime,jdbcType=TIMESTAMP},
+      raw_update_time = #{rawUpdateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

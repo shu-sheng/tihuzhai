@@ -1,0 +1,517 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shusheng.tihuzhai.dao.mappers.auto.UserAccountDataMapper" >
+  <resultMap id="BaseResultMap" type="com.shusheng.tihuzhai.dao.entity.auto.UserAccountData" >
+    <id column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="user_integral" property="userIntegral" jdbcType="BIGINT" />
+    <result column="user_integral_grand_total" property="userIntegralGrandTotal" jdbcType="BIGINT" />
+    <result column="user_coupon_count" property="userCouponCount" jdbcType="BIGINT" />
+    <result column="user_coupon_count_grand_total" property="userCouponCountGrandTotal" jdbcType="BIGINT" />
+    <result column="user_coupon_amount" property="userCouponAmount" jdbcType="BIGINT" />
+    <result column="user_coupon_amount_grand_total" property="userCouponAmountGrandTotal" jdbcType="BIGINT" />
+    <result column="user_gift_amount" property="userGiftAmount" jdbcType="BIGINT" />
+    <result column="user_gift_amount_grand_total" property="userGiftAmountGrandTotal" jdbcType="BIGINT" />
+    <result column="user_gift_amount_count" property="userGiftAmountCount" jdbcType="BIGINT" />
+    <result column="user_gift_amount_grand_count" property="userGiftAmountGrandCount" jdbcType="BIGINT" />
+    <result column="user_gift_amount_cash" property="userGiftAmountCash" jdbcType="BIGINT" />
+    <result column="user_gift_amount_cash_grand_total" property="userGiftAmountCashGrandTotal" jdbcType="BIGINT" />
+    <result column="user_growth_value" property="userGrowthValue" jdbcType="BIGINT" />
+    <result column="user_balance" property="userBalance" jdbcType="BIGINT" />
+    <result column="user_trade_amount" property="userTradeAmount" jdbcType="BIGINT" />
+    <result column="user_recharge_amount" property="userRechargeAmount" jdbcType="BIGINT" />
+    <result column="user_withdraw_amount" property="userWithdrawAmount" jdbcType="BIGINT" />
+    <result column="user_freeze_amount" property="userFreezeAmount" jdbcType="BIGINT" />
+    <result column="user_payed_amount" property="userPayedAmount" jdbcType="BIGINT" />
+    <result column="user_trade_day" property="userTradeDay" jdbcType="BIGINT" />
+    <result column="last_trade_day" property="lastTradeDay" jdbcType="VARCHAR" />
+    <result column="raw_add_time" property="rawAddTime" jdbcType="TIMESTAMP" />
+    <result column="raw_update_time" property="rawUpdateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    user_id, user_integral, user_integral_grand_total, user_coupon_count, user_coupon_count_grand_total, 
+    user_coupon_amount, user_coupon_amount_grand_total, user_gift_amount, user_gift_amount_grand_total, 
+    user_gift_amount_count, user_gift_amount_grand_count, user_gift_amount_cash, user_gift_amount_cash_grand_total, 
+    user_growth_value, user_balance, user_trade_amount, user_recharge_amount, user_withdraw_amount, 
+    user_freeze_amount, user_payed_amount, user_trade_day, last_trade_day, raw_add_time, 
+    raw_update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shusheng.tihuzhai.dao.entity.auto.UserAccountDataExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from user_account_data
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_account_data
+    where user_id = #{userId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from user_account_data
+    where user_id = #{userId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shusheng.tihuzhai.dao.entity.auto.UserAccountDataExample" >
+    delete from user_account_data
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shusheng.tihuzhai.dao.entity.auto.UserAccountData" >
+    insert into user_account_data (user_id, user_integral, user_integral_grand_total, 
+      user_coupon_count, user_coupon_count_grand_total, 
+      user_coupon_amount, user_coupon_amount_grand_total, 
+      user_gift_amount, user_gift_amount_grand_total, 
+      user_gift_amount_count, user_gift_amount_grand_count, 
+      user_gift_amount_cash, user_gift_amount_cash_grand_total, 
+      user_growth_value, user_balance, user_trade_amount, 
+      user_recharge_amount, user_withdraw_amount, user_freeze_amount, 
+      user_payed_amount, user_trade_day, last_trade_day, 
+      raw_add_time, raw_update_time)
+    values (#{userId,jdbcType=BIGINT}, #{userIntegral,jdbcType=BIGINT}, #{userIntegralGrandTotal,jdbcType=BIGINT}, 
+      #{userCouponCount,jdbcType=BIGINT}, #{userCouponCountGrandTotal,jdbcType=BIGINT}, 
+      #{userCouponAmount,jdbcType=BIGINT}, #{userCouponAmountGrandTotal,jdbcType=BIGINT}, 
+      #{userGiftAmount,jdbcType=BIGINT}, #{userGiftAmountGrandTotal,jdbcType=BIGINT}, 
+      #{userGiftAmountCount,jdbcType=BIGINT}, #{userGiftAmountGrandCount,jdbcType=BIGINT}, 
+      #{userGiftAmountCash,jdbcType=BIGINT}, #{userGiftAmountCashGrandTotal,jdbcType=BIGINT}, 
+      #{userGrowthValue,jdbcType=BIGINT}, #{userBalance,jdbcType=BIGINT}, #{userTradeAmount,jdbcType=BIGINT}, 
+      #{userRechargeAmount,jdbcType=BIGINT}, #{userWithdrawAmount,jdbcType=BIGINT}, #{userFreezeAmount,jdbcType=BIGINT}, 
+      #{userPayedAmount,jdbcType=BIGINT}, #{userTradeDay,jdbcType=BIGINT}, #{lastTradeDay,jdbcType=VARCHAR}, 
+      #{rawAddTime,jdbcType=TIMESTAMP}, #{rawUpdateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shusheng.tihuzhai.dao.entity.auto.UserAccountData" >
+    insert into user_account_data
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="userIntegral != null" >
+        user_integral,
+      </if>
+      <if test="userIntegralGrandTotal != null" >
+        user_integral_grand_total,
+      </if>
+      <if test="userCouponCount != null" >
+        user_coupon_count,
+      </if>
+      <if test="userCouponCountGrandTotal != null" >
+        user_coupon_count_grand_total,
+      </if>
+      <if test="userCouponAmount != null" >
+        user_coupon_amount,
+      </if>
+      <if test="userCouponAmountGrandTotal != null" >
+        user_coupon_amount_grand_total,
+      </if>
+      <if test="userGiftAmount != null" >
+        user_gift_amount,
+      </if>
+      <if test="userGiftAmountGrandTotal != null" >
+        user_gift_amount_grand_total,
+      </if>
+      <if test="userGiftAmountCount != null" >
+        user_gift_amount_count,
+      </if>
+      <if test="userGiftAmountGrandCount != null" >
+        user_gift_amount_grand_count,
+      </if>
+      <if test="userGiftAmountCash != null" >
+        user_gift_amount_cash,
+      </if>
+      <if test="userGiftAmountCashGrandTotal != null" >
+        user_gift_amount_cash_grand_total,
+      </if>
+      <if test="userGrowthValue != null" >
+        user_growth_value,
+      </if>
+      <if test="userBalance != null" >
+        user_balance,
+      </if>
+      <if test="userTradeAmount != null" >
+        user_trade_amount,
+      </if>
+      <if test="userRechargeAmount != null" >
+        user_recharge_amount,
+      </if>
+      <if test="userWithdrawAmount != null" >
+        user_withdraw_amount,
+      </if>
+      <if test="userFreezeAmount != null" >
+        user_freeze_amount,
+      </if>
+      <if test="userPayedAmount != null" >
+        user_payed_amount,
+      </if>
+      <if test="userTradeDay != null" >
+        user_trade_day,
+      </if>
+      <if test="lastTradeDay != null" >
+        last_trade_day,
+      </if>
+      <if test="rawAddTime != null" >
+        raw_add_time,
+      </if>
+      <if test="rawUpdateTime != null" >
+        raw_update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="userIntegral != null" >
+        #{userIntegral,jdbcType=BIGINT},
+      </if>
+      <if test="userIntegralGrandTotal != null" >
+        #{userIntegralGrandTotal,jdbcType=BIGINT},
+      </if>
+      <if test="userCouponCount != null" >
+        #{userCouponCount,jdbcType=BIGINT},
+      </if>
+      <if test="userCouponCountGrandTotal != null" >
+        #{userCouponCountGrandTotal,jdbcType=BIGINT},
+      </if>
+      <if test="userCouponAmount != null" >
+        #{userCouponAmount,jdbcType=BIGINT},
+      </if>
+      <if test="userCouponAmountGrandTotal != null" >
+        #{userCouponAmountGrandTotal,jdbcType=BIGINT},
+      </if>
+      <if test="userGiftAmount != null" >
+        #{userGiftAmount,jdbcType=BIGINT},
+      </if>
+      <if test="userGiftAmountGrandTotal != null" >
+        #{userGiftAmountGrandTotal,jdbcType=BIGINT},
+      </if>
+      <if test="userGiftAmountCount != null" >
+        #{userGiftAmountCount,jdbcType=BIGINT},
+      </if>
+      <if test="userGiftAmountGrandCount != null" >
+        #{userGiftAmountGrandCount,jdbcType=BIGINT},
+      </if>
+      <if test="userGiftAmountCash != null" >
+        #{userGiftAmountCash,jdbcType=BIGINT},
+      </if>
+      <if test="userGiftAmountCashGrandTotal != null" >
+        #{userGiftAmountCashGrandTotal,jdbcType=BIGINT},
+      </if>
+      <if test="userGrowthValue != null" >
+        #{userGrowthValue,jdbcType=BIGINT},
+      </if>
+      <if test="userBalance != null" >
+        #{userBalance,jdbcType=BIGINT},
+      </if>
+      <if test="userTradeAmount != null" >
+        #{userTradeAmount,jdbcType=BIGINT},
+      </if>
+      <if test="userRechargeAmount != null" >
+        #{userRechargeAmount,jdbcType=BIGINT},
+      </if>
+      <if test="userWithdrawAmount != null" >
+        #{userWithdrawAmount,jdbcType=BIGINT},
+      </if>
+      <if test="userFreezeAmount != null" >
+        #{userFreezeAmount,jdbcType=BIGINT},
+      </if>
+      <if test="userPayedAmount != null" >
+        #{userPayedAmount,jdbcType=BIGINT},
+      </if>
+      <if test="userTradeDay != null" >
+        #{userTradeDay,jdbcType=BIGINT},
+      </if>
+      <if test="lastTradeDay != null" >
+        #{lastTradeDay,jdbcType=VARCHAR},
+      </if>
+      <if test="rawAddTime != null" >
+        #{rawAddTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rawUpdateTime != null" >
+        #{rawUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shusheng.tihuzhai.dao.entity.auto.UserAccountDataExample" resultType="java.lang.Integer" >
+    select count(*) from user_account_data
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update user_account_data
+    <set >
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=BIGINT},
+      </if>
+      <if test="record.userIntegral != null" >
+        user_integral = #{record.userIntegral,jdbcType=BIGINT},
+      </if>
+      <if test="record.userIntegralGrandTotal != null" >
+        user_integral_grand_total = #{record.userIntegralGrandTotal,jdbcType=BIGINT},
+      </if>
+      <if test="record.userCouponCount != null" >
+        user_coupon_count = #{record.userCouponCount,jdbcType=BIGINT},
+      </if>
+      <if test="record.userCouponCountGrandTotal != null" >
+        user_coupon_count_grand_total = #{record.userCouponCountGrandTotal,jdbcType=BIGINT},
+      </if>
+      <if test="record.userCouponAmount != null" >
+        user_coupon_amount = #{record.userCouponAmount,jdbcType=BIGINT},
+      </if>
+      <if test="record.userCouponAmountGrandTotal != null" >
+        user_coupon_amount_grand_total = #{record.userCouponAmountGrandTotal,jdbcType=BIGINT},
+      </if>
+      <if test="record.userGiftAmount != null" >
+        user_gift_amount = #{record.userGiftAmount,jdbcType=BIGINT},
+      </if>
+      <if test="record.userGiftAmountGrandTotal != null" >
+        user_gift_amount_grand_total = #{record.userGiftAmountGrandTotal,jdbcType=BIGINT},
+      </if>
+      <if test="record.userGiftAmountCount != null" >
+        user_gift_amount_count = #{record.userGiftAmountCount,jdbcType=BIGINT},
+      </if>
+      <if test="record.userGiftAmountGrandCount != null" >
+        user_gift_amount_grand_count = #{record.userGiftAmountGrandCount,jdbcType=BIGINT},
+      </if>
+      <if test="record.userGiftAmountCash != null" >
+        user_gift_amount_cash = #{record.userGiftAmountCash,jdbcType=BIGINT},
+      </if>
+      <if test="record.userGiftAmountCashGrandTotal != null" >
+        user_gift_amount_cash_grand_total = #{record.userGiftAmountCashGrandTotal,jdbcType=BIGINT},
+      </if>
+      <if test="record.userGrowthValue != null" >
+        user_growth_value = #{record.userGrowthValue,jdbcType=BIGINT},
+      </if>
+      <if test="record.userBalance != null" >
+        user_balance = #{record.userBalance,jdbcType=BIGINT},
+      </if>
+      <if test="record.userTradeAmount != null" >
+        user_trade_amount = #{record.userTradeAmount,jdbcType=BIGINT},
+      </if>
+      <if test="record.userRechargeAmount != null" >
+        user_recharge_amount = #{record.userRechargeAmount,jdbcType=BIGINT},
+      </if>
+      <if test="record.userWithdrawAmount != null" >
+        user_withdraw_amount = #{record.userWithdrawAmount,jdbcType=BIGINT},
+      </if>
+      <if test="record.userFreezeAmount != null" >
+        user_freeze_amount = #{record.userFreezeAmount,jdbcType=BIGINT},
+      </if>
+      <if test="record.userPayedAmount != null" >
+        user_payed_amount = #{record.userPayedAmount,jdbcType=BIGINT},
+      </if>
+      <if test="record.userTradeDay != null" >
+        user_trade_day = #{record.userTradeDay,jdbcType=BIGINT},
+      </if>
+      <if test="record.lastTradeDay != null" >
+        last_trade_day = #{record.lastTradeDay,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rawAddTime != null" >
+        raw_add_time = #{record.rawAddTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.rawUpdateTime != null" >
+        raw_update_time = #{record.rawUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update user_account_data
+    set user_id = #{record.userId,jdbcType=BIGINT},
+      user_integral = #{record.userIntegral,jdbcType=BIGINT},
+      user_integral_grand_total = #{record.userIntegralGrandTotal,jdbcType=BIGINT},
+      user_coupon_count = #{record.userCouponCount,jdbcType=BIGINT},
+      user_coupon_count_grand_total = #{record.userCouponCountGrandTotal,jdbcType=BIGINT},
+      user_coupon_amount = #{record.userCouponAmount,jdbcType=BIGINT},
+      user_coupon_amount_grand_total = #{record.userCouponAmountGrandTotal,jdbcType=BIGINT},
+      user_gift_amount = #{record.userGiftAmount,jdbcType=BIGINT},
+      user_gift_amount_grand_total = #{record.userGiftAmountGrandTotal,jdbcType=BIGINT},
+      user_gift_amount_count = #{record.userGiftAmountCount,jdbcType=BIGINT},
+      user_gift_amount_grand_count = #{record.userGiftAmountGrandCount,jdbcType=BIGINT},
+      user_gift_amount_cash = #{record.userGiftAmountCash,jdbcType=BIGINT},
+      user_gift_amount_cash_grand_total = #{record.userGiftAmountCashGrandTotal,jdbcType=BIGINT},
+      user_growth_value = #{record.userGrowthValue,jdbcType=BIGINT},
+      user_balance = #{record.userBalance,jdbcType=BIGINT},
+      user_trade_amount = #{record.userTradeAmount,jdbcType=BIGINT},
+      user_recharge_amount = #{record.userRechargeAmount,jdbcType=BIGINT},
+      user_withdraw_amount = #{record.userWithdrawAmount,jdbcType=BIGINT},
+      user_freeze_amount = #{record.userFreezeAmount,jdbcType=BIGINT},
+      user_payed_amount = #{record.userPayedAmount,jdbcType=BIGINT},
+      user_trade_day = #{record.userTradeDay,jdbcType=BIGINT},
+      last_trade_day = #{record.lastTradeDay,jdbcType=VARCHAR},
+      raw_add_time = #{record.rawAddTime,jdbcType=TIMESTAMP},
+      raw_update_time = #{record.rawUpdateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shusheng.tihuzhai.dao.entity.auto.UserAccountData" >
+    update user_account_data
+    <set >
+      <if test="userIntegral != null" >
+        user_integral = #{userIntegral,jdbcType=BIGINT},
+      </if>
+      <if test="userIntegralGrandTotal != null" >
+        user_integral_grand_total = #{userIntegralGrandTotal,jdbcType=BIGINT},
+      </if>
+      <if test="userCouponCount != null" >
+        user_coupon_count = #{userCouponCount,jdbcType=BIGINT},
+      </if>
+      <if test="userCouponCountGrandTotal != null" >
+        user_coupon_count_grand_total = #{userCouponCountGrandTotal,jdbcType=BIGINT},
+      </if>
+      <if test="userCouponAmount != null" >
+        user_coupon_amount = #{userCouponAmount,jdbcType=BIGINT},
+      </if>
+      <if test="userCouponAmountGrandTotal != null" >
+        user_coupon_amount_grand_total = #{userCouponAmountGrandTotal,jdbcType=BIGINT},
+      </if>
+      <if test="userGiftAmount != null" >
+        user_gift_amount = #{userGiftAmount,jdbcType=BIGINT},
+      </if>
+      <if test="userGiftAmountGrandTotal != null" >
+        user_gift_amount_grand_total = #{userGiftAmountGrandTotal,jdbcType=BIGINT},
+      </if>
+      <if test="userGiftAmountCount != null" >
+        user_gift_amount_count = #{userGiftAmountCount,jdbcType=BIGINT},
+      </if>
+      <if test="userGiftAmountGrandCount != null" >
+        user_gift_amount_grand_count = #{userGiftAmountGrandCount,jdbcType=BIGINT},
+      </if>
+      <if test="userGiftAmountCash != null" >
+        user_gift_amount_cash = #{userGiftAmountCash,jdbcType=BIGINT},
+      </if>
+      <if test="userGiftAmountCashGrandTotal != null" >
+        user_gift_amount_cash_grand_total = #{userGiftAmountCashGrandTotal,jdbcType=BIGINT},
+      </if>
+      <if test="userGrowthValue != null" >
+        user_growth_value = #{userGrowthValue,jdbcType=BIGINT},
+      </if>
+      <if test="userBalance != null" >
+        user_balance = #{userBalance,jdbcType=BIGINT},
+      </if>
+      <if test="userTradeAmount != null" >
+        user_trade_amount = #{userTradeAmount,jdbcType=BIGINT},
+      </if>
+      <if test="userRechargeAmount != null" >
+        user_recharge_amount = #{userRechargeAmount,jdbcType=BIGINT},
+      </if>
+      <if test="userWithdrawAmount != null" >
+        user_withdraw_amount = #{userWithdrawAmount,jdbcType=BIGINT},
+      </if>
+      <if test="userFreezeAmount != null" >
+        user_freeze_amount = #{userFreezeAmount,jdbcType=BIGINT},
+      </if>
+      <if test="userPayedAmount != null" >
+        user_payed_amount = #{userPayedAmount,jdbcType=BIGINT},
+      </if>
+      <if test="userTradeDay != null" >
+        user_trade_day = #{userTradeDay,jdbcType=BIGINT},
+      </if>
+      <if test="lastTradeDay != null" >
+        last_trade_day = #{lastTradeDay,jdbcType=VARCHAR},
+      </if>
+      <if test="rawAddTime != null" >
+        raw_add_time = #{rawAddTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rawUpdateTime != null" >
+        raw_update_time = #{rawUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shusheng.tihuzhai.dao.entity.auto.UserAccountData" >
+    update user_account_data
+    set user_integral = #{userIntegral,jdbcType=BIGINT},
+      user_integral_grand_total = #{userIntegralGrandTotal,jdbcType=BIGINT},
+      user_coupon_count = #{userCouponCount,jdbcType=BIGINT},
+      user_coupon_count_grand_total = #{userCouponCountGrandTotal,jdbcType=BIGINT},
+      user_coupon_amount = #{userCouponAmount,jdbcType=BIGINT},
+      user_coupon_amount_grand_total = #{userCouponAmountGrandTotal,jdbcType=BIGINT},
+      user_gift_amount = #{userGiftAmount,jdbcType=BIGINT},
+      user_gift_amount_grand_total = #{userGiftAmountGrandTotal,jdbcType=BIGINT},
+      user_gift_amount_count = #{userGiftAmountCount,jdbcType=BIGINT},
+      user_gift_amount_grand_count = #{userGiftAmountGrandCount,jdbcType=BIGINT},
+      user_gift_amount_cash = #{userGiftAmountCash,jdbcType=BIGINT},
+      user_gift_amount_cash_grand_total = #{userGiftAmountCashGrandTotal,jdbcType=BIGINT},
+      user_growth_value = #{userGrowthValue,jdbcType=BIGINT},
+      user_balance = #{userBalance,jdbcType=BIGINT},
+      user_trade_amount = #{userTradeAmount,jdbcType=BIGINT},
+      user_recharge_amount = #{userRechargeAmount,jdbcType=BIGINT},
+      user_withdraw_amount = #{userWithdrawAmount,jdbcType=BIGINT},
+      user_freeze_amount = #{userFreezeAmount,jdbcType=BIGINT},
+      user_payed_amount = #{userPayedAmount,jdbcType=BIGINT},
+      user_trade_day = #{userTradeDay,jdbcType=BIGINT},
+      last_trade_day = #{lastTradeDay,jdbcType=VARCHAR},
+      raw_add_time = #{rawAddTime,jdbcType=TIMESTAMP},
+      raw_update_time = #{rawUpdateTime,jdbcType=TIMESTAMP}
+    where user_id = #{userId,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,623 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shusheng.tihuzhai.dao.mappers.auto.CommonBankInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.shusheng.tihuzhai.dao.entity.auto.CommonBankInfo" >
+    <id column="bank_id" property="bankId" jdbcType="INTEGER" />
+    <result column="bank_code" property="bankCode" jdbcType="VARCHAR" />
+    <result column="e3rdpayno" property="e3rdpayno" jdbcType="VARCHAR" />
+    <result column="bank_name" property="bankName" jdbcType="VARCHAR" />
+    <result column="order_mode" property="orderMode" jdbcType="BIT" />
+    <result column="support_card_type" property="supportCardType" jdbcType="BIT" />
+    <result column="pay_limit" property="payLimit" jdbcType="DECIMAL" />
+    <result column="serve_fee" property="serveFee" jdbcType="BIT" />
+    <result column="fee_rate" property="feeRate" jdbcType="DECIMAL" />
+    <result column="risk_level" property="riskLevel" jdbcType="BIT" />
+    <result column="notify_mode" property="notifyMode" jdbcType="BIT" />
+    <result column="notify_scope" property="notifyScope" jdbcType="BIT" />
+    <result column="is_safeinf" property="isSafeinf" jdbcType="BIT" />
+    <result column="bank_test_request_url" property="bankTestRequestUrl" jdbcType="VARCHAR" />
+    <result column="bank_request_url" property="bankRequestUrl" jdbcType="VARCHAR" />
+    <result column="bank_logo" property="bankLogo" jdbcType="VARCHAR" />
+    <result column="level" property="level" jdbcType="BIT" />
+    <result column="is_show" property="isShow" jdbcType="BIT" />
+    <result column="state" property="state" jdbcType="BIT" />
+    <result column="CARD_PURPOSE" property="cardPurpose" jdbcType="CHAR" />
+    <result column="CARD_UNION_YN" property="cardUnionYn" jdbcType="CHAR" />
+    <result column="INTER_BANK_TRANSFER_YN" property="interBankTransferYn" jdbcType="CHAR" />
+    <result column="PUBLIC_PRIVATE_TAG" property="publicPrivateTag" jdbcType="CHAR" />
+    <result column="SUPPORT_WITHHOLDING_YN" property="supportWithholdingYn" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.shusheng.tihuzhai.dao.entity.auto.CommonBankInfoWithBLOBs" extends="BaseResultMap" >
+    <result column="referer" property="referer" jdbcType="LONGVARCHAR" />
+    <result column="memo" property="memo" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    bank_id, bank_code, e3rdpayno, bank_name, order_mode, support_card_type, pay_limit, 
+    serve_fee, fee_rate, risk_level, notify_mode, notify_scope, is_safeinf, bank_test_request_url, 
+    bank_request_url, bank_logo, level, is_show, state, CARD_PURPOSE, CARD_UNION_YN, 
+    INTER_BANK_TRANSFER_YN, PUBLIC_PRIVATE_TAG, SUPPORT_WITHHOLDING_YN
+  </sql>
+  <sql id="Blob_Column_List" >
+    referer, memo
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.shusheng.tihuzhai.dao.entity.auto.CommonBankInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from common_bank_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shusheng.tihuzhai.dao.entity.auto.CommonBankInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from common_bank_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from common_bank_info
+    where bank_id = #{bankId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from common_bank_info
+    where bank_id = #{bankId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shusheng.tihuzhai.dao.entity.auto.CommonBankInfoExample" >
+    delete from common_bank_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shusheng.tihuzhai.dao.entity.auto.CommonBankInfoWithBLOBs" >
+    insert into common_bank_info (bank_id, bank_code, e3rdpayno, 
+      bank_name, order_mode, support_card_type, 
+      pay_limit, serve_fee, fee_rate, 
+      risk_level, notify_mode, notify_scope, 
+      is_safeinf, bank_test_request_url, bank_request_url, 
+      bank_logo, level, is_show, state, 
+      CARD_PURPOSE, CARD_UNION_YN, INTER_BANK_TRANSFER_YN, 
+      PUBLIC_PRIVATE_TAG, SUPPORT_WITHHOLDING_YN, referer, 
+      memo)
+    values (#{bankId,jdbcType=INTEGER}, #{bankCode,jdbcType=VARCHAR}, #{e3rdpayno,jdbcType=VARCHAR}, 
+      #{bankName,jdbcType=VARCHAR}, #{orderMode,jdbcType=BIT}, #{supportCardType,jdbcType=BIT}, 
+      #{payLimit,jdbcType=DECIMAL}, #{serveFee,jdbcType=BIT}, #{feeRate,jdbcType=DECIMAL}, 
+      #{riskLevel,jdbcType=BIT}, #{notifyMode,jdbcType=BIT}, #{notifyScope,jdbcType=BIT}, 
+      #{isSafeinf,jdbcType=BIT}, #{bankTestRequestUrl,jdbcType=VARCHAR}, #{bankRequestUrl,jdbcType=VARCHAR}, 
+      #{bankLogo,jdbcType=VARCHAR}, #{level,jdbcType=BIT}, #{isShow,jdbcType=BIT}, #{state,jdbcType=BIT}, 
+      #{cardPurpose,jdbcType=CHAR}, #{cardUnionYn,jdbcType=CHAR}, #{interBankTransferYn,jdbcType=CHAR}, 
+      #{publicPrivateTag,jdbcType=CHAR}, #{supportWithholdingYn,jdbcType=VARCHAR}, #{referer,jdbcType=LONGVARCHAR}, 
+      #{memo,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shusheng.tihuzhai.dao.entity.auto.CommonBankInfoWithBLOBs" >
+    insert into common_bank_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="bankId != null" >
+        bank_id,
+      </if>
+      <if test="bankCode != null" >
+        bank_code,
+      </if>
+      <if test="e3rdpayno != null" >
+        e3rdpayno,
+      </if>
+      <if test="bankName != null" >
+        bank_name,
+      </if>
+      <if test="orderMode != null" >
+        order_mode,
+      </if>
+      <if test="supportCardType != null" >
+        support_card_type,
+      </if>
+      <if test="payLimit != null" >
+        pay_limit,
+      </if>
+      <if test="serveFee != null" >
+        serve_fee,
+      </if>
+      <if test="feeRate != null" >
+        fee_rate,
+      </if>
+      <if test="riskLevel != null" >
+        risk_level,
+      </if>
+      <if test="notifyMode != null" >
+        notify_mode,
+      </if>
+      <if test="notifyScope != null" >
+        notify_scope,
+      </if>
+      <if test="isSafeinf != null" >
+        is_safeinf,
+      </if>
+      <if test="bankTestRequestUrl != null" >
+        bank_test_request_url,
+      </if>
+      <if test="bankRequestUrl != null" >
+        bank_request_url,
+      </if>
+      <if test="bankLogo != null" >
+        bank_logo,
+      </if>
+      <if test="level != null" >
+        level,
+      </if>
+      <if test="isShow != null" >
+        is_show,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="cardPurpose != null" >
+        CARD_PURPOSE,
+      </if>
+      <if test="cardUnionYn != null" >
+        CARD_UNION_YN,
+      </if>
+      <if test="interBankTransferYn != null" >
+        INTER_BANK_TRANSFER_YN,
+      </if>
+      <if test="publicPrivateTag != null" >
+        PUBLIC_PRIVATE_TAG,
+      </if>
+      <if test="supportWithholdingYn != null" >
+        SUPPORT_WITHHOLDING_YN,
+      </if>
+      <if test="referer != null" >
+        referer,
+      </if>
+      <if test="memo != null" >
+        memo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="bankId != null" >
+        #{bankId,jdbcType=INTEGER},
+      </if>
+      <if test="bankCode != null" >
+        #{bankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="e3rdpayno != null" >
+        #{e3rdpayno,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null" >
+        #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderMode != null" >
+        #{orderMode,jdbcType=BIT},
+      </if>
+      <if test="supportCardType != null" >
+        #{supportCardType,jdbcType=BIT},
+      </if>
+      <if test="payLimit != null" >
+        #{payLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="serveFee != null" >
+        #{serveFee,jdbcType=BIT},
+      </if>
+      <if test="feeRate != null" >
+        #{feeRate,jdbcType=DECIMAL},
+      </if>
+      <if test="riskLevel != null" >
+        #{riskLevel,jdbcType=BIT},
+      </if>
+      <if test="notifyMode != null" >
+        #{notifyMode,jdbcType=BIT},
+      </if>
+      <if test="notifyScope != null" >
+        #{notifyScope,jdbcType=BIT},
+      </if>
+      <if test="isSafeinf != null" >
+        #{isSafeinf,jdbcType=BIT},
+      </if>
+      <if test="bankTestRequestUrl != null" >
+        #{bankTestRequestUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="bankRequestUrl != null" >
+        #{bankRequestUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="bankLogo != null" >
+        #{bankLogo,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        #{level,jdbcType=BIT},
+      </if>
+      <if test="isShow != null" >
+        #{isShow,jdbcType=BIT},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=BIT},
+      </if>
+      <if test="cardPurpose != null" >
+        #{cardPurpose,jdbcType=CHAR},
+      </if>
+      <if test="cardUnionYn != null" >
+        #{cardUnionYn,jdbcType=CHAR},
+      </if>
+      <if test="interBankTransferYn != null" >
+        #{interBankTransferYn,jdbcType=CHAR},
+      </if>
+      <if test="publicPrivateTag != null" >
+        #{publicPrivateTag,jdbcType=CHAR},
+      </if>
+      <if test="supportWithholdingYn != null" >
+        #{supportWithholdingYn,jdbcType=VARCHAR},
+      </if>
+      <if test="referer != null" >
+        #{referer,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="memo != null" >
+        #{memo,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shusheng.tihuzhai.dao.entity.auto.CommonBankInfoExample" resultType="java.lang.Integer" >
+    select count(*) from common_bank_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update common_bank_info
+    <set >
+      <if test="record.bankId != null" >
+        bank_id = #{record.bankId,jdbcType=INTEGER},
+      </if>
+      <if test="record.bankCode != null" >
+        bank_code = #{record.bankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.e3rdpayno != null" >
+        e3rdpayno = #{record.e3rdpayno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankName != null" >
+        bank_name = #{record.bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderMode != null" >
+        order_mode = #{record.orderMode,jdbcType=BIT},
+      </if>
+      <if test="record.supportCardType != null" >
+        support_card_type = #{record.supportCardType,jdbcType=BIT},
+      </if>
+      <if test="record.payLimit != null" >
+        pay_limit = #{record.payLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="record.serveFee != null" >
+        serve_fee = #{record.serveFee,jdbcType=BIT},
+      </if>
+      <if test="record.feeRate != null" >
+        fee_rate = #{record.feeRate,jdbcType=DECIMAL},
+      </if>
+      <if test="record.riskLevel != null" >
+        risk_level = #{record.riskLevel,jdbcType=BIT},
+      </if>
+      <if test="record.notifyMode != null" >
+        notify_mode = #{record.notifyMode,jdbcType=BIT},
+      </if>
+      <if test="record.notifyScope != null" >
+        notify_scope = #{record.notifyScope,jdbcType=BIT},
+      </if>
+      <if test="record.isSafeinf != null" >
+        is_safeinf = #{record.isSafeinf,jdbcType=BIT},
+      </if>
+      <if test="record.bankTestRequestUrl != null" >
+        bank_test_request_url = #{record.bankTestRequestUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankRequestUrl != null" >
+        bank_request_url = #{record.bankRequestUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankLogo != null" >
+        bank_logo = #{record.bankLogo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.level != null" >
+        level = #{record.level,jdbcType=BIT},
+      </if>
+      <if test="record.isShow != null" >
+        is_show = #{record.isShow,jdbcType=BIT},
+      </if>
+      <if test="record.state != null" >
+        state = #{record.state,jdbcType=BIT},
+      </if>
+      <if test="record.cardPurpose != null" >
+        CARD_PURPOSE = #{record.cardPurpose,jdbcType=CHAR},
+      </if>
+      <if test="record.cardUnionYn != null" >
+        CARD_UNION_YN = #{record.cardUnionYn,jdbcType=CHAR},
+      </if>
+      <if test="record.interBankTransferYn != null" >
+        INTER_BANK_TRANSFER_YN = #{record.interBankTransferYn,jdbcType=CHAR},
+      </if>
+      <if test="record.publicPrivateTag != null" >
+        PUBLIC_PRIVATE_TAG = #{record.publicPrivateTag,jdbcType=CHAR},
+      </if>
+      <if test="record.supportWithholdingYn != null" >
+        SUPPORT_WITHHOLDING_YN = #{record.supportWithholdingYn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.referer != null" >
+        referer = #{record.referer,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.memo != null" >
+        memo = #{record.memo,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update common_bank_info
+    set bank_id = #{record.bankId,jdbcType=INTEGER},
+      bank_code = #{record.bankCode,jdbcType=VARCHAR},
+      e3rdpayno = #{record.e3rdpayno,jdbcType=VARCHAR},
+      bank_name = #{record.bankName,jdbcType=VARCHAR},
+      order_mode = #{record.orderMode,jdbcType=BIT},
+      support_card_type = #{record.supportCardType,jdbcType=BIT},
+      pay_limit = #{record.payLimit,jdbcType=DECIMAL},
+      serve_fee = #{record.serveFee,jdbcType=BIT},
+      fee_rate = #{record.feeRate,jdbcType=DECIMAL},
+      risk_level = #{record.riskLevel,jdbcType=BIT},
+      notify_mode = #{record.notifyMode,jdbcType=BIT},
+      notify_scope = #{record.notifyScope,jdbcType=BIT},
+      is_safeinf = #{record.isSafeinf,jdbcType=BIT},
+      bank_test_request_url = #{record.bankTestRequestUrl,jdbcType=VARCHAR},
+      bank_request_url = #{record.bankRequestUrl,jdbcType=VARCHAR},
+      bank_logo = #{record.bankLogo,jdbcType=VARCHAR},
+      level = #{record.level,jdbcType=BIT},
+      is_show = #{record.isShow,jdbcType=BIT},
+      state = #{record.state,jdbcType=BIT},
+      CARD_PURPOSE = #{record.cardPurpose,jdbcType=CHAR},
+      CARD_UNION_YN = #{record.cardUnionYn,jdbcType=CHAR},
+      INTER_BANK_TRANSFER_YN = #{record.interBankTransferYn,jdbcType=CHAR},
+      PUBLIC_PRIVATE_TAG = #{record.publicPrivateTag,jdbcType=CHAR},
+      SUPPORT_WITHHOLDING_YN = #{record.supportWithholdingYn,jdbcType=VARCHAR},
+      referer = #{record.referer,jdbcType=LONGVARCHAR},
+      memo = #{record.memo,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update common_bank_info
+    set bank_id = #{record.bankId,jdbcType=INTEGER},
+      bank_code = #{record.bankCode,jdbcType=VARCHAR},
+      e3rdpayno = #{record.e3rdpayno,jdbcType=VARCHAR},
+      bank_name = #{record.bankName,jdbcType=VARCHAR},
+      order_mode = #{record.orderMode,jdbcType=BIT},
+      support_card_type = #{record.supportCardType,jdbcType=BIT},
+      pay_limit = #{record.payLimit,jdbcType=DECIMAL},
+      serve_fee = #{record.serveFee,jdbcType=BIT},
+      fee_rate = #{record.feeRate,jdbcType=DECIMAL},
+      risk_level = #{record.riskLevel,jdbcType=BIT},
+      notify_mode = #{record.notifyMode,jdbcType=BIT},
+      notify_scope = #{record.notifyScope,jdbcType=BIT},
+      is_safeinf = #{record.isSafeinf,jdbcType=BIT},
+      bank_test_request_url = #{record.bankTestRequestUrl,jdbcType=VARCHAR},
+      bank_request_url = #{record.bankRequestUrl,jdbcType=VARCHAR},
+      bank_logo = #{record.bankLogo,jdbcType=VARCHAR},
+      level = #{record.level,jdbcType=BIT},
+      is_show = #{record.isShow,jdbcType=BIT},
+      state = #{record.state,jdbcType=BIT},
+      CARD_PURPOSE = #{record.cardPurpose,jdbcType=CHAR},
+      CARD_UNION_YN = #{record.cardUnionYn,jdbcType=CHAR},
+      INTER_BANK_TRANSFER_YN = #{record.interBankTransferYn,jdbcType=CHAR},
+      PUBLIC_PRIVATE_TAG = #{record.publicPrivateTag,jdbcType=CHAR},
+      SUPPORT_WITHHOLDING_YN = #{record.supportWithholdingYn,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shusheng.tihuzhai.dao.entity.auto.CommonBankInfoWithBLOBs" >
+    update common_bank_info
+    <set >
+      <if test="bankCode != null" >
+        bank_code = #{bankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="e3rdpayno != null" >
+        e3rdpayno = #{e3rdpayno,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null" >
+        bank_name = #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderMode != null" >
+        order_mode = #{orderMode,jdbcType=BIT},
+      </if>
+      <if test="supportCardType != null" >
+        support_card_type = #{supportCardType,jdbcType=BIT},
+      </if>
+      <if test="payLimit != null" >
+        pay_limit = #{payLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="serveFee != null" >
+        serve_fee = #{serveFee,jdbcType=BIT},
+      </if>
+      <if test="feeRate != null" >
+        fee_rate = #{feeRate,jdbcType=DECIMAL},
+      </if>
+      <if test="riskLevel != null" >
+        risk_level = #{riskLevel,jdbcType=BIT},
+      </if>
+      <if test="notifyMode != null" >
+        notify_mode = #{notifyMode,jdbcType=BIT},
+      </if>
+      <if test="notifyScope != null" >
+        notify_scope = #{notifyScope,jdbcType=BIT},
+      </if>
+      <if test="isSafeinf != null" >
+        is_safeinf = #{isSafeinf,jdbcType=BIT},
+      </if>
+      <if test="bankTestRequestUrl != null" >
+        bank_test_request_url = #{bankTestRequestUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="bankRequestUrl != null" >
+        bank_request_url = #{bankRequestUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="bankLogo != null" >
+        bank_logo = #{bankLogo,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        level = #{level,jdbcType=BIT},
+      </if>
+      <if test="isShow != null" >
+        is_show = #{isShow,jdbcType=BIT},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=BIT},
+      </if>
+      <if test="cardPurpose != null" >
+        CARD_PURPOSE = #{cardPurpose,jdbcType=CHAR},
+      </if>
+      <if test="cardUnionYn != null" >
+        CARD_UNION_YN = #{cardUnionYn,jdbcType=CHAR},
+      </if>
+      <if test="interBankTransferYn != null" >
+        INTER_BANK_TRANSFER_YN = #{interBankTransferYn,jdbcType=CHAR},
+      </if>
+      <if test="publicPrivateTag != null" >
+        PUBLIC_PRIVATE_TAG = #{publicPrivateTag,jdbcType=CHAR},
+      </if>
+      <if test="supportWithholdingYn != null" >
+        SUPPORT_WITHHOLDING_YN = #{supportWithholdingYn,jdbcType=VARCHAR},
+      </if>
+      <if test="referer != null" >
+        referer = #{referer,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="memo != null" >
+        memo = #{memo,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where bank_id = #{bankId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.shusheng.tihuzhai.dao.entity.auto.CommonBankInfoWithBLOBs" >
+    update common_bank_info
+    set bank_code = #{bankCode,jdbcType=VARCHAR},
+      e3rdpayno = #{e3rdpayno,jdbcType=VARCHAR},
+      bank_name = #{bankName,jdbcType=VARCHAR},
+      order_mode = #{orderMode,jdbcType=BIT},
+      support_card_type = #{supportCardType,jdbcType=BIT},
+      pay_limit = #{payLimit,jdbcType=DECIMAL},
+      serve_fee = #{serveFee,jdbcType=BIT},
+      fee_rate = #{feeRate,jdbcType=DECIMAL},
+      risk_level = #{riskLevel,jdbcType=BIT},
+      notify_mode = #{notifyMode,jdbcType=BIT},
+      notify_scope = #{notifyScope,jdbcType=BIT},
+      is_safeinf = #{isSafeinf,jdbcType=BIT},
+      bank_test_request_url = #{bankTestRequestUrl,jdbcType=VARCHAR},
+      bank_request_url = #{bankRequestUrl,jdbcType=VARCHAR},
+      bank_logo = #{bankLogo,jdbcType=VARCHAR},
+      level = #{level,jdbcType=BIT},
+      is_show = #{isShow,jdbcType=BIT},
+      state = #{state,jdbcType=BIT},
+      CARD_PURPOSE = #{cardPurpose,jdbcType=CHAR},
+      CARD_UNION_YN = #{cardUnionYn,jdbcType=CHAR},
+      INTER_BANK_TRANSFER_YN = #{interBankTransferYn,jdbcType=CHAR},
+      PUBLIC_PRIVATE_TAG = #{publicPrivateTag,jdbcType=CHAR},
+      SUPPORT_WITHHOLDING_YN = #{supportWithholdingYn,jdbcType=VARCHAR},
+      referer = #{referer,jdbcType=LONGVARCHAR},
+      memo = #{memo,jdbcType=LONGVARCHAR}
+    where bank_id = #{bankId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shusheng.tihuzhai.dao.entity.auto.CommonBankInfo" >
+    update common_bank_info
+    set bank_code = #{bankCode,jdbcType=VARCHAR},
+      e3rdpayno = #{e3rdpayno,jdbcType=VARCHAR},
+      bank_name = #{bankName,jdbcType=VARCHAR},
+      order_mode = #{orderMode,jdbcType=BIT},
+      support_card_type = #{supportCardType,jdbcType=BIT},
+      pay_limit = #{payLimit,jdbcType=DECIMAL},
+      serve_fee = #{serveFee,jdbcType=BIT},
+      fee_rate = #{feeRate,jdbcType=DECIMAL},
+      risk_level = #{riskLevel,jdbcType=BIT},
+      notify_mode = #{notifyMode,jdbcType=BIT},
+      notify_scope = #{notifyScope,jdbcType=BIT},
+      is_safeinf = #{isSafeinf,jdbcType=BIT},
+      bank_test_request_url = #{bankTestRequestUrl,jdbcType=VARCHAR},
+      bank_request_url = #{bankRequestUrl,jdbcType=VARCHAR},
+      bank_logo = #{bankLogo,jdbcType=VARCHAR},
+      level = #{level,jdbcType=BIT},
+      is_show = #{isShow,jdbcType=BIT},
+      state = #{state,jdbcType=BIT},
+      CARD_PURPOSE = #{cardPurpose,jdbcType=CHAR},
+      CARD_UNION_YN = #{cardUnionYn,jdbcType=CHAR},
+      INTER_BANK_TRANSFER_YN = #{interBankTransferYn,jdbcType=CHAR},
+      PUBLIC_PRIVATE_TAG = #{publicPrivateTag,jdbcType=CHAR},
+      SUPPORT_WITHHOLDING_YN = #{supportWithholdingYn,jdbcType=VARCHAR}
+    where bank_id = #{bankId,jdbcType=INTEGER}
+  </update>
+</mapper>

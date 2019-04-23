@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shusheng.tihuzhai.dao.mappers.auto.CommonDistrictMapper" >
+  <resultMap id="BaseResultMap" type="com.shusheng.tihuzhai.dao.entity.auto.CommonDistrict" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="nb_no" property="nbNo" jdbcType="VARCHAR" />
+    <result column="father_no" property="fatherNo" jdbcType="VARCHAR" />
+    <result column="area_name" property="areaName" jdbcType="VARCHAR" />
+    <result column="short_name" property="shortName" jdbcType="VARCHAR" />
+    <result column="area_py" property="areaPy" jdbcType="VARCHAR" />
+    <result column="area_nagda" property="areaNagda" jdbcType="VARCHAR" />
+    <result column="cnaps" property="cnaps" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="raw_add_time" property="rawAddTime" jdbcType="TIMESTAMP" />
+    <result column="raw_update_time" property="rawUpdateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, nb_no, father_no, area_name, short_name, area_py, area_nagda, cnaps, user_id, 
+    raw_add_time, raw_update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shusheng.tihuzhai.dao.entity.auto.CommonDistrictExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from common_district
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from common_district
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from common_district
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shusheng.tihuzhai.dao.entity.auto.CommonDistrictExample" >
+    delete from common_district
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shusheng.tihuzhai.dao.entity.auto.CommonDistrict" >
+    insert into common_district (id, nb_no, father_no, 
+      area_name, short_name, area_py, 
+      area_nagda, cnaps, user_id, 
+      raw_add_time, raw_update_time)
+    values (#{id,jdbcType=INTEGER}, #{nbNo,jdbcType=VARCHAR}, #{fatherNo,jdbcType=VARCHAR}, 
+      #{areaName,jdbcType=VARCHAR}, #{shortName,jdbcType=VARCHAR}, #{areaPy,jdbcType=VARCHAR}, 
+      #{areaNagda,jdbcType=VARCHAR}, #{cnaps,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, 
+      #{rawAddTime,jdbcType=TIMESTAMP}, #{rawUpdateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shusheng.tihuzhai.dao.entity.auto.CommonDistrict" >
+    insert into common_district
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="nbNo != null" >
+        nb_no,
+      </if>
+      <if test="fatherNo != null" >
+        father_no,
+      </if>
+      <if test="areaName != null" >
+        area_name,
+      </if>
+      <if test="shortName != null" >
+        short_name,
+      </if>
+      <if test="areaPy != null" >
+        area_py,
+      </if>
+      <if test="areaNagda != null" >
+        area_nagda,
+      </if>
+      <if test="cnaps != null" >
+        cnaps,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="rawAddTime != null" >
+        raw_add_time,
+      </if>
+      <if test="rawUpdateTime != null" >
+        raw_update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="nbNo != null" >
+        #{nbNo,jdbcType=VARCHAR},
+      </if>
+      <if test="fatherNo != null" >
+        #{fatherNo,jdbcType=VARCHAR},
+      </if>
+      <if test="areaName != null" >
+        #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="shortName != null" >
+        #{shortName,jdbcType=VARCHAR},
+      </if>
+      <if test="areaPy != null" >
+        #{areaPy,jdbcType=VARCHAR},
+      </if>
+      <if test="areaNagda != null" >
+        #{areaNagda,jdbcType=VARCHAR},
+      </if>
+      <if test="cnaps != null" >
+        #{cnaps,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="rawAddTime != null" >
+        #{rawAddTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rawUpdateTime != null" >
+        #{rawUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shusheng.tihuzhai.dao.entity.auto.CommonDistrictExample" resultType="java.lang.Integer" >
+    select count(*) from common_district
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update common_district
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.nbNo != null" >
+        nb_no = #{record.nbNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fatherNo != null" >
+        father_no = #{record.fatherNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.areaName != null" >
+        area_name = #{record.areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shortName != null" >
+        short_name = #{record.shortName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.areaPy != null" >
+        area_py = #{record.areaPy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.areaNagda != null" >
+        area_nagda = #{record.areaNagda,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cnaps != null" >
+        cnaps = #{record.cnaps,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rawAddTime != null" >
+        raw_add_time = #{record.rawAddTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.rawUpdateTime != null" >
+        raw_update_time = #{record.rawUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update common_district
+    set id = #{record.id,jdbcType=INTEGER},
+      nb_no = #{record.nbNo,jdbcType=VARCHAR},
+      father_no = #{record.fatherNo,jdbcType=VARCHAR},
+      area_name = #{record.areaName,jdbcType=VARCHAR},
+      short_name = #{record.shortName,jdbcType=VARCHAR},
+      area_py = #{record.areaPy,jdbcType=VARCHAR},
+      area_nagda = #{record.areaNagda,jdbcType=VARCHAR},
+      cnaps = #{record.cnaps,jdbcType=VARCHAR},
+      user_id = #{record.userId,jdbcType=VARCHAR},
+      raw_add_time = #{record.rawAddTime,jdbcType=TIMESTAMP},
+      raw_update_time = #{record.rawUpdateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shusheng.tihuzhai.dao.entity.auto.CommonDistrict" >
+    update common_district
+    <set >
+      <if test="nbNo != null" >
+        nb_no = #{nbNo,jdbcType=VARCHAR},
+      </if>
+      <if test="fatherNo != null" >
+        father_no = #{fatherNo,jdbcType=VARCHAR},
+      </if>
+      <if test="areaName != null" >
+        area_name = #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="shortName != null" >
+        short_name = #{shortName,jdbcType=VARCHAR},
+      </if>
+      <if test="areaPy != null" >
+        area_py = #{areaPy,jdbcType=VARCHAR},
+      </if>
+      <if test="areaNagda != null" >
+        area_nagda = #{areaNagda,jdbcType=VARCHAR},
+      </if>
+      <if test="cnaps != null" >
+        cnaps = #{cnaps,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="rawAddTime != null" >
+        raw_add_time = #{rawAddTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rawUpdateTime != null" >
+        raw_update_time = #{rawUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shusheng.tihuzhai.dao.entity.auto.CommonDistrict" >
+    update common_district
+    set nb_no = #{nbNo,jdbcType=VARCHAR},
+      father_no = #{fatherNo,jdbcType=VARCHAR},
+      area_name = #{areaName,jdbcType=VARCHAR},
+      short_name = #{shortName,jdbcType=VARCHAR},
+      area_py = #{areaPy,jdbcType=VARCHAR},
+      area_nagda = #{areaNagda,jdbcType=VARCHAR},
+      cnaps = #{cnaps,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=VARCHAR},
+      raw_add_time = #{rawAddTime,jdbcType=TIMESTAMP},
+      raw_update_time = #{rawUpdateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

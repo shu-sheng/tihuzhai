@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shusheng.tihuzhai.dao.mappers.auto.HiUserUnlockedMaterialMapper" >
+  <resultMap id="BaseResultMap" type="com.shusheng.tihuzhai.dao.entity.auto.HiUserUnlockedMaterial" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="material_id" property="materialId" jdbcType="BIGINT" />
+    <result column="material_no" property="materialNo" jdbcType="VARCHAR" />
+    <result column="material_name" property="materialName" jdbcType="VARCHAR" />
+    <result column="material_type_code" property="materialTypeCode" jdbcType="VARCHAR" />
+    <result column="material_type_name" property="materialTypeName" jdbcType="VARCHAR" />
+    <result column="unlock_type" property="unlockType" jdbcType="VARCHAR" />
+    <result column="unlock_price" property="unlockPrice" jdbcType="VARCHAR" />
+    <result column="unlock_time" property="unlockTime" jdbcType="TIMESTAMP" />
+    <result column="exp_time" property="expTime" jdbcType="TIMESTAMP" />
+    <result column="top" property="top" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="memo" property="memo" jdbcType="VARCHAR" />
+    <result column="row_add_time" property="rowAddTime" jdbcType="TIMESTAMP" />
+    <result column="row_update_time" property="rowUpdateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, user_id, material_id, material_no, material_name, material_type_code, material_type_name, 
+    unlock_type, unlock_price, unlock_time, exp_time, top, status, memo, row_add_time, 
+    row_update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shusheng.tihuzhai.dao.entity.auto.HiUserUnlockedMaterialExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from hi_user_unlocked_material
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from hi_user_unlocked_material
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from hi_user_unlocked_material
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shusheng.tihuzhai.dao.entity.auto.HiUserUnlockedMaterialExample" >
+    delete from hi_user_unlocked_material
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shusheng.tihuzhai.dao.entity.auto.HiUserUnlockedMaterial" >
+    insert into hi_user_unlocked_material (id, user_id, material_id, 
+      material_no, material_name, material_type_code, 
+      material_type_name, unlock_type, unlock_price, 
+      unlock_time, exp_time, top, 
+      status, memo, row_add_time, 
+      row_update_time)
+    values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{materialId,jdbcType=BIGINT}, 
+      #{materialNo,jdbcType=VARCHAR}, #{materialName,jdbcType=VARCHAR}, #{materialTypeCode,jdbcType=VARCHAR}, 
+      #{materialTypeName,jdbcType=VARCHAR}, #{unlockType,jdbcType=VARCHAR}, #{unlockPrice,jdbcType=VARCHAR}, 
+      #{unlockTime,jdbcType=TIMESTAMP}, #{expTime,jdbcType=TIMESTAMP}, #{top,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{memo,jdbcType=VARCHAR}, #{rowAddTime,jdbcType=TIMESTAMP}, 
+      #{rowUpdateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shusheng.tihuzhai.dao.entity.auto.HiUserUnlockedMaterial" >
+    insert into hi_user_unlocked_material
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="materialId != null" >
+        material_id,
+      </if>
+      <if test="materialNo != null" >
+        material_no,
+      </if>
+      <if test="materialName != null" >
+        material_name,
+      </if>
+      <if test="materialTypeCode != null" >
+        material_type_code,
+      </if>
+      <if test="materialTypeName != null" >
+        material_type_name,
+      </if>
+      <if test="unlockType != null" >
+        unlock_type,
+      </if>
+      <if test="unlockPrice != null" >
+        unlock_price,
+      </if>
+      <if test="unlockTime != null" >
+        unlock_time,
+      </if>
+      <if test="expTime != null" >
+        exp_time,
+      </if>
+      <if test="top != null" >
+        top,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="memo != null" >
+        memo,
+      </if>
+      <if test="rowAddTime != null" >
+        row_add_time,
+      </if>
+      <if test="rowUpdateTime != null" >
+        row_update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="materialId != null" >
+        #{materialId,jdbcType=BIGINT},
+      </if>
+      <if test="materialNo != null" >
+        #{materialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="materialName != null" >
+        #{materialName,jdbcType=VARCHAR},
+      </if>
+      <if test="materialTypeCode != null" >
+        #{materialTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="materialTypeName != null" >
+        #{materialTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="unlockType != null" >
+        #{unlockType,jdbcType=VARCHAR},
+      </if>
+      <if test="unlockPrice != null" >
+        #{unlockPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="unlockTime != null" >
+        #{unlockTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expTime != null" >
+        #{expTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="top != null" >
+        #{top,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="rowAddTime != null" >
+        #{rowAddTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rowUpdateTime != null" >
+        #{rowUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shusheng.tihuzhai.dao.entity.auto.HiUserUnlockedMaterialExample" resultType="java.lang.Integer" >
+    select count(*) from hi_user_unlocked_material
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update hi_user_unlocked_material
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=BIGINT},
+      </if>
+      <if test="record.materialId != null" >
+        material_id = #{record.materialId,jdbcType=BIGINT},
+      </if>
+      <if test="record.materialNo != null" >
+        material_no = #{record.materialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.materialName != null" >
+        material_name = #{record.materialName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.materialTypeCode != null" >
+        material_type_code = #{record.materialTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.materialTypeName != null" >
+        material_type_name = #{record.materialTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.unlockType != null" >
+        unlock_type = #{record.unlockType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.unlockPrice != null" >
+        unlock_price = #{record.unlockPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="record.unlockTime != null" >
+        unlock_time = #{record.unlockTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.expTime != null" >
+        exp_time = #{record.expTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.top != null" >
+        top = #{record.top,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memo != null" >
+        memo = #{record.memo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rowAddTime != null" >
+        row_add_time = #{record.rowAddTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.rowUpdateTime != null" >
+        row_update_time = #{record.rowUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update hi_user_unlocked_material
+    set id = #{record.id,jdbcType=BIGINT},
+      user_id = #{record.userId,jdbcType=BIGINT},
+      material_id = #{record.materialId,jdbcType=BIGINT},
+      material_no = #{record.materialNo,jdbcType=VARCHAR},
+      material_name = #{record.materialName,jdbcType=VARCHAR},
+      material_type_code = #{record.materialTypeCode,jdbcType=VARCHAR},
+      material_type_name = #{record.materialTypeName,jdbcType=VARCHAR},
+      unlock_type = #{record.unlockType,jdbcType=VARCHAR},
+      unlock_price = #{record.unlockPrice,jdbcType=VARCHAR},
+      unlock_time = #{record.unlockTime,jdbcType=TIMESTAMP},
+      exp_time = #{record.expTime,jdbcType=TIMESTAMP},
+      top = #{record.top,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=VARCHAR},
+      memo = #{record.memo,jdbcType=VARCHAR},
+      row_add_time = #{record.rowAddTime,jdbcType=TIMESTAMP},
+      row_update_time = #{record.rowUpdateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shusheng.tihuzhai.dao.entity.auto.HiUserUnlockedMaterial" >
+    update hi_user_unlocked_material
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="materialId != null" >
+        material_id = #{materialId,jdbcType=BIGINT},
+      </if>
+      <if test="materialNo != null" >
+        material_no = #{materialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="materialName != null" >
+        material_name = #{materialName,jdbcType=VARCHAR},
+      </if>
+      <if test="materialTypeCode != null" >
+        material_type_code = #{materialTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="materialTypeName != null" >
+        material_type_name = #{materialTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="unlockType != null" >
+        unlock_type = #{unlockType,jdbcType=VARCHAR},
+      </if>
+      <if test="unlockPrice != null" >
+        unlock_price = #{unlockPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="unlockTime != null" >
+        unlock_time = #{unlockTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expTime != null" >
+        exp_time = #{expTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="top != null" >
+        top = #{top,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        memo = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="rowAddTime != null" >
+        row_add_time = #{rowAddTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rowUpdateTime != null" >
+        row_update_time = #{rowUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shusheng.tihuzhai.dao.entity.auto.HiUserUnlockedMaterial" >
+    update hi_user_unlocked_material
+    set user_id = #{userId,jdbcType=BIGINT},
+      material_id = #{materialId,jdbcType=BIGINT},
+      material_no = #{materialNo,jdbcType=VARCHAR},
+      material_name = #{materialName,jdbcType=VARCHAR},
+      material_type_code = #{materialTypeCode,jdbcType=VARCHAR},
+      material_type_name = #{materialTypeName,jdbcType=VARCHAR},
+      unlock_type = #{unlockType,jdbcType=VARCHAR},
+      unlock_price = #{unlockPrice,jdbcType=VARCHAR},
+      unlock_time = #{unlockTime,jdbcType=TIMESTAMP},
+      exp_time = #{expTime,jdbcType=TIMESTAMP},
+      top = #{top,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      memo = #{memo,jdbcType=VARCHAR},
+      row_add_time = #{rowAddTime,jdbcType=TIMESTAMP},
+      row_update_time = #{rowUpdateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

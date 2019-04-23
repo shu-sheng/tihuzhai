@@ -1,0 +1,623 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shusheng.tihuzhai.dao.mappers.auto.PaymentFlowMapper" >
+  <resultMap id="BaseResultMap" type="com.shusheng.tihuzhai.dao.entity.auto.PaymentFlow" >
+    <id column="payment_flow_id" property="paymentFlowId" jdbcType="VARCHAR" />
+    <result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+    <result column="payment_amount" property="paymentAmount" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="real_name" property="realName" jdbcType="VARCHAR" />
+    <result column="bank_code" property="bankCode" jdbcType="VARCHAR" />
+    <result column="payment_date" property="paymentDate" jdbcType="TIMESTAMP" />
+    <result column="payment_success_date" property="paymentSuccessDate" jdbcType="TIMESTAMP" />
+    <result column="payment_type" property="paymentType" jdbcType="VARCHAR" />
+    <result column="payment_mode" property="paymentMode" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="order_ids" property="orderIds" jdbcType="VARCHAR" />
+    <result column="raw_add_time" property="rawAddTime" jdbcType="TIMESTAMP" />
+    <result column="raw_update_time" property="rawUpdateTime" jdbcType="TIMESTAMP" />
+    <result column="red_pay" property="redPay" jdbcType="BIGINT" />
+    <result column="integral_pay" property="integralPay" jdbcType="BIGINT" />
+    <result column="ticket_amount" property="ticketAmount" jdbcType="BIGINT" />
+    <result column="refund_status" property="refundStatus" jdbcType="VARCHAR" />
+    <result column="refund_amount" property="refundAmount" jdbcType="BIGINT" />
+    <result column="ticket_id" property="ticketId" jdbcType="BIGINT" />
+    <result column="trade_no" property="tradeNo" jdbcType="VARCHAR" />
+    <result column="ext_order" property="extOrder" jdbcType="VARCHAR" />
+    <result column="ext_order1" property="extOrder1" jdbcType="VARCHAR" />
+    <result column="settle_amount" property="settleAmount" jdbcType="BIGINT" />
+    <result column="settle_status" property="settleStatus" jdbcType="VARCHAR" />
+    <result column="card_type" property="cardType" jdbcType="VARCHAR" />
+    <result column="personal_corporate_type" property="personalCorporateType" jdbcType="VARCHAR" />
+    <result column="merchant_charge_amount" property="merchantChargeAmount" jdbcType="BIGINT" />
+    <result column="trade_amount_in" property="tradeAmountIn" jdbcType="BIGINT" />
+    <result column="account_receivable" property="accountReceivable" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    payment_flow_id, order_no, payment_amount, user_id, user_name, real_name, bank_code, 
+    payment_date, payment_success_date, payment_type, payment_mode, status, order_ids, 
+    raw_add_time, raw_update_time, red_pay, integral_pay, ticket_amount, refund_status, 
+    refund_amount, ticket_id, trade_no, ext_order, ext_order1, settle_amount, settle_status, 
+    card_type, personal_corporate_type, merchant_charge_amount, trade_amount_in, account_receivable
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shusheng.tihuzhai.dao.entity.auto.PaymentFlowExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from payment_flow
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from payment_flow
+    where payment_flow_id = #{paymentFlowId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from payment_flow
+    where payment_flow_id = #{paymentFlowId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shusheng.tihuzhai.dao.entity.auto.PaymentFlowExample" >
+    delete from payment_flow
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shusheng.tihuzhai.dao.entity.auto.PaymentFlow" >
+    insert into payment_flow (payment_flow_id, order_no, payment_amount, 
+      user_id, user_name, real_name, 
+      bank_code, payment_date, payment_success_date, 
+      payment_type, payment_mode, status, 
+      order_ids, raw_add_time, raw_update_time, 
+      red_pay, integral_pay, ticket_amount, 
+      refund_status, refund_amount, ticket_id, 
+      trade_no, ext_order, ext_order1, 
+      settle_amount, settle_status, card_type, 
+      personal_corporate_type, merchant_charge_amount, 
+      trade_amount_in, account_receivable)
+    values (#{paymentFlowId,jdbcType=VARCHAR}, #{orderNo,jdbcType=VARCHAR}, #{paymentAmount,jdbcType=BIGINT}, 
+      #{userId,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR}, 
+      #{bankCode,jdbcType=VARCHAR}, #{paymentDate,jdbcType=TIMESTAMP}, #{paymentSuccessDate,jdbcType=TIMESTAMP}, 
+      #{paymentType,jdbcType=VARCHAR}, #{paymentMode,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{orderIds,jdbcType=VARCHAR}, #{rawAddTime,jdbcType=TIMESTAMP}, #{rawUpdateTime,jdbcType=TIMESTAMP}, 
+      #{redPay,jdbcType=BIGINT}, #{integralPay,jdbcType=BIGINT}, #{ticketAmount,jdbcType=BIGINT}, 
+      #{refundStatus,jdbcType=VARCHAR}, #{refundAmount,jdbcType=BIGINT}, #{ticketId,jdbcType=BIGINT}, 
+      #{tradeNo,jdbcType=VARCHAR}, #{extOrder,jdbcType=VARCHAR}, #{extOrder1,jdbcType=VARCHAR}, 
+      #{settleAmount,jdbcType=BIGINT}, #{settleStatus,jdbcType=VARCHAR}, #{cardType,jdbcType=VARCHAR}, 
+      #{personalCorporateType,jdbcType=VARCHAR}, #{merchantChargeAmount,jdbcType=BIGINT}, 
+      #{tradeAmountIn,jdbcType=BIGINT}, #{accountReceivable,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shusheng.tihuzhai.dao.entity.auto.PaymentFlow" >
+    insert into payment_flow
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="paymentFlowId != null" >
+        payment_flow_id,
+      </if>
+      <if test="orderNo != null" >
+        order_no,
+      </if>
+      <if test="paymentAmount != null" >
+        payment_amount,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="realName != null" >
+        real_name,
+      </if>
+      <if test="bankCode != null" >
+        bank_code,
+      </if>
+      <if test="paymentDate != null" >
+        payment_date,
+      </if>
+      <if test="paymentSuccessDate != null" >
+        payment_success_date,
+      </if>
+      <if test="paymentType != null" >
+        payment_type,
+      </if>
+      <if test="paymentMode != null" >
+        payment_mode,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="orderIds != null" >
+        order_ids,
+      </if>
+      <if test="rawAddTime != null" >
+        raw_add_time,
+      </if>
+      <if test="rawUpdateTime != null" >
+        raw_update_time,
+      </if>
+      <if test="redPay != null" >
+        red_pay,
+      </if>
+      <if test="integralPay != null" >
+        integral_pay,
+      </if>
+      <if test="ticketAmount != null" >
+        ticket_amount,
+      </if>
+      <if test="refundStatus != null" >
+        refund_status,
+      </if>
+      <if test="refundAmount != null" >
+        refund_amount,
+      </if>
+      <if test="ticketId != null" >
+        ticket_id,
+      </if>
+      <if test="tradeNo != null" >
+        trade_no,
+      </if>
+      <if test="extOrder != null" >
+        ext_order,
+      </if>
+      <if test="extOrder1 != null" >
+        ext_order1,
+      </if>
+      <if test="settleAmount != null" >
+        settle_amount,
+      </if>
+      <if test="settleStatus != null" >
+        settle_status,
+      </if>
+      <if test="cardType != null" >
+        card_type,
+      </if>
+      <if test="personalCorporateType != null" >
+        personal_corporate_type,
+      </if>
+      <if test="merchantChargeAmount != null" >
+        merchant_charge_amount,
+      </if>
+      <if test="tradeAmountIn != null" >
+        trade_amount_in,
+      </if>
+      <if test="accountReceivable != null" >
+        account_receivable,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="paymentFlowId != null" >
+        #{paymentFlowId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null" >
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentAmount != null" >
+        #{paymentAmount,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null" >
+        #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCode != null" >
+        #{bankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentDate != null" >
+        #{paymentDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="paymentSuccessDate != null" >
+        #{paymentSuccessDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="paymentType != null" >
+        #{paymentType,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentMode != null" >
+        #{paymentMode,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="orderIds != null" >
+        #{orderIds,jdbcType=VARCHAR},
+      </if>
+      <if test="rawAddTime != null" >
+        #{rawAddTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rawUpdateTime != null" >
+        #{rawUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="redPay != null" >
+        #{redPay,jdbcType=BIGINT},
+      </if>
+      <if test="integralPay != null" >
+        #{integralPay,jdbcType=BIGINT},
+      </if>
+      <if test="ticketAmount != null" >
+        #{ticketAmount,jdbcType=BIGINT},
+      </if>
+      <if test="refundStatus != null" >
+        #{refundStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="refundAmount != null" >
+        #{refundAmount,jdbcType=BIGINT},
+      </if>
+      <if test="ticketId != null" >
+        #{ticketId,jdbcType=BIGINT},
+      </if>
+      <if test="tradeNo != null" >
+        #{tradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="extOrder != null" >
+        #{extOrder,jdbcType=VARCHAR},
+      </if>
+      <if test="extOrder1 != null" >
+        #{extOrder1,jdbcType=VARCHAR},
+      </if>
+      <if test="settleAmount != null" >
+        #{settleAmount,jdbcType=BIGINT},
+      </if>
+      <if test="settleStatus != null" >
+        #{settleStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="cardType != null" >
+        #{cardType,jdbcType=VARCHAR},
+      </if>
+      <if test="personalCorporateType != null" >
+        #{personalCorporateType,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantChargeAmount != null" >
+        #{merchantChargeAmount,jdbcType=BIGINT},
+      </if>
+      <if test="tradeAmountIn != null" >
+        #{tradeAmountIn,jdbcType=BIGINT},
+      </if>
+      <if test="accountReceivable != null" >
+        #{accountReceivable,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shusheng.tihuzhai.dao.entity.auto.PaymentFlowExample" resultType="java.lang.Integer" >
+    select count(*) from payment_flow
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update payment_flow
+    <set >
+      <if test="record.paymentFlowId != null" >
+        payment_flow_id = #{record.paymentFlowId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderNo != null" >
+        order_no = #{record.orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paymentAmount != null" >
+        payment_amount = #{record.paymentAmount,jdbcType=BIGINT},
+      </if>
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=BIGINT},
+      </if>
+      <if test="record.userName != null" >
+        user_name = #{record.userName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.realName != null" >
+        real_name = #{record.realName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankCode != null" >
+        bank_code = #{record.bankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paymentDate != null" >
+        payment_date = #{record.paymentDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.paymentSuccessDate != null" >
+        payment_success_date = #{record.paymentSuccessDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.paymentType != null" >
+        payment_type = #{record.paymentType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paymentMode != null" >
+        payment_mode = #{record.paymentMode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderIds != null" >
+        order_ids = #{record.orderIds,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rawAddTime != null" >
+        raw_add_time = #{record.rawAddTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.rawUpdateTime != null" >
+        raw_update_time = #{record.rawUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.redPay != null" >
+        red_pay = #{record.redPay,jdbcType=BIGINT},
+      </if>
+      <if test="record.integralPay != null" >
+        integral_pay = #{record.integralPay,jdbcType=BIGINT},
+      </if>
+      <if test="record.ticketAmount != null" >
+        ticket_amount = #{record.ticketAmount,jdbcType=BIGINT},
+      </if>
+      <if test="record.refundStatus != null" >
+        refund_status = #{record.refundStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.refundAmount != null" >
+        refund_amount = #{record.refundAmount,jdbcType=BIGINT},
+      </if>
+      <if test="record.ticketId != null" >
+        ticket_id = #{record.ticketId,jdbcType=BIGINT},
+      </if>
+      <if test="record.tradeNo != null" >
+        trade_no = #{record.tradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.extOrder != null" >
+        ext_order = #{record.extOrder,jdbcType=VARCHAR},
+      </if>
+      <if test="record.extOrder1 != null" >
+        ext_order1 = #{record.extOrder1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.settleAmount != null" >
+        settle_amount = #{record.settleAmount,jdbcType=BIGINT},
+      </if>
+      <if test="record.settleStatus != null" >
+        settle_status = #{record.settleStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cardType != null" >
+        card_type = #{record.cardType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.personalCorporateType != null" >
+        personal_corporate_type = #{record.personalCorporateType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.merchantChargeAmount != null" >
+        merchant_charge_amount = #{record.merchantChargeAmount,jdbcType=BIGINT},
+      </if>
+      <if test="record.tradeAmountIn != null" >
+        trade_amount_in = #{record.tradeAmountIn,jdbcType=BIGINT},
+      </if>
+      <if test="record.accountReceivable != null" >
+        account_receivable = #{record.accountReceivable,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update payment_flow
+    set payment_flow_id = #{record.paymentFlowId,jdbcType=VARCHAR},
+      order_no = #{record.orderNo,jdbcType=VARCHAR},
+      payment_amount = #{record.paymentAmount,jdbcType=BIGINT},
+      user_id = #{record.userId,jdbcType=BIGINT},
+      user_name = #{record.userName,jdbcType=VARCHAR},
+      real_name = #{record.realName,jdbcType=VARCHAR},
+      bank_code = #{record.bankCode,jdbcType=VARCHAR},
+      payment_date = #{record.paymentDate,jdbcType=TIMESTAMP},
+      payment_success_date = #{record.paymentSuccessDate,jdbcType=TIMESTAMP},
+      payment_type = #{record.paymentType,jdbcType=VARCHAR},
+      payment_mode = #{record.paymentMode,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=VARCHAR},
+      order_ids = #{record.orderIds,jdbcType=VARCHAR},
+      raw_add_time = #{record.rawAddTime,jdbcType=TIMESTAMP},
+      raw_update_time = #{record.rawUpdateTime,jdbcType=TIMESTAMP},
+      red_pay = #{record.redPay,jdbcType=BIGINT},
+      integral_pay = #{record.integralPay,jdbcType=BIGINT},
+      ticket_amount = #{record.ticketAmount,jdbcType=BIGINT},
+      refund_status = #{record.refundStatus,jdbcType=VARCHAR},
+      refund_amount = #{record.refundAmount,jdbcType=BIGINT},
+      ticket_id = #{record.ticketId,jdbcType=BIGINT},
+      trade_no = #{record.tradeNo,jdbcType=VARCHAR},
+      ext_order = #{record.extOrder,jdbcType=VARCHAR},
+      ext_order1 = #{record.extOrder1,jdbcType=VARCHAR},
+      settle_amount = #{record.settleAmount,jdbcType=BIGINT},
+      settle_status = #{record.settleStatus,jdbcType=VARCHAR},
+      card_type = #{record.cardType,jdbcType=VARCHAR},
+      personal_corporate_type = #{record.personalCorporateType,jdbcType=VARCHAR},
+      merchant_charge_amount = #{record.merchantChargeAmount,jdbcType=BIGINT},
+      trade_amount_in = #{record.tradeAmountIn,jdbcType=BIGINT},
+      account_receivable = #{record.accountReceivable,jdbcType=BIGINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shusheng.tihuzhai.dao.entity.auto.PaymentFlow" >
+    update payment_flow
+    <set >
+      <if test="orderNo != null" >
+        order_no = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentAmount != null" >
+        payment_amount = #{paymentAmount,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null" >
+        real_name = #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCode != null" >
+        bank_code = #{bankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentDate != null" >
+        payment_date = #{paymentDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="paymentSuccessDate != null" >
+        payment_success_date = #{paymentSuccessDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="paymentType != null" >
+        payment_type = #{paymentType,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentMode != null" >
+        payment_mode = #{paymentMode,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="orderIds != null" >
+        order_ids = #{orderIds,jdbcType=VARCHAR},
+      </if>
+      <if test="rawAddTime != null" >
+        raw_add_time = #{rawAddTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rawUpdateTime != null" >
+        raw_update_time = #{rawUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="redPay != null" >
+        red_pay = #{redPay,jdbcType=BIGINT},
+      </if>
+      <if test="integralPay != null" >
+        integral_pay = #{integralPay,jdbcType=BIGINT},
+      </if>
+      <if test="ticketAmount != null" >
+        ticket_amount = #{ticketAmount,jdbcType=BIGINT},
+      </if>
+      <if test="refundStatus != null" >
+        refund_status = #{refundStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="refundAmount != null" >
+        refund_amount = #{refundAmount,jdbcType=BIGINT},
+      </if>
+      <if test="ticketId != null" >
+        ticket_id = #{ticketId,jdbcType=BIGINT},
+      </if>
+      <if test="tradeNo != null" >
+        trade_no = #{tradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="extOrder != null" >
+        ext_order = #{extOrder,jdbcType=VARCHAR},
+      </if>
+      <if test="extOrder1 != null" >
+        ext_order1 = #{extOrder1,jdbcType=VARCHAR},
+      </if>
+      <if test="settleAmount != null" >
+        settle_amount = #{settleAmount,jdbcType=BIGINT},
+      </if>
+      <if test="settleStatus != null" >
+        settle_status = #{settleStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="cardType != null" >
+        card_type = #{cardType,jdbcType=VARCHAR},
+      </if>
+      <if test="personalCorporateType != null" >
+        personal_corporate_type = #{personalCorporateType,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantChargeAmount != null" >
+        merchant_charge_amount = #{merchantChargeAmount,jdbcType=BIGINT},
+      </if>
+      <if test="tradeAmountIn != null" >
+        trade_amount_in = #{tradeAmountIn,jdbcType=BIGINT},
+      </if>
+      <if test="accountReceivable != null" >
+        account_receivable = #{accountReceivable,jdbcType=BIGINT},
+      </if>
+    </set>
+    where payment_flow_id = #{paymentFlowId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shusheng.tihuzhai.dao.entity.auto.PaymentFlow" >
+    update payment_flow
+    set order_no = #{orderNo,jdbcType=VARCHAR},
+      payment_amount = #{paymentAmount,jdbcType=BIGINT},
+      user_id = #{userId,jdbcType=BIGINT},
+      user_name = #{userName,jdbcType=VARCHAR},
+      real_name = #{realName,jdbcType=VARCHAR},
+      bank_code = #{bankCode,jdbcType=VARCHAR},
+      payment_date = #{paymentDate,jdbcType=TIMESTAMP},
+      payment_success_date = #{paymentSuccessDate,jdbcType=TIMESTAMP},
+      payment_type = #{paymentType,jdbcType=VARCHAR},
+      payment_mode = #{paymentMode,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      order_ids = #{orderIds,jdbcType=VARCHAR},
+      raw_add_time = #{rawAddTime,jdbcType=TIMESTAMP},
+      raw_update_time = #{rawUpdateTime,jdbcType=TIMESTAMP},
+      red_pay = #{redPay,jdbcType=BIGINT},
+      integral_pay = #{integralPay,jdbcType=BIGINT},
+      ticket_amount = #{ticketAmount,jdbcType=BIGINT},
+      refund_status = #{refundStatus,jdbcType=VARCHAR},
+      refund_amount = #{refundAmount,jdbcType=BIGINT},
+      ticket_id = #{ticketId,jdbcType=BIGINT},
+      trade_no = #{tradeNo,jdbcType=VARCHAR},
+      ext_order = #{extOrder,jdbcType=VARCHAR},
+      ext_order1 = #{extOrder1,jdbcType=VARCHAR},
+      settle_amount = #{settleAmount,jdbcType=BIGINT},
+      settle_status = #{settleStatus,jdbcType=VARCHAR},
+      card_type = #{cardType,jdbcType=VARCHAR},
+      personal_corporate_type = #{personalCorporateType,jdbcType=VARCHAR},
+      merchant_charge_amount = #{merchantChargeAmount,jdbcType=BIGINT},
+      trade_amount_in = #{tradeAmountIn,jdbcType=BIGINT},
+      account_receivable = #{accountReceivable,jdbcType=BIGINT}
+    where payment_flow_id = #{paymentFlowId,jdbcType=VARCHAR}
+  </update>
+</mapper>

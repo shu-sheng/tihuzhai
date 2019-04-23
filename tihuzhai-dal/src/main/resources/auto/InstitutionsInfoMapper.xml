@@ -1,0 +1,724 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shusheng.tihuzhai.dao.mappers.auto.InstitutionsInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.shusheng.tihuzhai.dao.entity.auto.InstitutionsInfo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="user_base_id" property="userBaseId" jdbcType="VARCHAR" />
+    <result column="enterprise_name" property="enterpriseName" jdbcType="VARCHAR" />
+    <result column="organization_code" property="organizationCode" jdbcType="VARCHAR" />
+    <result column="tax_registration_no" property="taxRegistrationNo" jdbcType="VARCHAR" />
+    <result column="business_license_no" property="businessLicenseNo" jdbcType="VARCHAR" />
+    <result column="business_license_province" property="businessLicenseProvince" jdbcType="VARCHAR" />
+    <result column="business_license_city" property="businessLicenseCity" jdbcType="VARCHAR" />
+    <result column="district" property="district" jdbcType="VARCHAR" />
+    <result column="town" property="town" jdbcType="VARCHAR" />
+    <result column="commonly_used_address" property="commonlyUsedAddress" jdbcType="VARCHAR" />
+    <result column="business_period" property="businessPeriod" jdbcType="VARCHAR" />
+    <result column="legal_representative_name" property="legalRepresentativeName" jdbcType="VARCHAR" />
+    <result column="legal_representative_card_no" property="legalRepresentativeCardNo" jdbcType="VARCHAR" />
+    <result column="business_license_path" property="businessLicensePath" jdbcType="VARCHAR" />
+    <result column="business_license_cachet_path" property="businessLicenseCachetPath" jdbcType="VARCHAR" />
+    <result column="cert_front_path" property="certFrontPath" jdbcType="VARCHAR" />
+    <result column="cert_back_path" property="certBackPath" jdbcType="VARCHAR" />
+    <result column="food_distribution_license_path" property="foodDistributionLicensePath" jdbcType="VARCHAR" />
+    <result column="opening_license_path" property="openingLicensePath" jdbcType="VARCHAR" />
+    <result column="bank_open_name" property="bankOpenName" jdbcType="VARCHAR" />
+    <result column="bank_card_no" property="bankCardNo" jdbcType="VARCHAR" />
+    <result column="bank_type" property="bankType" jdbcType="VARCHAR" />
+    <result column="bank_key" property="bankKey" jdbcType="VARCHAR" />
+    <result column="bank_province" property="bankProvince" jdbcType="VARCHAR" />
+    <result column="bank_city" property="bankCity" jdbcType="VARCHAR" />
+    <result column="bank_address" property="bankAddress" jdbcType="VARCHAR" />
+    <result column="institutions_in_code" property="institutionsInCode" jdbcType="VARCHAR" />
+    <result column="institutions_them_roughly" property="institutionsThemRoughly" jdbcType="VARCHAR" />
+    <result column="referees" property="referees" jdbcType="VARCHAR" />
+    <result column="contact_name" property="contactName" jdbcType="VARCHAR" />
+    <result column="company_phone" property="companyPhone" jdbcType="VARCHAR" />
+    <result column="legal_representative_card_period" property="legalRepresentativeCardPeriod" jdbcType="VARCHAR" />
+    <result column="contact_cert_no" property="contactCertNo" jdbcType="VARCHAR" />
+    <result column="zip_code" property="zipCode" jdbcType="VARCHAR" />
+    <result column="raw_add_time" property="rawAddTime" jdbcType="TIMESTAMP" />
+    <result column="raw_update_time" property="rawUpdateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, user_base_id, enterprise_name, organization_code, tax_registration_no, business_license_no, 
+    business_license_province, business_license_city, district, town, commonly_used_address, 
+    business_period, legal_representative_name, legal_representative_card_no, business_license_path, 
+    business_license_cachet_path, cert_front_path, cert_back_path, food_distribution_license_path, 
+    opening_license_path, bank_open_name, bank_card_no, bank_type, bank_key, bank_province, 
+    bank_city, bank_address, institutions_in_code, institutions_them_roughly, referees, 
+    contact_name, company_phone, legal_representative_card_period, contact_cert_no, zip_code, 
+    raw_add_time, raw_update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shusheng.tihuzhai.dao.entity.auto.InstitutionsInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from institutions_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from institutions_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from institutions_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shusheng.tihuzhai.dao.entity.auto.InstitutionsInfoExample" >
+    delete from institutions_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shusheng.tihuzhai.dao.entity.auto.InstitutionsInfo" >
+    insert into institutions_info (id, user_base_id, enterprise_name, 
+      organization_code, tax_registration_no, business_license_no, 
+      business_license_province, business_license_city, 
+      district, town, commonly_used_address, 
+      business_period, legal_representative_name, 
+      legal_representative_card_no, business_license_path, 
+      business_license_cachet_path, cert_front_path, 
+      cert_back_path, food_distribution_license_path, 
+      opening_license_path, bank_open_name, bank_card_no, 
+      bank_type, bank_key, bank_province, 
+      bank_city, bank_address, institutions_in_code, 
+      institutions_them_roughly, referees, contact_name, 
+      company_phone, legal_representative_card_period, 
+      contact_cert_no, zip_code, raw_add_time, 
+      raw_update_time)
+    values (#{id,jdbcType=BIGINT}, #{userBaseId,jdbcType=VARCHAR}, #{enterpriseName,jdbcType=VARCHAR}, 
+      #{organizationCode,jdbcType=VARCHAR}, #{taxRegistrationNo,jdbcType=VARCHAR}, #{businessLicenseNo,jdbcType=VARCHAR}, 
+      #{businessLicenseProvince,jdbcType=VARCHAR}, #{businessLicenseCity,jdbcType=VARCHAR}, 
+      #{district,jdbcType=VARCHAR}, #{town,jdbcType=VARCHAR}, #{commonlyUsedAddress,jdbcType=VARCHAR}, 
+      #{businessPeriod,jdbcType=VARCHAR}, #{legalRepresentativeName,jdbcType=VARCHAR}, 
+      #{legalRepresentativeCardNo,jdbcType=VARCHAR}, #{businessLicensePath,jdbcType=VARCHAR}, 
+      #{businessLicenseCachetPath,jdbcType=VARCHAR}, #{certFrontPath,jdbcType=VARCHAR}, 
+      #{certBackPath,jdbcType=VARCHAR}, #{foodDistributionLicensePath,jdbcType=VARCHAR}, 
+      #{openingLicensePath,jdbcType=VARCHAR}, #{bankOpenName,jdbcType=VARCHAR}, #{bankCardNo,jdbcType=VARCHAR}, 
+      #{bankType,jdbcType=VARCHAR}, #{bankKey,jdbcType=VARCHAR}, #{bankProvince,jdbcType=VARCHAR}, 
+      #{bankCity,jdbcType=VARCHAR}, #{bankAddress,jdbcType=VARCHAR}, #{institutionsInCode,jdbcType=VARCHAR}, 
+      #{institutionsThemRoughly,jdbcType=VARCHAR}, #{referees,jdbcType=VARCHAR}, #{contactName,jdbcType=VARCHAR}, 
+      #{companyPhone,jdbcType=VARCHAR}, #{legalRepresentativeCardPeriod,jdbcType=VARCHAR}, 
+      #{contactCertNo,jdbcType=VARCHAR}, #{zipCode,jdbcType=VARCHAR}, #{rawAddTime,jdbcType=TIMESTAMP}, 
+      #{rawUpdateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shusheng.tihuzhai.dao.entity.auto.InstitutionsInfo" >
+    insert into institutions_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userBaseId != null" >
+        user_base_id,
+      </if>
+      <if test="enterpriseName != null" >
+        enterprise_name,
+      </if>
+      <if test="organizationCode != null" >
+        organization_code,
+      </if>
+      <if test="taxRegistrationNo != null" >
+        tax_registration_no,
+      </if>
+      <if test="businessLicenseNo != null" >
+        business_license_no,
+      </if>
+      <if test="businessLicenseProvince != null" >
+        business_license_province,
+      </if>
+      <if test="businessLicenseCity != null" >
+        business_license_city,
+      </if>
+      <if test="district != null" >
+        district,
+      </if>
+      <if test="town != null" >
+        town,
+      </if>
+      <if test="commonlyUsedAddress != null" >
+        commonly_used_address,
+      </if>
+      <if test="businessPeriod != null" >
+        business_period,
+      </if>
+      <if test="legalRepresentativeName != null" >
+        legal_representative_name,
+      </if>
+      <if test="legalRepresentativeCardNo != null" >
+        legal_representative_card_no,
+      </if>
+      <if test="businessLicensePath != null" >
+        business_license_path,
+      </if>
+      <if test="businessLicenseCachetPath != null" >
+        business_license_cachet_path,
+      </if>
+      <if test="certFrontPath != null" >
+        cert_front_path,
+      </if>
+      <if test="certBackPath != null" >
+        cert_back_path,
+      </if>
+      <if test="foodDistributionLicensePath != null" >
+        food_distribution_license_path,
+      </if>
+      <if test="openingLicensePath != null" >
+        opening_license_path,
+      </if>
+      <if test="bankOpenName != null" >
+        bank_open_name,
+      </if>
+      <if test="bankCardNo != null" >
+        bank_card_no,
+      </if>
+      <if test="bankType != null" >
+        bank_type,
+      </if>
+      <if test="bankKey != null" >
+        bank_key,
+      </if>
+      <if test="bankProvince != null" >
+        bank_province,
+      </if>
+      <if test="bankCity != null" >
+        bank_city,
+      </if>
+      <if test="bankAddress != null" >
+        bank_address,
+      </if>
+      <if test="institutionsInCode != null" >
+        institutions_in_code,
+      </if>
+      <if test="institutionsThemRoughly != null" >
+        institutions_them_roughly,
+      </if>
+      <if test="referees != null" >
+        referees,
+      </if>
+      <if test="contactName != null" >
+        contact_name,
+      </if>
+      <if test="companyPhone != null" >
+        company_phone,
+      </if>
+      <if test="legalRepresentativeCardPeriod != null" >
+        legal_representative_card_period,
+      </if>
+      <if test="contactCertNo != null" >
+        contact_cert_no,
+      </if>
+      <if test="zipCode != null" >
+        zip_code,
+      </if>
+      <if test="rawAddTime != null" >
+        raw_add_time,
+      </if>
+      <if test="rawUpdateTime != null" >
+        raw_update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userBaseId != null" >
+        #{userBaseId,jdbcType=VARCHAR},
+      </if>
+      <if test="enterpriseName != null" >
+        #{enterpriseName,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationCode != null" >
+        #{organizationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="taxRegistrationNo != null" >
+        #{taxRegistrationNo,jdbcType=VARCHAR},
+      </if>
+      <if test="businessLicenseNo != null" >
+        #{businessLicenseNo,jdbcType=VARCHAR},
+      </if>
+      <if test="businessLicenseProvince != null" >
+        #{businessLicenseProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="businessLicenseCity != null" >
+        #{businessLicenseCity,jdbcType=VARCHAR},
+      </if>
+      <if test="district != null" >
+        #{district,jdbcType=VARCHAR},
+      </if>
+      <if test="town != null" >
+        #{town,jdbcType=VARCHAR},
+      </if>
+      <if test="commonlyUsedAddress != null" >
+        #{commonlyUsedAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="businessPeriod != null" >
+        #{businessPeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="legalRepresentativeName != null" >
+        #{legalRepresentativeName,jdbcType=VARCHAR},
+      </if>
+      <if test="legalRepresentativeCardNo != null" >
+        #{legalRepresentativeCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="businessLicensePath != null" >
+        #{businessLicensePath,jdbcType=VARCHAR},
+      </if>
+      <if test="businessLicenseCachetPath != null" >
+        #{businessLicenseCachetPath,jdbcType=VARCHAR},
+      </if>
+      <if test="certFrontPath != null" >
+        #{certFrontPath,jdbcType=VARCHAR},
+      </if>
+      <if test="certBackPath != null" >
+        #{certBackPath,jdbcType=VARCHAR},
+      </if>
+      <if test="foodDistributionLicensePath != null" >
+        #{foodDistributionLicensePath,jdbcType=VARCHAR},
+      </if>
+      <if test="openingLicensePath != null" >
+        #{openingLicensePath,jdbcType=VARCHAR},
+      </if>
+      <if test="bankOpenName != null" >
+        #{bankOpenName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCardNo != null" >
+        #{bankCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bankType != null" >
+        #{bankType,jdbcType=VARCHAR},
+      </if>
+      <if test="bankKey != null" >
+        #{bankKey,jdbcType=VARCHAR},
+      </if>
+      <if test="bankProvince != null" >
+        #{bankProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCity != null" >
+        #{bankCity,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAddress != null" >
+        #{bankAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="institutionsInCode != null" >
+        #{institutionsInCode,jdbcType=VARCHAR},
+      </if>
+      <if test="institutionsThemRoughly != null" >
+        #{institutionsThemRoughly,jdbcType=VARCHAR},
+      </if>
+      <if test="referees != null" >
+        #{referees,jdbcType=VARCHAR},
+      </if>
+      <if test="contactName != null" >
+        #{contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyPhone != null" >
+        #{companyPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="legalRepresentativeCardPeriod != null" >
+        #{legalRepresentativeCardPeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="contactCertNo != null" >
+        #{contactCertNo,jdbcType=VARCHAR},
+      </if>
+      <if test="zipCode != null" >
+        #{zipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="rawAddTime != null" >
+        #{rawAddTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rawUpdateTime != null" >
+        #{rawUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shusheng.tihuzhai.dao.entity.auto.InstitutionsInfoExample" resultType="java.lang.Integer" >
+    select count(*) from institutions_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update institutions_info
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.userBaseId != null" >
+        user_base_id = #{record.userBaseId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.enterpriseName != null" >
+        enterprise_name = #{record.enterpriseName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.organizationCode != null" >
+        organization_code = #{record.organizationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.taxRegistrationNo != null" >
+        tax_registration_no = #{record.taxRegistrationNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessLicenseNo != null" >
+        business_license_no = #{record.businessLicenseNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessLicenseProvince != null" >
+        business_license_province = #{record.businessLicenseProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessLicenseCity != null" >
+        business_license_city = #{record.businessLicenseCity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.district != null" >
+        district = #{record.district,jdbcType=VARCHAR},
+      </if>
+      <if test="record.town != null" >
+        town = #{record.town,jdbcType=VARCHAR},
+      </if>
+      <if test="record.commonlyUsedAddress != null" >
+        commonly_used_address = #{record.commonlyUsedAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessPeriod != null" >
+        business_period = #{record.businessPeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="record.legalRepresentativeName != null" >
+        legal_representative_name = #{record.legalRepresentativeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.legalRepresentativeCardNo != null" >
+        legal_representative_card_no = #{record.legalRepresentativeCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessLicensePath != null" >
+        business_license_path = #{record.businessLicensePath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessLicenseCachetPath != null" >
+        business_license_cachet_path = #{record.businessLicenseCachetPath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.certFrontPath != null" >
+        cert_front_path = #{record.certFrontPath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.certBackPath != null" >
+        cert_back_path = #{record.certBackPath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.foodDistributionLicensePath != null" >
+        food_distribution_license_path = #{record.foodDistributionLicensePath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.openingLicensePath != null" >
+        opening_license_path = #{record.openingLicensePath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankOpenName != null" >
+        bank_open_name = #{record.bankOpenName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankCardNo != null" >
+        bank_card_no = #{record.bankCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankType != null" >
+        bank_type = #{record.bankType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankKey != null" >
+        bank_key = #{record.bankKey,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankProvince != null" >
+        bank_province = #{record.bankProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankCity != null" >
+        bank_city = #{record.bankCity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankAddress != null" >
+        bank_address = #{record.bankAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.institutionsInCode != null" >
+        institutions_in_code = #{record.institutionsInCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.institutionsThemRoughly != null" >
+        institutions_them_roughly = #{record.institutionsThemRoughly,jdbcType=VARCHAR},
+      </if>
+      <if test="record.referees != null" >
+        referees = #{record.referees,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactName != null" >
+        contact_name = #{record.contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyPhone != null" >
+        company_phone = #{record.companyPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.legalRepresentativeCardPeriod != null" >
+        legal_representative_card_period = #{record.legalRepresentativeCardPeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactCertNo != null" >
+        contact_cert_no = #{record.contactCertNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zipCode != null" >
+        zip_code = #{record.zipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rawAddTime != null" >
+        raw_add_time = #{record.rawAddTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.rawUpdateTime != null" >
+        raw_update_time = #{record.rawUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update institutions_info
+    set id = #{record.id,jdbcType=BIGINT},
+      user_base_id = #{record.userBaseId,jdbcType=VARCHAR},
+      enterprise_name = #{record.enterpriseName,jdbcType=VARCHAR},
+      organization_code = #{record.organizationCode,jdbcType=VARCHAR},
+      tax_registration_no = #{record.taxRegistrationNo,jdbcType=VARCHAR},
+      business_license_no = #{record.businessLicenseNo,jdbcType=VARCHAR},
+      business_license_province = #{record.businessLicenseProvince,jdbcType=VARCHAR},
+      business_license_city = #{record.businessLicenseCity,jdbcType=VARCHAR},
+      district = #{record.district,jdbcType=VARCHAR},
+      town = #{record.town,jdbcType=VARCHAR},
+      commonly_used_address = #{record.commonlyUsedAddress,jdbcType=VARCHAR},
+      business_period = #{record.businessPeriod,jdbcType=VARCHAR},
+      legal_representative_name = #{record.legalRepresentativeName,jdbcType=VARCHAR},
+      legal_representative_card_no = #{record.legalRepresentativeCardNo,jdbcType=VARCHAR},
+      business_license_path = #{record.businessLicensePath,jdbcType=VARCHAR},
+      business_license_cachet_path = #{record.businessLicenseCachetPath,jdbcType=VARCHAR},
+      cert_front_path = #{record.certFrontPath,jdbcType=VARCHAR},
+      cert_back_path = #{record.certBackPath,jdbcType=VARCHAR},
+      food_distribution_license_path = #{record.foodDistributionLicensePath,jdbcType=VARCHAR},
+      opening_license_path = #{record.openingLicensePath,jdbcType=VARCHAR},
+      bank_open_name = #{record.bankOpenName,jdbcType=VARCHAR},
+      bank_card_no = #{record.bankCardNo,jdbcType=VARCHAR},
+      bank_type = #{record.bankType,jdbcType=VARCHAR},
+      bank_key = #{record.bankKey,jdbcType=VARCHAR},
+      bank_province = #{record.bankProvince,jdbcType=VARCHAR},
+      bank_city = #{record.bankCity,jdbcType=VARCHAR},
+      bank_address = #{record.bankAddress,jdbcType=VARCHAR},
+      institutions_in_code = #{record.institutionsInCode,jdbcType=VARCHAR},
+      institutions_them_roughly = #{record.institutionsThemRoughly,jdbcType=VARCHAR},
+      referees = #{record.referees,jdbcType=VARCHAR},
+      contact_name = #{record.contactName,jdbcType=VARCHAR},
+      company_phone = #{record.companyPhone,jdbcType=VARCHAR},
+      legal_representative_card_period = #{record.legalRepresentativeCardPeriod,jdbcType=VARCHAR},
+      contact_cert_no = #{record.contactCertNo,jdbcType=VARCHAR},
+      zip_code = #{record.zipCode,jdbcType=VARCHAR},
+      raw_add_time = #{record.rawAddTime,jdbcType=TIMESTAMP},
+      raw_update_time = #{record.rawUpdateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shusheng.tihuzhai.dao.entity.auto.InstitutionsInfo" >
+    update institutions_info
+    <set >
+      <if test="userBaseId != null" >
+        user_base_id = #{userBaseId,jdbcType=VARCHAR},
+      </if>
+      <if test="enterpriseName != null" >
+        enterprise_name = #{enterpriseName,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationCode != null" >
+        organization_code = #{organizationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="taxRegistrationNo != null" >
+        tax_registration_no = #{taxRegistrationNo,jdbcType=VARCHAR},
+      </if>
+      <if test="businessLicenseNo != null" >
+        business_license_no = #{businessLicenseNo,jdbcType=VARCHAR},
+      </if>
+      <if test="businessLicenseProvince != null" >
+        business_license_province = #{businessLicenseProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="businessLicenseCity != null" >
+        business_license_city = #{businessLicenseCity,jdbcType=VARCHAR},
+      </if>
+      <if test="district != null" >
+        district = #{district,jdbcType=VARCHAR},
+      </if>
+      <if test="town != null" >
+        town = #{town,jdbcType=VARCHAR},
+      </if>
+      <if test="commonlyUsedAddress != null" >
+        commonly_used_address = #{commonlyUsedAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="businessPeriod != null" >
+        business_period = #{businessPeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="legalRepresentativeName != null" >
+        legal_representative_name = #{legalRepresentativeName,jdbcType=VARCHAR},
+      </if>
+      <if test="legalRepresentativeCardNo != null" >
+        legal_representative_card_no = #{legalRepresentativeCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="businessLicensePath != null" >
+        business_license_path = #{businessLicensePath,jdbcType=VARCHAR},
+      </if>
+      <if test="businessLicenseCachetPath != null" >
+        business_license_cachet_path = #{businessLicenseCachetPath,jdbcType=VARCHAR},
+      </if>
+      <if test="certFrontPath != null" >
+        cert_front_path = #{certFrontPath,jdbcType=VARCHAR},
+      </if>
+      <if test="certBackPath != null" >
+        cert_back_path = #{certBackPath,jdbcType=VARCHAR},
+      </if>
+      <if test="foodDistributionLicensePath != null" >
+        food_distribution_license_path = #{foodDistributionLicensePath,jdbcType=VARCHAR},
+      </if>
+      <if test="openingLicensePath != null" >
+        opening_license_path = #{openingLicensePath,jdbcType=VARCHAR},
+      </if>
+      <if test="bankOpenName != null" >
+        bank_open_name = #{bankOpenName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCardNo != null" >
+        bank_card_no = #{bankCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bankType != null" >
+        bank_type = #{bankType,jdbcType=VARCHAR},
+      </if>
+      <if test="bankKey != null" >
+        bank_key = #{bankKey,jdbcType=VARCHAR},
+      </if>
+      <if test="bankProvince != null" >
+        bank_province = #{bankProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCity != null" >
+        bank_city = #{bankCity,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAddress != null" >
+        bank_address = #{bankAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="institutionsInCode != null" >
+        institutions_in_code = #{institutionsInCode,jdbcType=VARCHAR},
+      </if>
+      <if test="institutionsThemRoughly != null" >
+        institutions_them_roughly = #{institutionsThemRoughly,jdbcType=VARCHAR},
+      </if>
+      <if test="referees != null" >
+        referees = #{referees,jdbcType=VARCHAR},
+      </if>
+      <if test="contactName != null" >
+        contact_name = #{contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyPhone != null" >
+        company_phone = #{companyPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="legalRepresentativeCardPeriod != null" >
+        legal_representative_card_period = #{legalRepresentativeCardPeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="contactCertNo != null" >
+        contact_cert_no = #{contactCertNo,jdbcType=VARCHAR},
+      </if>
+      <if test="zipCode != null" >
+        zip_code = #{zipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="rawAddTime != null" >
+        raw_add_time = #{rawAddTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rawUpdateTime != null" >
+        raw_update_time = #{rawUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shusheng.tihuzhai.dao.entity.auto.InstitutionsInfo" >
+    update institutions_info
+    set user_base_id = #{userBaseId,jdbcType=VARCHAR},
+      enterprise_name = #{enterpriseName,jdbcType=VARCHAR},
+      organization_code = #{organizationCode,jdbcType=VARCHAR},
+      tax_registration_no = #{taxRegistrationNo,jdbcType=VARCHAR},
+      business_license_no = #{businessLicenseNo,jdbcType=VARCHAR},
+      business_license_province = #{businessLicenseProvince,jdbcType=VARCHAR},
+      business_license_city = #{businessLicenseCity,jdbcType=VARCHAR},
+      district = #{district,jdbcType=VARCHAR},
+      town = #{town,jdbcType=VARCHAR},
+      commonly_used_address = #{commonlyUsedAddress,jdbcType=VARCHAR},
+      business_period = #{businessPeriod,jdbcType=VARCHAR},
+      legal_representative_name = #{legalRepresentativeName,jdbcType=VARCHAR},
+      legal_representative_card_no = #{legalRepresentativeCardNo,jdbcType=VARCHAR},
+      business_license_path = #{businessLicensePath,jdbcType=VARCHAR},
+      business_license_cachet_path = #{businessLicenseCachetPath,jdbcType=VARCHAR},
+      cert_front_path = #{certFrontPath,jdbcType=VARCHAR},
+      cert_back_path = #{certBackPath,jdbcType=VARCHAR},
+      food_distribution_license_path = #{foodDistributionLicensePath,jdbcType=VARCHAR},
+      opening_license_path = #{openingLicensePath,jdbcType=VARCHAR},
+      bank_open_name = #{bankOpenName,jdbcType=VARCHAR},
+      bank_card_no = #{bankCardNo,jdbcType=VARCHAR},
+      bank_type = #{bankType,jdbcType=VARCHAR},
+      bank_key = #{bankKey,jdbcType=VARCHAR},
+      bank_province = #{bankProvince,jdbcType=VARCHAR},
+      bank_city = #{bankCity,jdbcType=VARCHAR},
+      bank_address = #{bankAddress,jdbcType=VARCHAR},
+      institutions_in_code = #{institutionsInCode,jdbcType=VARCHAR},
+      institutions_them_roughly = #{institutionsThemRoughly,jdbcType=VARCHAR},
+      referees = #{referees,jdbcType=VARCHAR},
+      contact_name = #{contactName,jdbcType=VARCHAR},
+      company_phone = #{companyPhone,jdbcType=VARCHAR},
+      legal_representative_card_period = #{legalRepresentativeCardPeriod,jdbcType=VARCHAR},
+      contact_cert_no = #{contactCertNo,jdbcType=VARCHAR},
+      zip_code = #{zipCode,jdbcType=VARCHAR},
+      raw_add_time = #{rawAddTime,jdbcType=TIMESTAMP},
+      raw_update_time = #{rawUpdateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

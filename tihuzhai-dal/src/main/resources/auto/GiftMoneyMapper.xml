@@ -1,0 +1,576 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shusheng.tihuzhai.dao.mappers.auto.GiftMoneyMapper" >
+  <resultMap id="BaseResultMap" type="com.shusheng.tihuzhai.dao.entity.auto.GiftMoney" >
+    <id column="gift_id" property="giftId" jdbcType="BIGINT" />
+    <result column="gift_name" property="giftName" jdbcType="VARCHAR" />
+    <result column="increase" property="increase" jdbcType="VARCHAR" />
+    <result column="rate_of_year" property="rateOfYear" jdbcType="DECIMAL" />
+    <result column="gift_num" property="giftNum" jdbcType="BIGINT" />
+    <result column="used_gift_num" property="usedGiftNum" jdbcType="BIGINT" />
+    <result column="person_num" property="personNum" jdbcType="BIGINT" />
+    <result column="total_amount" property="totalAmount" jdbcType="BIGINT" />
+    <result column="amount" property="amount" jdbcType="BIGINT" />
+    <result column="used_amount" property="usedAmount" jdbcType="BIGINT" />
+    <result column="give_type" property="giveType" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="use_type" property="useType" jdbcType="VARCHAR" />
+    <result column="use_amount" property="useAmount" jdbcType="VARCHAR" />
+    <result column="end_date" property="endDate" jdbcType="TIMESTAMP" />
+    <result column="start_date" property="startDate" jdbcType="TIMESTAMP" />
+    <result column="use_start_date" property="useStartDate" jdbcType="TIMESTAMP" />
+    <result column="use_end_date" property="useEndDate" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="create_userid" property="createUserid" jdbcType="BIGINT" />
+    <result column="create_username" property="createUsername" jdbcType="VARCHAR" />
+    <result column="raw_add_time" property="rawAddTime" jdbcType="TIMESTAMP" />
+    <result column="raw_update_time" property="rawUpdateTime" jdbcType="TIMESTAMP" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="time_limit" property="timeLimit" jdbcType="VARCHAR" />
+    <result column="outBizNo" property="outbizno" jdbcType="VARCHAR" />
+    <result column="loan_biz_type" property="loanBizType" jdbcType="VARCHAR" />
+    <result column="supplier_id" property="supplierId" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    gift_id, gift_name, increase, rate_of_year, gift_num, used_gift_num, person_num, 
+    total_amount, amount, used_amount, give_type, type, use_type, use_amount, end_date, 
+    start_date, use_start_date, use_end_date, status, create_userid, create_username, 
+    raw_add_time, raw_update_time, description, time_limit, outBizNo, loan_biz_type, 
+    supplier_id
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shusheng.tihuzhai.dao.entity.auto.GiftMoneyExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from gift_money
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from gift_money
+    where gift_id = #{giftId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from gift_money
+    where gift_id = #{giftId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shusheng.tihuzhai.dao.entity.auto.GiftMoneyExample" >
+    delete from gift_money
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shusheng.tihuzhai.dao.entity.auto.GiftMoney" >
+    insert into gift_money (gift_id, gift_name, increase, 
+      rate_of_year, gift_num, used_gift_num, 
+      person_num, total_amount, amount, 
+      used_amount, give_type, type, 
+      use_type, use_amount, end_date, 
+      start_date, use_start_date, use_end_date, 
+      status, create_userid, create_username, 
+      raw_add_time, raw_update_time, description, 
+      time_limit, outBizNo, loan_biz_type, 
+      supplier_id)
+    values (#{giftId,jdbcType=BIGINT}, #{giftName,jdbcType=VARCHAR}, #{increase,jdbcType=VARCHAR}, 
+      #{rateOfYear,jdbcType=DECIMAL}, #{giftNum,jdbcType=BIGINT}, #{usedGiftNum,jdbcType=BIGINT}, 
+      #{personNum,jdbcType=BIGINT}, #{totalAmount,jdbcType=BIGINT}, #{amount,jdbcType=BIGINT}, 
+      #{usedAmount,jdbcType=BIGINT}, #{giveType,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
+      #{useType,jdbcType=VARCHAR}, #{useAmount,jdbcType=VARCHAR}, #{endDate,jdbcType=TIMESTAMP}, 
+      #{startDate,jdbcType=TIMESTAMP}, #{useStartDate,jdbcType=TIMESTAMP}, #{useEndDate,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=VARCHAR}, #{createUserid,jdbcType=BIGINT}, #{createUsername,jdbcType=VARCHAR}, 
+      #{rawAddTime,jdbcType=TIMESTAMP}, #{rawUpdateTime,jdbcType=TIMESTAMP}, #{description,jdbcType=VARCHAR}, 
+      #{timeLimit,jdbcType=VARCHAR}, #{outbizno,jdbcType=VARCHAR}, #{loanBizType,jdbcType=VARCHAR}, 
+      #{supplierId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shusheng.tihuzhai.dao.entity.auto.GiftMoney" >
+    insert into gift_money
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="giftId != null" >
+        gift_id,
+      </if>
+      <if test="giftName != null" >
+        gift_name,
+      </if>
+      <if test="increase != null" >
+        increase,
+      </if>
+      <if test="rateOfYear != null" >
+        rate_of_year,
+      </if>
+      <if test="giftNum != null" >
+        gift_num,
+      </if>
+      <if test="usedGiftNum != null" >
+        used_gift_num,
+      </if>
+      <if test="personNum != null" >
+        person_num,
+      </if>
+      <if test="totalAmount != null" >
+        total_amount,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="usedAmount != null" >
+        used_amount,
+      </if>
+      <if test="giveType != null" >
+        give_type,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="useType != null" >
+        use_type,
+      </if>
+      <if test="useAmount != null" >
+        use_amount,
+      </if>
+      <if test="endDate != null" >
+        end_date,
+      </if>
+      <if test="startDate != null" >
+        start_date,
+      </if>
+      <if test="useStartDate != null" >
+        use_start_date,
+      </if>
+      <if test="useEndDate != null" >
+        use_end_date,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createUserid != null" >
+        create_userid,
+      </if>
+      <if test="createUsername != null" >
+        create_username,
+      </if>
+      <if test="rawAddTime != null" >
+        raw_add_time,
+      </if>
+      <if test="rawUpdateTime != null" >
+        raw_update_time,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="timeLimit != null" >
+        time_limit,
+      </if>
+      <if test="outbizno != null" >
+        outBizNo,
+      </if>
+      <if test="loanBizType != null" >
+        loan_biz_type,
+      </if>
+      <if test="supplierId != null" >
+        supplier_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="giftId != null" >
+        #{giftId,jdbcType=BIGINT},
+      </if>
+      <if test="giftName != null" >
+        #{giftName,jdbcType=VARCHAR},
+      </if>
+      <if test="increase != null" >
+        #{increase,jdbcType=VARCHAR},
+      </if>
+      <if test="rateOfYear != null" >
+        #{rateOfYear,jdbcType=DECIMAL},
+      </if>
+      <if test="giftNum != null" >
+        #{giftNum,jdbcType=BIGINT},
+      </if>
+      <if test="usedGiftNum != null" >
+        #{usedGiftNum,jdbcType=BIGINT},
+      </if>
+      <if test="personNum != null" >
+        #{personNum,jdbcType=BIGINT},
+      </if>
+      <if test="totalAmount != null" >
+        #{totalAmount,jdbcType=BIGINT},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=BIGINT},
+      </if>
+      <if test="usedAmount != null" >
+        #{usedAmount,jdbcType=BIGINT},
+      </if>
+      <if test="giveType != null" >
+        #{giveType,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="useType != null" >
+        #{useType,jdbcType=VARCHAR},
+      </if>
+      <if test="useAmount != null" >
+        #{useAmount,jdbcType=VARCHAR},
+      </if>
+      <if test="endDate != null" >
+        #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="startDate != null" >
+        #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="useStartDate != null" >
+        #{useStartDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="useEndDate != null" >
+        #{useEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserid != null" >
+        #{createUserid,jdbcType=BIGINT},
+      </if>
+      <if test="createUsername != null" >
+        #{createUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="rawAddTime != null" >
+        #{rawAddTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rawUpdateTime != null" >
+        #{rawUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="timeLimit != null" >
+        #{timeLimit,jdbcType=VARCHAR},
+      </if>
+      <if test="outbizno != null" >
+        #{outbizno,jdbcType=VARCHAR},
+      </if>
+      <if test="loanBizType != null" >
+        #{loanBizType,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierId != null" >
+        #{supplierId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shusheng.tihuzhai.dao.entity.auto.GiftMoneyExample" resultType="java.lang.Integer" >
+    select count(*) from gift_money
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update gift_money
+    <set >
+      <if test="record.giftId != null" >
+        gift_id = #{record.giftId,jdbcType=BIGINT},
+      </if>
+      <if test="record.giftName != null" >
+        gift_name = #{record.giftName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.increase != null" >
+        increase = #{record.increase,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rateOfYear != null" >
+        rate_of_year = #{record.rateOfYear,jdbcType=DECIMAL},
+      </if>
+      <if test="record.giftNum != null" >
+        gift_num = #{record.giftNum,jdbcType=BIGINT},
+      </if>
+      <if test="record.usedGiftNum != null" >
+        used_gift_num = #{record.usedGiftNum,jdbcType=BIGINT},
+      </if>
+      <if test="record.personNum != null" >
+        person_num = #{record.personNum,jdbcType=BIGINT},
+      </if>
+      <if test="record.totalAmount != null" >
+        total_amount = #{record.totalAmount,jdbcType=BIGINT},
+      </if>
+      <if test="record.amount != null" >
+        amount = #{record.amount,jdbcType=BIGINT},
+      </if>
+      <if test="record.usedAmount != null" >
+        used_amount = #{record.usedAmount,jdbcType=BIGINT},
+      </if>
+      <if test="record.giveType != null" >
+        give_type = #{record.giveType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.useType != null" >
+        use_type = #{record.useType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.useAmount != null" >
+        use_amount = #{record.useAmount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.endDate != null" >
+        end_date = #{record.endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.startDate != null" >
+        start_date = #{record.startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.useStartDate != null" >
+        use_start_date = #{record.useStartDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.useEndDate != null" >
+        use_end_date = #{record.useEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createUserid != null" >
+        create_userid = #{record.createUserid,jdbcType=BIGINT},
+      </if>
+      <if test="record.createUsername != null" >
+        create_username = #{record.createUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rawAddTime != null" >
+        raw_add_time = #{record.rawAddTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.rawUpdateTime != null" >
+        raw_update_time = #{record.rawUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.description != null" >
+        description = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.timeLimit != null" >
+        time_limit = #{record.timeLimit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.outbizno != null" >
+        outBizNo = #{record.outbizno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.loanBizType != null" >
+        loan_biz_type = #{record.loanBizType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.supplierId != null" >
+        supplier_id = #{record.supplierId,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update gift_money
+    set gift_id = #{record.giftId,jdbcType=BIGINT},
+      gift_name = #{record.giftName,jdbcType=VARCHAR},
+      increase = #{record.increase,jdbcType=VARCHAR},
+      rate_of_year = #{record.rateOfYear,jdbcType=DECIMAL},
+      gift_num = #{record.giftNum,jdbcType=BIGINT},
+      used_gift_num = #{record.usedGiftNum,jdbcType=BIGINT},
+      person_num = #{record.personNum,jdbcType=BIGINT},
+      total_amount = #{record.totalAmount,jdbcType=BIGINT},
+      amount = #{record.amount,jdbcType=BIGINT},
+      used_amount = #{record.usedAmount,jdbcType=BIGINT},
+      give_type = #{record.giveType,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=VARCHAR},
+      use_type = #{record.useType,jdbcType=VARCHAR},
+      use_amount = #{record.useAmount,jdbcType=VARCHAR},
+      end_date = #{record.endDate,jdbcType=TIMESTAMP},
+      start_date = #{record.startDate,jdbcType=TIMESTAMP},
+      use_start_date = #{record.useStartDate,jdbcType=TIMESTAMP},
+      use_end_date = #{record.useEndDate,jdbcType=TIMESTAMP},
+      status = #{record.status,jdbcType=VARCHAR},
+      create_userid = #{record.createUserid,jdbcType=BIGINT},
+      create_username = #{record.createUsername,jdbcType=VARCHAR},
+      raw_add_time = #{record.rawAddTime,jdbcType=TIMESTAMP},
+      raw_update_time = #{record.rawUpdateTime,jdbcType=TIMESTAMP},
+      description = #{record.description,jdbcType=VARCHAR},
+      time_limit = #{record.timeLimit,jdbcType=VARCHAR},
+      outBizNo = #{record.outbizno,jdbcType=VARCHAR},
+      loan_biz_type = #{record.loanBizType,jdbcType=VARCHAR},
+      supplier_id = #{record.supplierId,jdbcType=BIGINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shusheng.tihuzhai.dao.entity.auto.GiftMoney" >
+    update gift_money
+    <set >
+      <if test="giftName != null" >
+        gift_name = #{giftName,jdbcType=VARCHAR},
+      </if>
+      <if test="increase != null" >
+        increase = #{increase,jdbcType=VARCHAR},
+      </if>
+      <if test="rateOfYear != null" >
+        rate_of_year = #{rateOfYear,jdbcType=DECIMAL},
+      </if>
+      <if test="giftNum != null" >
+        gift_num = #{giftNum,jdbcType=BIGINT},
+      </if>
+      <if test="usedGiftNum != null" >
+        used_gift_num = #{usedGiftNum,jdbcType=BIGINT},
+      </if>
+      <if test="personNum != null" >
+        person_num = #{personNum,jdbcType=BIGINT},
+      </if>
+      <if test="totalAmount != null" >
+        total_amount = #{totalAmount,jdbcType=BIGINT},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=BIGINT},
+      </if>
+      <if test="usedAmount != null" >
+        used_amount = #{usedAmount,jdbcType=BIGINT},
+      </if>
+      <if test="giveType != null" >
+        give_type = #{giveType,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="useType != null" >
+        use_type = #{useType,jdbcType=VARCHAR},
+      </if>
+      <if test="useAmount != null" >
+        use_amount = #{useAmount,jdbcType=VARCHAR},
+      </if>
+      <if test="endDate != null" >
+        end_date = #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="startDate != null" >
+        start_date = #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="useStartDate != null" >
+        use_start_date = #{useStartDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="useEndDate != null" >
+        use_end_date = #{useEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserid != null" >
+        create_userid = #{createUserid,jdbcType=BIGINT},
+      </if>
+      <if test="createUsername != null" >
+        create_username = #{createUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="rawAddTime != null" >
+        raw_add_time = #{rawAddTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rawUpdateTime != null" >
+        raw_update_time = #{rawUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="timeLimit != null" >
+        time_limit = #{timeLimit,jdbcType=VARCHAR},
+      </if>
+      <if test="outbizno != null" >
+        outBizNo = #{outbizno,jdbcType=VARCHAR},
+      </if>
+      <if test="loanBizType != null" >
+        loan_biz_type = #{loanBizType,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierId != null" >
+        supplier_id = #{supplierId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where gift_id = #{giftId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shusheng.tihuzhai.dao.entity.auto.GiftMoney" >
+    update gift_money
+    set gift_name = #{giftName,jdbcType=VARCHAR},
+      increase = #{increase,jdbcType=VARCHAR},
+      rate_of_year = #{rateOfYear,jdbcType=DECIMAL},
+      gift_num = #{giftNum,jdbcType=BIGINT},
+      used_gift_num = #{usedGiftNum,jdbcType=BIGINT},
+      person_num = #{personNum,jdbcType=BIGINT},
+      total_amount = #{totalAmount,jdbcType=BIGINT},
+      amount = #{amount,jdbcType=BIGINT},
+      used_amount = #{usedAmount,jdbcType=BIGINT},
+      give_type = #{giveType,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      use_type = #{useType,jdbcType=VARCHAR},
+      use_amount = #{useAmount,jdbcType=VARCHAR},
+      end_date = #{endDate,jdbcType=TIMESTAMP},
+      start_date = #{startDate,jdbcType=TIMESTAMP},
+      use_start_date = #{useStartDate,jdbcType=TIMESTAMP},
+      use_end_date = #{useEndDate,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=VARCHAR},
+      create_userid = #{createUserid,jdbcType=BIGINT},
+      create_username = #{createUsername,jdbcType=VARCHAR},
+      raw_add_time = #{rawAddTime,jdbcType=TIMESTAMP},
+      raw_update_time = #{rawUpdateTime,jdbcType=TIMESTAMP},
+      description = #{description,jdbcType=VARCHAR},
+      time_limit = #{timeLimit,jdbcType=VARCHAR},
+      outBizNo = #{outbizno,jdbcType=VARCHAR},
+      loan_biz_type = #{loanBizType,jdbcType=VARCHAR},
+      supplier_id = #{supplierId,jdbcType=BIGINT}
+    where gift_id = #{giftId,jdbcType=BIGINT}
+  </update>
+</mapper>

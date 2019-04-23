@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shusheng.tihuzhai.dao.mappers.auto.CommonAttachmentMapper" >
+  <resultMap id="BaseResultMap" type="com.shusheng.tihuzhai.dao.entity.auto.CommonAttachment" >
+    <id column="attachment_id" property="attachmentId" jdbcType="BIGINT" />
+    <result column="biz_no" property="bizNo" jdbcType="VARCHAR" />
+    <result column="module_type" property="moduleType" jdbcType="VARCHAR" />
+    <result column="check_status" property="checkStatus" jdbcType="VARCHAR" />
+    <result column="file_name" property="fileName" jdbcType="VARCHAR" />
+    <result column="isort" property="isort" jdbcType="BIGINT" />
+    <result column="file_physical_path" property="filePhysicalPath" jdbcType="VARCHAR" />
+    <result column="request_path" property="requestPath" jdbcType="VARCHAR" />
+    <result column="raw_add_time" property="rawAddTime" jdbcType="TIMESTAMP" />
+    <result column="raw_update_time" property="rawUpdateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    attachment_id, biz_no, module_type, check_status, file_name, isort, file_physical_path, 
+    request_path, raw_add_time, raw_update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shusheng.tihuzhai.dao.entity.auto.CommonAttachmentExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from common_attachment
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from common_attachment
+    where attachment_id = #{attachmentId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from common_attachment
+    where attachment_id = #{attachmentId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shusheng.tihuzhai.dao.entity.auto.CommonAttachmentExample" >
+    delete from common_attachment
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shusheng.tihuzhai.dao.entity.auto.CommonAttachment" >
+    insert into common_attachment (attachment_id, biz_no, module_type, 
+      check_status, file_name, isort, 
+      file_physical_path, request_path, raw_add_time, 
+      raw_update_time)
+    values (#{attachmentId,jdbcType=BIGINT}, #{bizNo,jdbcType=VARCHAR}, #{moduleType,jdbcType=VARCHAR}, 
+      #{checkStatus,jdbcType=VARCHAR}, #{fileName,jdbcType=VARCHAR}, #{isort,jdbcType=BIGINT}, 
+      #{filePhysicalPath,jdbcType=VARCHAR}, #{requestPath,jdbcType=VARCHAR}, #{rawAddTime,jdbcType=TIMESTAMP}, 
+      #{rawUpdateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shusheng.tihuzhai.dao.entity.auto.CommonAttachment" >
+    insert into common_attachment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="attachmentId != null" >
+        attachment_id,
+      </if>
+      <if test="bizNo != null" >
+        biz_no,
+      </if>
+      <if test="moduleType != null" >
+        module_type,
+      </if>
+      <if test="checkStatus != null" >
+        check_status,
+      </if>
+      <if test="fileName != null" >
+        file_name,
+      </if>
+      <if test="isort != null" >
+        isort,
+      </if>
+      <if test="filePhysicalPath != null" >
+        file_physical_path,
+      </if>
+      <if test="requestPath != null" >
+        request_path,
+      </if>
+      <if test="rawAddTime != null" >
+        raw_add_time,
+      </if>
+      <if test="rawUpdateTime != null" >
+        raw_update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="attachmentId != null" >
+        #{attachmentId,jdbcType=BIGINT},
+      </if>
+      <if test="bizNo != null" >
+        #{bizNo,jdbcType=VARCHAR},
+      </if>
+      <if test="moduleType != null" >
+        #{moduleType,jdbcType=VARCHAR},
+      </if>
+      <if test="checkStatus != null" >
+        #{checkStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="fileName != null" >
+        #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="isort != null" >
+        #{isort,jdbcType=BIGINT},
+      </if>
+      <if test="filePhysicalPath != null" >
+        #{filePhysicalPath,jdbcType=VARCHAR},
+      </if>
+      <if test="requestPath != null" >
+        #{requestPath,jdbcType=VARCHAR},
+      </if>
+      <if test="rawAddTime != null" >
+        #{rawAddTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rawUpdateTime != null" >
+        #{rawUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shusheng.tihuzhai.dao.entity.auto.CommonAttachmentExample" resultType="java.lang.Integer" >
+    select count(*) from common_attachment
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update common_attachment
+    <set >
+      <if test="record.attachmentId != null" >
+        attachment_id = #{record.attachmentId,jdbcType=BIGINT},
+      </if>
+      <if test="record.bizNo != null" >
+        biz_no = #{record.bizNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.moduleType != null" >
+        module_type = #{record.moduleType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.checkStatus != null" >
+        check_status = #{record.checkStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fileName != null" >
+        file_name = #{record.fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isort != null" >
+        isort = #{record.isort,jdbcType=BIGINT},
+      </if>
+      <if test="record.filePhysicalPath != null" >
+        file_physical_path = #{record.filePhysicalPath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.requestPath != null" >
+        request_path = #{record.requestPath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rawAddTime != null" >
+        raw_add_time = #{record.rawAddTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.rawUpdateTime != null" >
+        raw_update_time = #{record.rawUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update common_attachment
+    set attachment_id = #{record.attachmentId,jdbcType=BIGINT},
+      biz_no = #{record.bizNo,jdbcType=VARCHAR},
+      module_type = #{record.moduleType,jdbcType=VARCHAR},
+      check_status = #{record.checkStatus,jdbcType=VARCHAR},
+      file_name = #{record.fileName,jdbcType=VARCHAR},
+      isort = #{record.isort,jdbcType=BIGINT},
+      file_physical_path = #{record.filePhysicalPath,jdbcType=VARCHAR},
+      request_path = #{record.requestPath,jdbcType=VARCHAR},
+      raw_add_time = #{record.rawAddTime,jdbcType=TIMESTAMP},
+      raw_update_time = #{record.rawUpdateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shusheng.tihuzhai.dao.entity.auto.CommonAttachment" >
+    update common_attachment
+    <set >
+      <if test="bizNo != null" >
+        biz_no = #{bizNo,jdbcType=VARCHAR},
+      </if>
+      <if test="moduleType != null" >
+        module_type = #{moduleType,jdbcType=VARCHAR},
+      </if>
+      <if test="checkStatus != null" >
+        check_status = #{checkStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="fileName != null" >
+        file_name = #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="isort != null" >
+        isort = #{isort,jdbcType=BIGINT},
+      </if>
+      <if test="filePhysicalPath != null" >
+        file_physical_path = #{filePhysicalPath,jdbcType=VARCHAR},
+      </if>
+      <if test="requestPath != null" >
+        request_path = #{requestPath,jdbcType=VARCHAR},
+      </if>
+      <if test="rawAddTime != null" >
+        raw_add_time = #{rawAddTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rawUpdateTime != null" >
+        raw_update_time = #{rawUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where attachment_id = #{attachmentId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shusheng.tihuzhai.dao.entity.auto.CommonAttachment" >
+    update common_attachment
+    set biz_no = #{bizNo,jdbcType=VARCHAR},
+      module_type = #{moduleType,jdbcType=VARCHAR},
+      check_status = #{checkStatus,jdbcType=VARCHAR},
+      file_name = #{fileName,jdbcType=VARCHAR},
+      isort = #{isort,jdbcType=BIGINT},
+      file_physical_path = #{filePhysicalPath,jdbcType=VARCHAR},
+      request_path = #{requestPath,jdbcType=VARCHAR},
+      raw_add_time = #{rawAddTime,jdbcType=TIMESTAMP},
+      raw_update_time = #{rawUpdateTime,jdbcType=TIMESTAMP}
+    where attachment_id = #{attachmentId,jdbcType=BIGINT}
+  </update>
+</mapper>

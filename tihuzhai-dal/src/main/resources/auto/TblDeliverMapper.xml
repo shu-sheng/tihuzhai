@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shusheng.tihuzhai.dao.mappers.auto.TblDeliverMapper" >
+  <resultMap id="BaseResultMap" type="com.shusheng.tihuzhai.dao.entity.auto.TblDeliver" >
+    <id column="deliver_id" property="deliverId" jdbcType="BIGINT" />
+    <result column="product_id" property="productId" jdbcType="BIGINT" />
+    <result column="post" property="post" jdbcType="BIGINT" />
+    <result column="express" property="express" jdbcType="BIGINT" />
+    <result column="ems" property="ems" jdbcType="BIGINT" />
+    <result column="post_area" property="postArea" jdbcType="VARCHAR" />
+    <result column="raw_add_time" property="rawAddTime" jdbcType="TIMESTAMP" />
+    <result column="raw_update_time" property="rawUpdateTime" jdbcType="TIMESTAMP" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    deliver_id, product_id, post, express, ems, post_area, raw_add_time, raw_update_time, 
+    type
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shusheng.tihuzhai.dao.entity.auto.TblDeliverExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tbl_deliver
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_deliver
+    where deliver_id = #{deliverId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from tbl_deliver
+    where deliver_id = #{deliverId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shusheng.tihuzhai.dao.entity.auto.TblDeliverExample" >
+    delete from tbl_deliver
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shusheng.tihuzhai.dao.entity.auto.TblDeliver" >
+    insert into tbl_deliver (deliver_id, product_id, post, 
+      express, ems, post_area, 
+      raw_add_time, raw_update_time, type
+      )
+    values (#{deliverId,jdbcType=BIGINT}, #{productId,jdbcType=BIGINT}, #{post,jdbcType=BIGINT}, 
+      #{express,jdbcType=BIGINT}, #{ems,jdbcType=BIGINT}, #{postArea,jdbcType=VARCHAR}, 
+      #{rawAddTime,jdbcType=TIMESTAMP}, #{rawUpdateTime,jdbcType=TIMESTAMP}, #{type,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.shusheng.tihuzhai.dao.entity.auto.TblDeliver" >
+    insert into tbl_deliver
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="deliverId != null" >
+        deliver_id,
+      </if>
+      <if test="productId != null" >
+        product_id,
+      </if>
+      <if test="post != null" >
+        post,
+      </if>
+      <if test="express != null" >
+        express,
+      </if>
+      <if test="ems != null" >
+        ems,
+      </if>
+      <if test="postArea != null" >
+        post_area,
+      </if>
+      <if test="rawAddTime != null" >
+        raw_add_time,
+      </if>
+      <if test="rawUpdateTime != null" >
+        raw_update_time,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="deliverId != null" >
+        #{deliverId,jdbcType=BIGINT},
+      </if>
+      <if test="productId != null" >
+        #{productId,jdbcType=BIGINT},
+      </if>
+      <if test="post != null" >
+        #{post,jdbcType=BIGINT},
+      </if>
+      <if test="express != null" >
+        #{express,jdbcType=BIGINT},
+      </if>
+      <if test="ems != null" >
+        #{ems,jdbcType=BIGINT},
+      </if>
+      <if test="postArea != null" >
+        #{postArea,jdbcType=VARCHAR},
+      </if>
+      <if test="rawAddTime != null" >
+        #{rawAddTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rawUpdateTime != null" >
+        #{rawUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shusheng.tihuzhai.dao.entity.auto.TblDeliverExample" resultType="java.lang.Integer" >
+    select count(*) from tbl_deliver
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tbl_deliver
+    <set >
+      <if test="record.deliverId != null" >
+        deliver_id = #{record.deliverId,jdbcType=BIGINT},
+      </if>
+      <if test="record.productId != null" >
+        product_id = #{record.productId,jdbcType=BIGINT},
+      </if>
+      <if test="record.post != null" >
+        post = #{record.post,jdbcType=BIGINT},
+      </if>
+      <if test="record.express != null" >
+        express = #{record.express,jdbcType=BIGINT},
+      </if>
+      <if test="record.ems != null" >
+        ems = #{record.ems,jdbcType=BIGINT},
+      </if>
+      <if test="record.postArea != null" >
+        post_area = #{record.postArea,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rawAddTime != null" >
+        raw_add_time = #{record.rawAddTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.rawUpdateTime != null" >
+        raw_update_time = #{record.rawUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tbl_deliver
+    set deliver_id = #{record.deliverId,jdbcType=BIGINT},
+      product_id = #{record.productId,jdbcType=BIGINT},
+      post = #{record.post,jdbcType=BIGINT},
+      express = #{record.express,jdbcType=BIGINT},
+      ems = #{record.ems,jdbcType=BIGINT},
+      post_area = #{record.postArea,jdbcType=VARCHAR},
+      raw_add_time = #{record.rawAddTime,jdbcType=TIMESTAMP},
+      raw_update_time = #{record.rawUpdateTime,jdbcType=TIMESTAMP},
+      type = #{record.type,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shusheng.tihuzhai.dao.entity.auto.TblDeliver" >
+    update tbl_deliver
+    <set >
+      <if test="productId != null" >
+        product_id = #{productId,jdbcType=BIGINT},
+      </if>
+      <if test="post != null" >
+        post = #{post,jdbcType=BIGINT},
+      </if>
+      <if test="express != null" >
+        express = #{express,jdbcType=BIGINT},
+      </if>
+      <if test="ems != null" >
+        ems = #{ems,jdbcType=BIGINT},
+      </if>
+      <if test="postArea != null" >
+        post_area = #{postArea,jdbcType=VARCHAR},
+      </if>
+      <if test="rawAddTime != null" >
+        raw_add_time = #{rawAddTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rawUpdateTime != null" >
+        raw_update_time = #{rawUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where deliver_id = #{deliverId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shusheng.tihuzhai.dao.entity.auto.TblDeliver" >
+    update tbl_deliver
+    set product_id = #{productId,jdbcType=BIGINT},
+      post = #{post,jdbcType=BIGINT},
+      express = #{express,jdbcType=BIGINT},
+      ems = #{ems,jdbcType=BIGINT},
+      post_area = #{postArea,jdbcType=VARCHAR},
+      raw_add_time = #{rawAddTime,jdbcType=TIMESTAMP},
+      raw_update_time = #{rawUpdateTime,jdbcType=TIMESTAMP},
+      type = #{type,jdbcType=VARCHAR}
+    where deliver_id = #{deliverId,jdbcType=BIGINT}
+  </update>
+</mapper>

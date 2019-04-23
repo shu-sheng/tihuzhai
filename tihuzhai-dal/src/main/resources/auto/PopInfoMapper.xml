@@ -1,0 +1,571 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shusheng.tihuzhai.dao.mappers.auto.PopInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.shusheng.tihuzhai.dao.entity.auto.PopInfo" >
+    <id column="base_id" property="baseId" jdbcType="BIGINT" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="BIGINT" />
+    <result column="parent_id" property="parentId" jdbcType="BIGINT" />
+    <result column="is_parent" property="isParent" jdbcType="CHAR" />
+    <result column="parent_name" property="parentName" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+    <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="rem1" property="rem1" jdbcType="VARCHAR" />
+    <result column="sort_order" property="sortOrder" jdbcType="INTEGER" />
+    <result column="hits" property="hits" jdbcType="BIGINT" />
+    <result column="ishot" property="ishot" jdbcType="CHAR" />
+    <result column="public_date" property="publicDate" jdbcType="TIMESTAMP" />
+    <result column="public_status" property="publicStatus" jdbcType="VARCHAR" />
+    <result column="belong_to" property="belongTo" jdbcType="VARCHAR" />
+    <result column="del_status" property="delStatus" jdbcType="CHAR" />
+    <result column="is_video" property="isVideo" jdbcType="CHAR" />
+    <result column="video_url" property="videoUrl" jdbcType="VARCHAR" />
+    <result column="app_video_img" property="appVideoImg" jdbcType="VARCHAR" />
+    <result column="supplier_id" property="supplierId" jdbcType="BIGINT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.shusheng.tihuzhai.dao.entity.auto.PopInfo" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    base_id, title, type, parent_id, is_parent, parent_name, status, add_time, modify_time, 
+    remark, rem1, sort_order, hits, ishot, public_date, public_status, belong_to, del_status, 
+    is_video, video_url, app_video_img, supplier_id
+  </sql>
+  <sql id="Blob_Column_List" >
+    content
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.shusheng.tihuzhai.dao.entity.auto.PopInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from pop_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shusheng.tihuzhai.dao.entity.auto.PopInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from pop_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from pop_info
+    where base_id = #{baseId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from pop_info
+    where base_id = #{baseId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shusheng.tihuzhai.dao.entity.auto.PopInfoExample" >
+    delete from pop_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shusheng.tihuzhai.dao.entity.auto.PopInfo" >
+    insert into pop_info (base_id, title, type, 
+      parent_id, is_parent, parent_name, 
+      status, add_time, modify_time, 
+      remark, rem1, sort_order, 
+      hits, ishot, public_date, 
+      public_status, belong_to, del_status, 
+      is_video, video_url, app_video_img, 
+      supplier_id, content)
+    values (#{baseId,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{type,jdbcType=BIGINT}, 
+      #{parentId,jdbcType=BIGINT}, #{isParent,jdbcType=CHAR}, #{parentName,jdbcType=VARCHAR}, 
+      #{status,jdbcType=TINYINT}, #{addTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP}, 
+      #{remark,jdbcType=VARCHAR}, #{rem1,jdbcType=VARCHAR}, #{sortOrder,jdbcType=INTEGER}, 
+      #{hits,jdbcType=BIGINT}, #{ishot,jdbcType=CHAR}, #{publicDate,jdbcType=TIMESTAMP}, 
+      #{publicStatus,jdbcType=VARCHAR}, #{belongTo,jdbcType=VARCHAR}, #{delStatus,jdbcType=CHAR}, 
+      #{isVideo,jdbcType=CHAR}, #{videoUrl,jdbcType=VARCHAR}, #{appVideoImg,jdbcType=VARCHAR}, 
+      #{supplierId,jdbcType=BIGINT}, #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shusheng.tihuzhai.dao.entity.auto.PopInfo" >
+    insert into pop_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="baseId != null" >
+        base_id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="parentId != null" >
+        parent_id,
+      </if>
+      <if test="isParent != null" >
+        is_parent,
+      </if>
+      <if test="parentName != null" >
+        parent_name,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="modifyTime != null" >
+        modify_time,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="rem1 != null" >
+        rem1,
+      </if>
+      <if test="sortOrder != null" >
+        sort_order,
+      </if>
+      <if test="hits != null" >
+        hits,
+      </if>
+      <if test="ishot != null" >
+        ishot,
+      </if>
+      <if test="publicDate != null" >
+        public_date,
+      </if>
+      <if test="publicStatus != null" >
+        public_status,
+      </if>
+      <if test="belongTo != null" >
+        belong_to,
+      </if>
+      <if test="delStatus != null" >
+        del_status,
+      </if>
+      <if test="isVideo != null" >
+        is_video,
+      </if>
+      <if test="videoUrl != null" >
+        video_url,
+      </if>
+      <if test="appVideoImg != null" >
+        app_video_img,
+      </if>
+      <if test="supplierId != null" >
+        supplier_id,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="baseId != null" >
+        #{baseId,jdbcType=BIGINT},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=BIGINT},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="isParent != null" >
+        #{isParent,jdbcType=CHAR},
+      </if>
+      <if test="parentName != null" >
+        #{parentName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="rem1 != null" >
+        #{rem1,jdbcType=VARCHAR},
+      </if>
+      <if test="sortOrder != null" >
+        #{sortOrder,jdbcType=INTEGER},
+      </if>
+      <if test="hits != null" >
+        #{hits,jdbcType=BIGINT},
+      </if>
+      <if test="ishot != null" >
+        #{ishot,jdbcType=CHAR},
+      </if>
+      <if test="publicDate != null" >
+        #{publicDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="publicStatus != null" >
+        #{publicStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="belongTo != null" >
+        #{belongTo,jdbcType=VARCHAR},
+      </if>
+      <if test="delStatus != null" >
+        #{delStatus,jdbcType=CHAR},
+      </if>
+      <if test="isVideo != null" >
+        #{isVideo,jdbcType=CHAR},
+      </if>
+      <if test="videoUrl != null" >
+        #{videoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="appVideoImg != null" >
+        #{appVideoImg,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierId != null" >
+        #{supplierId,jdbcType=BIGINT},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shusheng.tihuzhai.dao.entity.auto.PopInfoExample" resultType="java.lang.Integer" >
+    select count(*) from pop_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update pop_info
+    <set >
+      <if test="record.baseId != null" >
+        base_id = #{record.baseId,jdbcType=BIGINT},
+      </if>
+      <if test="record.title != null" >
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=BIGINT},
+      </if>
+      <if test="record.parentId != null" >
+        parent_id = #{record.parentId,jdbcType=BIGINT},
+      </if>
+      <if test="record.isParent != null" >
+        is_parent = #{record.isParent,jdbcType=CHAR},
+      </if>
+      <if test="record.parentName != null" >
+        parent_name = #{record.parentName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=TINYINT},
+      </if>
+      <if test="record.addTime != null" >
+        add_time = #{record.addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.modifyTime != null" >
+        modify_time = #{record.modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rem1 != null" >
+        rem1 = #{record.rem1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sortOrder != null" >
+        sort_order = #{record.sortOrder,jdbcType=INTEGER},
+      </if>
+      <if test="record.hits != null" >
+        hits = #{record.hits,jdbcType=BIGINT},
+      </if>
+      <if test="record.ishot != null" >
+        ishot = #{record.ishot,jdbcType=CHAR},
+      </if>
+      <if test="record.publicDate != null" >
+        public_date = #{record.publicDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.publicStatus != null" >
+        public_status = #{record.publicStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.belongTo != null" >
+        belong_to = #{record.belongTo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.delStatus != null" >
+        del_status = #{record.delStatus,jdbcType=CHAR},
+      </if>
+      <if test="record.isVideo != null" >
+        is_video = #{record.isVideo,jdbcType=CHAR},
+      </if>
+      <if test="record.videoUrl != null" >
+        video_url = #{record.videoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.appVideoImg != null" >
+        app_video_img = #{record.appVideoImg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.supplierId != null" >
+        supplier_id = #{record.supplierId,jdbcType=BIGINT},
+      </if>
+      <if test="record.content != null" >
+        content = #{record.content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update pop_info
+    set base_id = #{record.baseId,jdbcType=BIGINT},
+      title = #{record.title,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=BIGINT},
+      parent_id = #{record.parentId,jdbcType=BIGINT},
+      is_parent = #{record.isParent,jdbcType=CHAR},
+      parent_name = #{record.parentName,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=TINYINT},
+      add_time = #{record.addTime,jdbcType=TIMESTAMP},
+      modify_time = #{record.modifyTime,jdbcType=TIMESTAMP},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      rem1 = #{record.rem1,jdbcType=VARCHAR},
+      sort_order = #{record.sortOrder,jdbcType=INTEGER},
+      hits = #{record.hits,jdbcType=BIGINT},
+      ishot = #{record.ishot,jdbcType=CHAR},
+      public_date = #{record.publicDate,jdbcType=TIMESTAMP},
+      public_status = #{record.publicStatus,jdbcType=VARCHAR},
+      belong_to = #{record.belongTo,jdbcType=VARCHAR},
+      del_status = #{record.delStatus,jdbcType=CHAR},
+      is_video = #{record.isVideo,jdbcType=CHAR},
+      video_url = #{record.videoUrl,jdbcType=VARCHAR},
+      app_video_img = #{record.appVideoImg,jdbcType=VARCHAR},
+      supplier_id = #{record.supplierId,jdbcType=BIGINT},
+      content = #{record.content,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update pop_info
+    set base_id = #{record.baseId,jdbcType=BIGINT},
+      title = #{record.title,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=BIGINT},
+      parent_id = #{record.parentId,jdbcType=BIGINT},
+      is_parent = #{record.isParent,jdbcType=CHAR},
+      parent_name = #{record.parentName,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=TINYINT},
+      add_time = #{record.addTime,jdbcType=TIMESTAMP},
+      modify_time = #{record.modifyTime,jdbcType=TIMESTAMP},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      rem1 = #{record.rem1,jdbcType=VARCHAR},
+      sort_order = #{record.sortOrder,jdbcType=INTEGER},
+      hits = #{record.hits,jdbcType=BIGINT},
+      ishot = #{record.ishot,jdbcType=CHAR},
+      public_date = #{record.publicDate,jdbcType=TIMESTAMP},
+      public_status = #{record.publicStatus,jdbcType=VARCHAR},
+      belong_to = #{record.belongTo,jdbcType=VARCHAR},
+      del_status = #{record.delStatus,jdbcType=CHAR},
+      is_video = #{record.isVideo,jdbcType=CHAR},
+      video_url = #{record.videoUrl,jdbcType=VARCHAR},
+      app_video_img = #{record.appVideoImg,jdbcType=VARCHAR},
+      supplier_id = #{record.supplierId,jdbcType=BIGINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shusheng.tihuzhai.dao.entity.auto.PopInfo" >
+    update pop_info
+    <set >
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=BIGINT},
+      </if>
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="isParent != null" >
+        is_parent = #{isParent,jdbcType=CHAR},
+      </if>
+      <if test="parentName != null" >
+        parent_name = #{parentName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="rem1 != null" >
+        rem1 = #{rem1,jdbcType=VARCHAR},
+      </if>
+      <if test="sortOrder != null" >
+        sort_order = #{sortOrder,jdbcType=INTEGER},
+      </if>
+      <if test="hits != null" >
+        hits = #{hits,jdbcType=BIGINT},
+      </if>
+      <if test="ishot != null" >
+        ishot = #{ishot,jdbcType=CHAR},
+      </if>
+      <if test="publicDate != null" >
+        public_date = #{publicDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="publicStatus != null" >
+        public_status = #{publicStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="belongTo != null" >
+        belong_to = #{belongTo,jdbcType=VARCHAR},
+      </if>
+      <if test="delStatus != null" >
+        del_status = #{delStatus,jdbcType=CHAR},
+      </if>
+      <if test="isVideo != null" >
+        is_video = #{isVideo,jdbcType=CHAR},
+      </if>
+      <if test="videoUrl != null" >
+        video_url = #{videoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="appVideoImg != null" >
+        app_video_img = #{appVideoImg,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierId != null" >
+        supplier_id = #{supplierId,jdbcType=BIGINT},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where base_id = #{baseId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.shusheng.tihuzhai.dao.entity.auto.PopInfo" >
+    update pop_info
+    set title = #{title,jdbcType=VARCHAR},
+      type = #{type,jdbcType=BIGINT},
+      parent_id = #{parentId,jdbcType=BIGINT},
+      is_parent = #{isParent,jdbcType=CHAR},
+      parent_name = #{parentName,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR},
+      rem1 = #{rem1,jdbcType=VARCHAR},
+      sort_order = #{sortOrder,jdbcType=INTEGER},
+      hits = #{hits,jdbcType=BIGINT},
+      ishot = #{ishot,jdbcType=CHAR},
+      public_date = #{publicDate,jdbcType=TIMESTAMP},
+      public_status = #{publicStatus,jdbcType=VARCHAR},
+      belong_to = #{belongTo,jdbcType=VARCHAR},
+      del_status = #{delStatus,jdbcType=CHAR},
+      is_video = #{isVideo,jdbcType=CHAR},
+      video_url = #{videoUrl,jdbcType=VARCHAR},
+      app_video_img = #{appVideoImg,jdbcType=VARCHAR},
+      supplier_id = #{supplierId,jdbcType=BIGINT},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where base_id = #{baseId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shusheng.tihuzhai.dao.entity.auto.PopInfo" >
+    update pop_info
+    set title = #{title,jdbcType=VARCHAR},
+      type = #{type,jdbcType=BIGINT},
+      parent_id = #{parentId,jdbcType=BIGINT},
+      is_parent = #{isParent,jdbcType=CHAR},
+      parent_name = #{parentName,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR},
+      rem1 = #{rem1,jdbcType=VARCHAR},
+      sort_order = #{sortOrder,jdbcType=INTEGER},
+      hits = #{hits,jdbcType=BIGINT},
+      ishot = #{ishot,jdbcType=CHAR},
+      public_date = #{publicDate,jdbcType=TIMESTAMP},
+      public_status = #{publicStatus,jdbcType=VARCHAR},
+      belong_to = #{belongTo,jdbcType=VARCHAR},
+      del_status = #{delStatus,jdbcType=CHAR},
+      is_video = #{isVideo,jdbcType=CHAR},
+      video_url = #{videoUrl,jdbcType=VARCHAR},
+      app_video_img = #{appVideoImg,jdbcType=VARCHAR},
+      supplier_id = #{supplierId,jdbcType=BIGINT}
+    where base_id = #{baseId,jdbcType=BIGINT}
+  </update>
+</mapper>

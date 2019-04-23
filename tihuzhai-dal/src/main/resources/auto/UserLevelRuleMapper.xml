@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shusheng.tihuzhai.dao.mappers.auto.UserLevelRuleMapper" >
+  <resultMap id="BaseResultMap" type="com.shusheng.tihuzhai.dao.entity.auto.UserLevelRule" >
+    <id column="rule_id" property="ruleId" jdbcType="BIGINT" />
+    <result column="user_level" property="userLevel" jdbcType="VARCHAR" />
+    <result column="rule_type" property="ruleType" jdbcType="VARCHAR" />
+    <result column="rule_type_param1" property="ruleTypeParam1" jdbcType="VARCHAR" />
+    <result column="rule_type_param" property="ruleTypeParam" jdbcType="VARCHAR" />
+    <result column="priority" property="priority" jdbcType="INTEGER" />
+    <result column="start_value" property="startValue" jdbcType="VARCHAR" />
+    <result column="end_value" property="endValue" jdbcType="VARCHAR" />
+    <result column="raw_add_time" property="rawAddTime" jdbcType="TIMESTAMP" />
+    <result column="raw_update_time" property="rawUpdateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    rule_id, user_level, rule_type, rule_type_param1, rule_type_param, priority, start_value, 
+    end_value, raw_add_time, raw_update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shusheng.tihuzhai.dao.entity.auto.UserLevelRuleExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from user_level_rule
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_level_rule
+    where rule_id = #{ruleId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from user_level_rule
+    where rule_id = #{ruleId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shusheng.tihuzhai.dao.entity.auto.UserLevelRuleExample" >
+    delete from user_level_rule
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shusheng.tihuzhai.dao.entity.auto.UserLevelRule" >
+    insert into user_level_rule (rule_id, user_level, rule_type, 
+      rule_type_param1, rule_type_param, priority, 
+      start_value, end_value, raw_add_time, 
+      raw_update_time)
+    values (#{ruleId,jdbcType=BIGINT}, #{userLevel,jdbcType=VARCHAR}, #{ruleType,jdbcType=VARCHAR}, 
+      #{ruleTypeParam1,jdbcType=VARCHAR}, #{ruleTypeParam,jdbcType=VARCHAR}, #{priority,jdbcType=INTEGER}, 
+      #{startValue,jdbcType=VARCHAR}, #{endValue,jdbcType=VARCHAR}, #{rawAddTime,jdbcType=TIMESTAMP}, 
+      #{rawUpdateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shusheng.tihuzhai.dao.entity.auto.UserLevelRule" >
+    insert into user_level_rule
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ruleId != null" >
+        rule_id,
+      </if>
+      <if test="userLevel != null" >
+        user_level,
+      </if>
+      <if test="ruleType != null" >
+        rule_type,
+      </if>
+      <if test="ruleTypeParam1 != null" >
+        rule_type_param1,
+      </if>
+      <if test="ruleTypeParam != null" >
+        rule_type_param,
+      </if>
+      <if test="priority != null" >
+        priority,
+      </if>
+      <if test="startValue != null" >
+        start_value,
+      </if>
+      <if test="endValue != null" >
+        end_value,
+      </if>
+      <if test="rawAddTime != null" >
+        raw_add_time,
+      </if>
+      <if test="rawUpdateTime != null" >
+        raw_update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ruleId != null" >
+        #{ruleId,jdbcType=BIGINT},
+      </if>
+      <if test="userLevel != null" >
+        #{userLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="ruleType != null" >
+        #{ruleType,jdbcType=VARCHAR},
+      </if>
+      <if test="ruleTypeParam1 != null" >
+        #{ruleTypeParam1,jdbcType=VARCHAR},
+      </if>
+      <if test="ruleTypeParam != null" >
+        #{ruleTypeParam,jdbcType=VARCHAR},
+      </if>
+      <if test="priority != null" >
+        #{priority,jdbcType=INTEGER},
+      </if>
+      <if test="startValue != null" >
+        #{startValue,jdbcType=VARCHAR},
+      </if>
+      <if test="endValue != null" >
+        #{endValue,jdbcType=VARCHAR},
+      </if>
+      <if test="rawAddTime != null" >
+        #{rawAddTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rawUpdateTime != null" >
+        #{rawUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shusheng.tihuzhai.dao.entity.auto.UserLevelRuleExample" resultType="java.lang.Integer" >
+    select count(*) from user_level_rule
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update user_level_rule
+    <set >
+      <if test="record.ruleId != null" >
+        rule_id = #{record.ruleId,jdbcType=BIGINT},
+      </if>
+      <if test="record.userLevel != null" >
+        user_level = #{record.userLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ruleType != null" >
+        rule_type = #{record.ruleType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ruleTypeParam1 != null" >
+        rule_type_param1 = #{record.ruleTypeParam1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ruleTypeParam != null" >
+        rule_type_param = #{record.ruleTypeParam,jdbcType=VARCHAR},
+      </if>
+      <if test="record.priority != null" >
+        priority = #{record.priority,jdbcType=INTEGER},
+      </if>
+      <if test="record.startValue != null" >
+        start_value = #{record.startValue,jdbcType=VARCHAR},
+      </if>
+      <if test="record.endValue != null" >
+        end_value = #{record.endValue,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rawAddTime != null" >
+        raw_add_time = #{record.rawAddTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.rawUpdateTime != null" >
+        raw_update_time = #{record.rawUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update user_level_rule
+    set rule_id = #{record.ruleId,jdbcType=BIGINT},
+      user_level = #{record.userLevel,jdbcType=VARCHAR},
+      rule_type = #{record.ruleType,jdbcType=VARCHAR},
+      rule_type_param1 = #{record.ruleTypeParam1,jdbcType=VARCHAR},
+      rule_type_param = #{record.ruleTypeParam,jdbcType=VARCHAR},
+      priority = #{record.priority,jdbcType=INTEGER},
+      start_value = #{record.startValue,jdbcType=VARCHAR},
+      end_value = #{record.endValue,jdbcType=VARCHAR},
+      raw_add_time = #{record.rawAddTime,jdbcType=TIMESTAMP},
+      raw_update_time = #{record.rawUpdateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shusheng.tihuzhai.dao.entity.auto.UserLevelRule" >
+    update user_level_rule
+    <set >
+      <if test="userLevel != null" >
+        user_level = #{userLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="ruleType != null" >
+        rule_type = #{ruleType,jdbcType=VARCHAR},
+      </if>
+      <if test="ruleTypeParam1 != null" >
+        rule_type_param1 = #{ruleTypeParam1,jdbcType=VARCHAR},
+      </if>
+      <if test="ruleTypeParam != null" >
+        rule_type_param = #{ruleTypeParam,jdbcType=VARCHAR},
+      </if>
+      <if test="priority != null" >
+        priority = #{priority,jdbcType=INTEGER},
+      </if>
+      <if test="startValue != null" >
+        start_value = #{startValue,jdbcType=VARCHAR},
+      </if>
+      <if test="endValue != null" >
+        end_value = #{endValue,jdbcType=VARCHAR},
+      </if>
+      <if test="rawAddTime != null" >
+        raw_add_time = #{rawAddTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rawUpdateTime != null" >
+        raw_update_time = #{rawUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where rule_id = #{ruleId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shusheng.tihuzhai.dao.entity.auto.UserLevelRule" >
+    update user_level_rule
+    set user_level = #{userLevel,jdbcType=VARCHAR},
+      rule_type = #{ruleType,jdbcType=VARCHAR},
+      rule_type_param1 = #{ruleTypeParam1,jdbcType=VARCHAR},
+      rule_type_param = #{ruleTypeParam,jdbcType=VARCHAR},
+      priority = #{priority,jdbcType=INTEGER},
+      start_value = #{startValue,jdbcType=VARCHAR},
+      end_value = #{endValue,jdbcType=VARCHAR},
+      raw_add_time = #{rawAddTime,jdbcType=TIMESTAMP},
+      raw_update_time = #{rawUpdateTime,jdbcType=TIMESTAMP}
+    where rule_id = #{ruleId,jdbcType=BIGINT}
+  </update>
+</mapper>

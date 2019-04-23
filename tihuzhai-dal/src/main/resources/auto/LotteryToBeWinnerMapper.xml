@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shusheng.tihuzhai.dao.mappers.auto.LotteryToBeWinnerMapper" >
+  <resultMap id="BaseResultMap" type="com.shusheng.tihuzhai.dao.entity.auto.LotteryToBeWinner" >
+    <id column="to_be_winner_id" property="toBeWinnerId" jdbcType="BIGINT" />
+    <result column="activity_id" property="activityId" jdbcType="BIGINT" />
+    <result column="instance_id" property="instanceId" jdbcType="BIGINT" />
+    <result column="winner_number" property="winnerNumber" jdbcType="BIGINT" />
+    <result column="prize_rule_detail_id" property="prizeRuleDetailId" jdbcType="BIGINT" />
+    <result column="awards" property="awards" jdbcType="VARCHAR" />
+    <result column="prize_name" property="prizeName" jdbcType="VARCHAR" />
+    <result column="prize_type" property="prizeType" jdbcType="VARCHAR" />
+    <result column="prize_num" property="prizeNum" jdbcType="BIGINT" />
+    <result column="prize_amount" property="prizeAmount" jdbcType="BIGINT" />
+    <result column="prize_image" property="prizeImage" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="memo" property="memo" jdbcType="VARCHAR" />
+    <result column="winner_status" property="winnerStatus" jdbcType="VARCHAR" />
+    <result column="raw_add_time" property="rawAddTime" jdbcType="TIMESTAMP" />
+    <result column="raw_update_time" property="rawUpdateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    to_be_winner_id, activity_id, instance_id, winner_number, prize_rule_detail_id, awards, 
+    prize_name, prize_type, prize_num, prize_amount, prize_image, description, memo, 
+    winner_status, raw_add_time, raw_update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shusheng.tihuzhai.dao.entity.auto.LotteryToBeWinnerExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from lottery_to_be_winner
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from lottery_to_be_winner
+    where to_be_winner_id = #{toBeWinnerId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from lottery_to_be_winner
+    where to_be_winner_id = #{toBeWinnerId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shusheng.tihuzhai.dao.entity.auto.LotteryToBeWinnerExample" >
+    delete from lottery_to_be_winner
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shusheng.tihuzhai.dao.entity.auto.LotteryToBeWinner" >
+    insert into lottery_to_be_winner (to_be_winner_id, activity_id, instance_id, 
+      winner_number, prize_rule_detail_id, awards, 
+      prize_name, prize_type, prize_num, 
+      prize_amount, prize_image, description, 
+      memo, winner_status, raw_add_time, 
+      raw_update_time)
+    values (#{toBeWinnerId,jdbcType=BIGINT}, #{activityId,jdbcType=BIGINT}, #{instanceId,jdbcType=BIGINT}, 
+      #{winnerNumber,jdbcType=BIGINT}, #{prizeRuleDetailId,jdbcType=BIGINT}, #{awards,jdbcType=VARCHAR}, 
+      #{prizeName,jdbcType=VARCHAR}, #{prizeType,jdbcType=VARCHAR}, #{prizeNum,jdbcType=BIGINT}, 
+      #{prizeAmount,jdbcType=BIGINT}, #{prizeImage,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{memo,jdbcType=VARCHAR}, #{winnerStatus,jdbcType=VARCHAR}, #{rawAddTime,jdbcType=TIMESTAMP}, 
+      #{rawUpdateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shusheng.tihuzhai.dao.entity.auto.LotteryToBeWinner" >
+    insert into lottery_to_be_winner
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="toBeWinnerId != null" >
+        to_be_winner_id,
+      </if>
+      <if test="activityId != null" >
+        activity_id,
+      </if>
+      <if test="instanceId != null" >
+        instance_id,
+      </if>
+      <if test="winnerNumber != null" >
+        winner_number,
+      </if>
+      <if test="prizeRuleDetailId != null" >
+        prize_rule_detail_id,
+      </if>
+      <if test="awards != null" >
+        awards,
+      </if>
+      <if test="prizeName != null" >
+        prize_name,
+      </if>
+      <if test="prizeType != null" >
+        prize_type,
+      </if>
+      <if test="prizeNum != null" >
+        prize_num,
+      </if>
+      <if test="prizeAmount != null" >
+        prize_amount,
+      </if>
+      <if test="prizeImage != null" >
+        prize_image,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="memo != null" >
+        memo,
+      </if>
+      <if test="winnerStatus != null" >
+        winner_status,
+      </if>
+      <if test="rawAddTime != null" >
+        raw_add_time,
+      </if>
+      <if test="rawUpdateTime != null" >
+        raw_update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="toBeWinnerId != null" >
+        #{toBeWinnerId,jdbcType=BIGINT},
+      </if>
+      <if test="activityId != null" >
+        #{activityId,jdbcType=BIGINT},
+      </if>
+      <if test="instanceId != null" >
+        #{instanceId,jdbcType=BIGINT},
+      </if>
+      <if test="winnerNumber != null" >
+        #{winnerNumber,jdbcType=BIGINT},
+      </if>
+      <if test="prizeRuleDetailId != null" >
+        #{prizeRuleDetailId,jdbcType=BIGINT},
+      </if>
+      <if test="awards != null" >
+        #{awards,jdbcType=VARCHAR},
+      </if>
+      <if test="prizeName != null" >
+        #{prizeName,jdbcType=VARCHAR},
+      </if>
+      <if test="prizeType != null" >
+        #{prizeType,jdbcType=VARCHAR},
+      </if>
+      <if test="prizeNum != null" >
+        #{prizeNum,jdbcType=BIGINT},
+      </if>
+      <if test="prizeAmount != null" >
+        #{prizeAmount,jdbcType=BIGINT},
+      </if>
+      <if test="prizeImage != null" >
+        #{prizeImage,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="winnerStatus != null" >
+        #{winnerStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="rawAddTime != null" >
+        #{rawAddTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rawUpdateTime != null" >
+        #{rawUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shusheng.tihuzhai.dao.entity.auto.LotteryToBeWinnerExample" resultType="java.lang.Integer" >
+    select count(*) from lottery_to_be_winner
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update lottery_to_be_winner
+    <set >
+      <if test="record.toBeWinnerId != null" >
+        to_be_winner_id = #{record.toBeWinnerId,jdbcType=BIGINT},
+      </if>
+      <if test="record.activityId != null" >
+        activity_id = #{record.activityId,jdbcType=BIGINT},
+      </if>
+      <if test="record.instanceId != null" >
+        instance_id = #{record.instanceId,jdbcType=BIGINT},
+      </if>
+      <if test="record.winnerNumber != null" >
+        winner_number = #{record.winnerNumber,jdbcType=BIGINT},
+      </if>
+      <if test="record.prizeRuleDetailId != null" >
+        prize_rule_detail_id = #{record.prizeRuleDetailId,jdbcType=BIGINT},
+      </if>
+      <if test="record.awards != null" >
+        awards = #{record.awards,jdbcType=VARCHAR},
+      </if>
+      <if test="record.prizeName != null" >
+        prize_name = #{record.prizeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.prizeType != null" >
+        prize_type = #{record.prizeType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.prizeNum != null" >
+        prize_num = #{record.prizeNum,jdbcType=BIGINT},
+      </if>
+      <if test="record.prizeAmount != null" >
+        prize_amount = #{record.prizeAmount,jdbcType=BIGINT},
+      </if>
+      <if test="record.prizeImage != null" >
+        prize_image = #{record.prizeImage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.description != null" >
+        description = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memo != null" >
+        memo = #{record.memo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.winnerStatus != null" >
+        winner_status = #{record.winnerStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rawAddTime != null" >
+        raw_add_time = #{record.rawAddTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.rawUpdateTime != null" >
+        raw_update_time = #{record.rawUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update lottery_to_be_winner
+    set to_be_winner_id = #{record.toBeWinnerId,jdbcType=BIGINT},
+      activity_id = #{record.activityId,jdbcType=BIGINT},
+      instance_id = #{record.instanceId,jdbcType=BIGINT},
+      winner_number = #{record.winnerNumber,jdbcType=BIGINT},
+      prize_rule_detail_id = #{record.prizeRuleDetailId,jdbcType=BIGINT},
+      awards = #{record.awards,jdbcType=VARCHAR},
+      prize_name = #{record.prizeName,jdbcType=VARCHAR},
+      prize_type = #{record.prizeType,jdbcType=VARCHAR},
+      prize_num = #{record.prizeNum,jdbcType=BIGINT},
+      prize_amount = #{record.prizeAmount,jdbcType=BIGINT},
+      prize_image = #{record.prizeImage,jdbcType=VARCHAR},
+      description = #{record.description,jdbcType=VARCHAR},
+      memo = #{record.memo,jdbcType=VARCHAR},
+      winner_status = #{record.winnerStatus,jdbcType=VARCHAR},
+      raw_add_time = #{record.rawAddTime,jdbcType=TIMESTAMP},
+      raw_update_time = #{record.rawUpdateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shusheng.tihuzhai.dao.entity.auto.LotteryToBeWinner" >
+    update lottery_to_be_winner
+    <set >
+      <if test="activityId != null" >
+        activity_id = #{activityId,jdbcType=BIGINT},
+      </if>
+      <if test="instanceId != null" >
+        instance_id = #{instanceId,jdbcType=BIGINT},
+      </if>
+      <if test="winnerNumber != null" >
+        winner_number = #{winnerNumber,jdbcType=BIGINT},
+      </if>
+      <if test="prizeRuleDetailId != null" >
+        prize_rule_detail_id = #{prizeRuleDetailId,jdbcType=BIGINT},
+      </if>
+      <if test="awards != null" >
+        awards = #{awards,jdbcType=VARCHAR},
+      </if>
+      <if test="prizeName != null" >
+        prize_name = #{prizeName,jdbcType=VARCHAR},
+      </if>
+      <if test="prizeType != null" >
+        prize_type = #{prizeType,jdbcType=VARCHAR},
+      </if>
+      <if test="prizeNum != null" >
+        prize_num = #{prizeNum,jdbcType=BIGINT},
+      </if>
+      <if test="prizeAmount != null" >
+        prize_amount = #{prizeAmount,jdbcType=BIGINT},
+      </if>
+      <if test="prizeImage != null" >
+        prize_image = #{prizeImage,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        memo = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="winnerStatus != null" >
+        winner_status = #{winnerStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="rawAddTime != null" >
+        raw_add_time = #{rawAddTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rawUpdateTime != null" >
+        raw_update_time = #{rawUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where to_be_winner_id = #{toBeWinnerId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shusheng.tihuzhai.dao.entity.auto.LotteryToBeWinner" >
+    update lottery_to_be_winner
+    set activity_id = #{activityId,jdbcType=BIGINT},
+      instance_id = #{instanceId,jdbcType=BIGINT},
+      winner_number = #{winnerNumber,jdbcType=BIGINT},
+      prize_rule_detail_id = #{prizeRuleDetailId,jdbcType=BIGINT},
+      awards = #{awards,jdbcType=VARCHAR},
+      prize_name = #{prizeName,jdbcType=VARCHAR},
+      prize_type = #{prizeType,jdbcType=VARCHAR},
+      prize_num = #{prizeNum,jdbcType=BIGINT},
+      prize_amount = #{prizeAmount,jdbcType=BIGINT},
+      prize_image = #{prizeImage,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      memo = #{memo,jdbcType=VARCHAR},
+      winner_status = #{winnerStatus,jdbcType=VARCHAR},
+      raw_add_time = #{rawAddTime,jdbcType=TIMESTAMP},
+      raw_update_time = #{rawUpdateTime,jdbcType=TIMESTAMP}
+    where to_be_winner_id = #{toBeWinnerId,jdbcType=BIGINT}
+  </update>
+</mapper>

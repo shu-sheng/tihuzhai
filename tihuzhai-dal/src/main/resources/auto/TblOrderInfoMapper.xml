@@ -1,0 +1,1561 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shusheng.tihuzhai.dao.mappers.auto.TblOrderInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.shusheng.tihuzhai.dao.entity.auto.TblOrderInfo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="buy_credit_detail_id" property="buyCreditDetailId" jdbcType="BIGINT" />
+    <result column="credit_status" property="creditStatus" jdbcType="VARCHAR" />
+    <result column="province" property="province" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="county" property="county" jdbcType="VARCHAR" />
+    <result column="detail_address" property="detailAddress" jdbcType="VARCHAR" />
+    <result column="drawer_name" property="drawerName" jdbcType="VARCHAR" />
+    <result column="drawer_number" property="drawerNumber" jdbcType="VARCHAR" />
+    <result column="drawer_tel" property="drawerTel" jdbcType="VARCHAR" />
+    <result column="zip_code" property="zipCode" jdbcType="VARCHAR" />
+    <result column="sale_type_o2o" property="saleTypeO2o" jdbcType="VARCHAR" />
+    <result column="sale_type_b2c" property="saleTypeB2c" jdbcType="VARCHAR" />
+    <result column="facade" property="facade" jdbcType="VARCHAR" />
+    <result column="special_explain" property="specialExplain" jdbcType="VARCHAR" />
+    <result column="payment_method" property="paymentMethod" jdbcType="VARCHAR" />
+    <result column="order_status" property="orderStatus" jdbcType="VARCHAR" />
+    <result column="order_type" property="orderType" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="buyer_nickname" property="buyerNickname" jdbcType="VARCHAR" />
+    <result column="operator_id" property="operatorId" jdbcType="BIGINT" />
+    <result column="operator_time" property="operatorTime" jdbcType="TIMESTAMP" />
+    <result column="area_code" property="areaCode" jdbcType="VARCHAR" />
+    <result column="supplier_name" property="supplierName" jdbcType="VARCHAR" />
+    <result column="supplier_id" property="supplierId" jdbcType="BIGINT" />
+    <result column="sale_platform_id" property="salePlatformId" jdbcType="BIGINT" />
+    <result column="resorts_business_id" property="resortsBusinessId" jdbcType="BIGINT" />
+    <result column="resorts_business_name" property="resortsBusinessName" jdbcType="VARCHAR" />
+    <result column="resorts_business_real_name" property="resortsBusinessRealName" jdbcType="VARCHAR" />
+    <result column="post_fee" property="postFee" jdbcType="BIGINT" />
+    <result column="post_type" property="postType" jdbcType="VARCHAR" />
+    <result column="total_amount" property="totalAmount" jdbcType="BIGINT" />
+    <result column="is_payed" property="isPayed" jdbcType="VARCHAR" />
+    <result column="payed_time" property="payedTime" jdbcType="TIMESTAMP" />
+    <result column="confirm_receipt_time" property="confirmReceiptTime" jdbcType="TIMESTAMP" />
+    <result column="take_ways" property="takeWays" jdbcType="VARCHAR" />
+    <result column="takegoods_id" property="takegoodsId" jdbcType="BIGINT" />
+    <result column="workflow_status" property="workflowStatus" jdbcType="VARCHAR" />
+    <result column="refund_status" property="refundStatus" jdbcType="VARCHAR" />
+    <result column="seller_memo" property="sellerMemo" jdbcType="VARCHAR" />
+    <result column="seller_delete" property="sellerDelete" jdbcType="VARCHAR" />
+    <result column="buyer_delete" property="buyerDelete" jdbcType="VARCHAR" />
+    <result column="raw_add_time" property="rawAddTime" jdbcType="TIMESTAMP" />
+    <result column="raw_update_time" property="rawUpdateTime" jdbcType="TIMESTAMP" />
+    <result column="group_purchase_end_time" property="groupPurchaseEndTime" jdbcType="TIMESTAMP" />
+    <result column="group_purchase_begin_time" property="groupPurchaseBeginTime" jdbcType="TIMESTAMP" />
+    <result column="del_status" property="delStatus" jdbcType="VARCHAR" />
+    <result column="qr_code" property="qrCode" jdbcType="VARCHAR" />
+    <result column="send_status" property="sendStatus" jdbcType="VARCHAR" />
+    <result column="validation_status" property="validationStatus" jdbcType="VARCHAR" />
+    <result column="send_time" property="sendTime" jdbcType="TIMESTAMP" />
+    <result column="validation_time" property="validationTime" jdbcType="TIMESTAMP" />
+    <result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+    <result column="payment_flow_id" property="paymentFlowId" jdbcType="VARCHAR" />
+    <result column="gain_money" property="gainMoney" jdbcType="BIGINT" />
+    <result column="gift_money" property="giftMoney" jdbcType="BIGINT" />
+    <result column="user_point" property="userPoint" jdbcType="BIGINT" />
+    <result column="user_point_amount" property="userPointAmount" jdbcType="BIGINT" />
+    <result column="batch_No" property="batchNo" jdbcType="BIGINT" />
+    <result column="payment_way" property="paymentWay" jdbcType="VARCHAR" />
+    <result column="add_up_pay" property="addUpPay" jdbcType="BIGINT" />
+    <result column="down_payment" property="downPayment" jdbcType="BIGINT" />
+    <result column="brokerage_amount" property="brokerageAmount" jdbcType="BIGINT" />
+    <result column="first_pay_amount" property="firstPayAmount" jdbcType="REAL" />
+    <result column="invoice_tax_amount" property="invoiceTaxAmount" jdbcType="BIGINT" />
+    <result column="pay_count" property="payCount" jdbcType="BIGINT" />
+    <result column="is_invoicing" property="isInvoicing" jdbcType="VARCHAR" />
+    <result column="is_buy" property="isBuy" jdbcType="VARCHAR" />
+    <result column="is_special_orders" property="isSpecialOrders" jdbcType="VARCHAR" />
+    <result column="special_orders_url" property="specialOrdersUrl" jdbcType="VARCHAR" />
+    <result column="is_point_logistics" property="isPointLogistics" jdbcType="VARCHAR" />
+    <result column="logistics_company_name" property="logisticsCompanyName" jdbcType="VARCHAR" />
+    <result column="activity_id" property="activityId" jdbcType="BIGINT" />
+    <result column="sale_type" property="saleType" jdbcType="VARCHAR" />
+    <result column="is_notice" property="isNotice" jdbcType="VARCHAR" />
+    <result column="delivery_time" property="deliveryTime" jdbcType="TIMESTAMP" />
+    <result column="trace_code" property="traceCode" jdbcType="VARCHAR" />
+    <result column="source_order_id" property="sourceOrderId" jdbcType="BIGINT" />
+    <result column="source_supplier_id" property="sourceSupplierId" jdbcType="BIGINT" />
+    <result column="is_freezing" property="isFreezing" jdbcType="VARCHAR" />
+    <result column="source_order_amount" property="sourceOrderAmount" jdbcType="BIGINT" />
+    <result column="platform_service_amount" property="platformServiceAmount" jdbcType="BIGINT" />
+    <result column="pay_commission_amount" property="payCommissionAmount" jdbcType="BIGINT" />
+    <result column="buy_ways" property="buyWays" jdbcType="VARCHAR" />
+    <result column="credit_payed_amount" property="creditPayedAmount" jdbcType="BIGINT" />
+    <result column="balance_payed_amount" property="balancePayedAmount" jdbcType="BIGINT" />
+    <result column="salesman_user_id" property="salesmanUserId" jdbcType="BIGINT" />
+    <result column="remainder_receivables" property="remainderReceivables" jdbcType="BIGINT" />
+    <result column="retracted_money" property="retractedMoney" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, buy_credit_detail_id, credit_status, province, city, county, detail_address, 
+    drawer_name, drawer_number, drawer_tel, zip_code, sale_type_o2o, sale_type_b2c, facade, 
+    special_explain, payment_method, order_status, order_type, create_time, user_id, 
+    buyer_nickname, operator_id, operator_time, area_code, supplier_name, supplier_id, 
+    sale_platform_id, resorts_business_id, resorts_business_name, resorts_business_real_name, 
+    post_fee, post_type, total_amount, is_payed, payed_time, confirm_receipt_time, take_ways, 
+    takegoods_id, workflow_status, refund_status, seller_memo, seller_delete, buyer_delete, 
+    raw_add_time, raw_update_time, group_purchase_end_time, group_purchase_begin_time, 
+    del_status, qr_code, send_status, validation_status, send_time, validation_time, 
+    order_no, payment_flow_id, gain_money, gift_money, user_point, user_point_amount, 
+    batch_No, payment_way, add_up_pay, down_payment, brokerage_amount, first_pay_amount, 
+    invoice_tax_amount, pay_count, is_invoicing, is_buy, is_special_orders, special_orders_url, 
+    is_point_logistics, logistics_company_name, activity_id, sale_type, is_notice, delivery_time, 
+    trace_code, source_order_id, source_supplier_id, is_freezing, source_order_amount, 
+    platform_service_amount, pay_commission_amount, buy_ways, credit_payed_amount, balance_payed_amount, 
+    salesman_user_id, remainder_receivables, retracted_money
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shusheng.tihuzhai.dao.entity.auto.TblOrderInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tbl_order_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_order_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from tbl_order_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shusheng.tihuzhai.dao.entity.auto.TblOrderInfoExample" >
+    delete from tbl_order_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shusheng.tihuzhai.dao.entity.auto.TblOrderInfo" >
+    insert into tbl_order_info (id, buy_credit_detail_id, credit_status, 
+      province, city, county, 
+      detail_address, drawer_name, drawer_number, 
+      drawer_tel, zip_code, sale_type_o2o, 
+      sale_type_b2c, facade, special_explain, 
+      payment_method, order_status, order_type, 
+      create_time, user_id, buyer_nickname, 
+      operator_id, operator_time, area_code, 
+      supplier_name, supplier_id, sale_platform_id, 
+      resorts_business_id, resorts_business_name, 
+      resorts_business_real_name, post_fee, post_type, 
+      total_amount, is_payed, payed_time, 
+      confirm_receipt_time, take_ways, takegoods_id, 
+      workflow_status, refund_status, seller_memo, 
+      seller_delete, buyer_delete, raw_add_time, 
+      raw_update_time, group_purchase_end_time, 
+      group_purchase_begin_time, del_status, qr_code, 
+      send_status, validation_status, send_time, 
+      validation_time, order_no, payment_flow_id, 
+      gain_money, gift_money, user_point, 
+      user_point_amount, batch_No, payment_way, 
+      add_up_pay, down_payment, brokerage_amount, 
+      first_pay_amount, invoice_tax_amount, pay_count, 
+      is_invoicing, is_buy, is_special_orders, 
+      special_orders_url, is_point_logistics, logistics_company_name, 
+      activity_id, sale_type, is_notice, 
+      delivery_time, trace_code, source_order_id, 
+      source_supplier_id, is_freezing, source_order_amount, 
+      platform_service_amount, pay_commission_amount, 
+      buy_ways, credit_payed_amount, balance_payed_amount, 
+      salesman_user_id, remainder_receivables, retracted_money
+      )
+    values (#{id,jdbcType=BIGINT}, #{buyCreditDetailId,jdbcType=BIGINT}, #{creditStatus,jdbcType=VARCHAR}, 
+      #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, #{county,jdbcType=VARCHAR}, 
+      #{detailAddress,jdbcType=VARCHAR}, #{drawerName,jdbcType=VARCHAR}, #{drawerNumber,jdbcType=VARCHAR}, 
+      #{drawerTel,jdbcType=VARCHAR}, #{zipCode,jdbcType=VARCHAR}, #{saleTypeO2o,jdbcType=VARCHAR}, 
+      #{saleTypeB2c,jdbcType=VARCHAR}, #{facade,jdbcType=VARCHAR}, #{specialExplain,jdbcType=VARCHAR}, 
+      #{paymentMethod,jdbcType=VARCHAR}, #{orderStatus,jdbcType=VARCHAR}, #{orderType,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{userId,jdbcType=BIGINT}, #{buyerNickname,jdbcType=VARCHAR}, 
+      #{operatorId,jdbcType=BIGINT}, #{operatorTime,jdbcType=TIMESTAMP}, #{areaCode,jdbcType=VARCHAR}, 
+      #{supplierName,jdbcType=VARCHAR}, #{supplierId,jdbcType=BIGINT}, #{salePlatformId,jdbcType=BIGINT}, 
+      #{resortsBusinessId,jdbcType=BIGINT}, #{resortsBusinessName,jdbcType=VARCHAR}, 
+      #{resortsBusinessRealName,jdbcType=VARCHAR}, #{postFee,jdbcType=BIGINT}, #{postType,jdbcType=VARCHAR}, 
+      #{totalAmount,jdbcType=BIGINT}, #{isPayed,jdbcType=VARCHAR}, #{payedTime,jdbcType=TIMESTAMP}, 
+      #{confirmReceiptTime,jdbcType=TIMESTAMP}, #{takeWays,jdbcType=VARCHAR}, #{takegoodsId,jdbcType=BIGINT}, 
+      #{workflowStatus,jdbcType=VARCHAR}, #{refundStatus,jdbcType=VARCHAR}, #{sellerMemo,jdbcType=VARCHAR}, 
+      #{sellerDelete,jdbcType=VARCHAR}, #{buyerDelete,jdbcType=VARCHAR}, #{rawAddTime,jdbcType=TIMESTAMP}, 
+      #{rawUpdateTime,jdbcType=TIMESTAMP}, #{groupPurchaseEndTime,jdbcType=TIMESTAMP}, 
+      #{groupPurchaseBeginTime,jdbcType=TIMESTAMP}, #{delStatus,jdbcType=VARCHAR}, #{qrCode,jdbcType=VARCHAR}, 
+      #{sendStatus,jdbcType=VARCHAR}, #{validationStatus,jdbcType=VARCHAR}, #{sendTime,jdbcType=TIMESTAMP}, 
+      #{validationTime,jdbcType=TIMESTAMP}, #{orderNo,jdbcType=VARCHAR}, #{paymentFlowId,jdbcType=VARCHAR}, 
+      #{gainMoney,jdbcType=BIGINT}, #{giftMoney,jdbcType=BIGINT}, #{userPoint,jdbcType=BIGINT}, 
+      #{userPointAmount,jdbcType=BIGINT}, #{batchNo,jdbcType=BIGINT}, #{paymentWay,jdbcType=VARCHAR}, 
+      #{addUpPay,jdbcType=BIGINT}, #{downPayment,jdbcType=BIGINT}, #{brokerageAmount,jdbcType=BIGINT}, 
+      #{firstPayAmount,jdbcType=REAL}, #{invoiceTaxAmount,jdbcType=BIGINT}, #{payCount,jdbcType=BIGINT}, 
+      #{isInvoicing,jdbcType=VARCHAR}, #{isBuy,jdbcType=VARCHAR}, #{isSpecialOrders,jdbcType=VARCHAR}, 
+      #{specialOrdersUrl,jdbcType=VARCHAR}, #{isPointLogistics,jdbcType=VARCHAR}, #{logisticsCompanyName,jdbcType=VARCHAR}, 
+      #{activityId,jdbcType=BIGINT}, #{saleType,jdbcType=VARCHAR}, #{isNotice,jdbcType=VARCHAR}, 
+      #{deliveryTime,jdbcType=TIMESTAMP}, #{traceCode,jdbcType=VARCHAR}, #{sourceOrderId,jdbcType=BIGINT}, 
+      #{sourceSupplierId,jdbcType=BIGINT}, #{isFreezing,jdbcType=VARCHAR}, #{sourceOrderAmount,jdbcType=BIGINT}, 
+      #{platformServiceAmount,jdbcType=BIGINT}, #{payCommissionAmount,jdbcType=BIGINT}, 
+      #{buyWays,jdbcType=VARCHAR}, #{creditPayedAmount,jdbcType=BIGINT}, #{balancePayedAmount,jdbcType=BIGINT}, 
+      #{salesmanUserId,jdbcType=BIGINT}, #{remainderReceivables,jdbcType=BIGINT}, #{retractedMoney,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.shusheng.tihuzhai.dao.entity.auto.TblOrderInfo" >
+    insert into tbl_order_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="buyCreditDetailId != null" >
+        buy_credit_detail_id,
+      </if>
+      <if test="creditStatus != null" >
+        credit_status,
+      </if>
+      <if test="province != null" >
+        province,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="county != null" >
+        county,
+      </if>
+      <if test="detailAddress != null" >
+        detail_address,
+      </if>
+      <if test="drawerName != null" >
+        drawer_name,
+      </if>
+      <if test="drawerNumber != null" >
+        drawer_number,
+      </if>
+      <if test="drawerTel != null" >
+        drawer_tel,
+      </if>
+      <if test="zipCode != null" >
+        zip_code,
+      </if>
+      <if test="saleTypeO2o != null" >
+        sale_type_o2o,
+      </if>
+      <if test="saleTypeB2c != null" >
+        sale_type_b2c,
+      </if>
+      <if test="facade != null" >
+        facade,
+      </if>
+      <if test="specialExplain != null" >
+        special_explain,
+      </if>
+      <if test="paymentMethod != null" >
+        payment_method,
+      </if>
+      <if test="orderStatus != null" >
+        order_status,
+      </if>
+      <if test="orderType != null" >
+        order_type,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="buyerNickname != null" >
+        buyer_nickname,
+      </if>
+      <if test="operatorId != null" >
+        operator_id,
+      </if>
+      <if test="operatorTime != null" >
+        operator_time,
+      </if>
+      <if test="areaCode != null" >
+        area_code,
+      </if>
+      <if test="supplierName != null" >
+        supplier_name,
+      </if>
+      <if test="supplierId != null" >
+        supplier_id,
+      </if>
+      <if test="salePlatformId != null" >
+        sale_platform_id,
+      </if>
+      <if test="resortsBusinessId != null" >
+        resorts_business_id,
+      </if>
+      <if test="resortsBusinessName != null" >
+        resorts_business_name,
+      </if>
+      <if test="resortsBusinessRealName != null" >
+        resorts_business_real_name,
+      </if>
+      <if test="postFee != null" >
+        post_fee,
+      </if>
+      <if test="postType != null" >
+        post_type,
+      </if>
+      <if test="totalAmount != null" >
+        total_amount,
+      </if>
+      <if test="isPayed != null" >
+        is_payed,
+      </if>
+      <if test="payedTime != null" >
+        payed_time,
+      </if>
+      <if test="confirmReceiptTime != null" >
+        confirm_receipt_time,
+      </if>
+      <if test="takeWays != null" >
+        take_ways,
+      </if>
+      <if test="takegoodsId != null" >
+        takegoods_id,
+      </if>
+      <if test="workflowStatus != null" >
+        workflow_status,
+      </if>
+      <if test="refundStatus != null" >
+        refund_status,
+      </if>
+      <if test="sellerMemo != null" >
+        seller_memo,
+      </if>
+      <if test="sellerDelete != null" >
+        seller_delete,
+      </if>
+      <if test="buyerDelete != null" >
+        buyer_delete,
+      </if>
+      <if test="rawAddTime != null" >
+        raw_add_time,
+      </if>
+      <if test="rawUpdateTime != null" >
+        raw_update_time,
+      </if>
+      <if test="groupPurchaseEndTime != null" >
+        group_purchase_end_time,
+      </if>
+      <if test="groupPurchaseBeginTime != null" >
+        group_purchase_begin_time,
+      </if>
+      <if test="delStatus != null" >
+        del_status,
+      </if>
+      <if test="qrCode != null" >
+        qr_code,
+      </if>
+      <if test="sendStatus != null" >
+        send_status,
+      </if>
+      <if test="validationStatus != null" >
+        validation_status,
+      </if>
+      <if test="sendTime != null" >
+        send_time,
+      </if>
+      <if test="validationTime != null" >
+        validation_time,
+      </if>
+      <if test="orderNo != null" >
+        order_no,
+      </if>
+      <if test="paymentFlowId != null" >
+        payment_flow_id,
+      </if>
+      <if test="gainMoney != null" >
+        gain_money,
+      </if>
+      <if test="giftMoney != null" >
+        gift_money,
+      </if>
+      <if test="userPoint != null" >
+        user_point,
+      </if>
+      <if test="userPointAmount != null" >
+        user_point_amount,
+      </if>
+      <if test="batchNo != null" >
+        batch_No,
+      </if>
+      <if test="paymentWay != null" >
+        payment_way,
+      </if>
+      <if test="addUpPay != null" >
+        add_up_pay,
+      </if>
+      <if test="downPayment != null" >
+        down_payment,
+      </if>
+      <if test="brokerageAmount != null" >
+        brokerage_amount,
+      </if>
+      <if test="firstPayAmount != null" >
+        first_pay_amount,
+      </if>
+      <if test="invoiceTaxAmount != null" >
+        invoice_tax_amount,
+      </if>
+      <if test="payCount != null" >
+        pay_count,
+      </if>
+      <if test="isInvoicing != null" >
+        is_invoicing,
+      </if>
+      <if test="isBuy != null" >
+        is_buy,
+      </if>
+      <if test="isSpecialOrders != null" >
+        is_special_orders,
+      </if>
+      <if test="specialOrdersUrl != null" >
+        special_orders_url,
+      </if>
+      <if test="isPointLogistics != null" >
+        is_point_logistics,
+      </if>
+      <if test="logisticsCompanyName != null" >
+        logistics_company_name,
+      </if>
+      <if test="activityId != null" >
+        activity_id,
+      </if>
+      <if test="saleType != null" >
+        sale_type,
+      </if>
+      <if test="isNotice != null" >
+        is_notice,
+      </if>
+      <if test="deliveryTime != null" >
+        delivery_time,
+      </if>
+      <if test="traceCode != null" >
+        trace_code,
+      </if>
+      <if test="sourceOrderId != null" >
+        source_order_id,
+      </if>
+      <if test="sourceSupplierId != null" >
+        source_supplier_id,
+      </if>
+      <if test="isFreezing != null" >
+        is_freezing,
+      </if>
+      <if test="sourceOrderAmount != null" >
+        source_order_amount,
+      </if>
+      <if test="platformServiceAmount != null" >
+        platform_service_amount,
+      </if>
+      <if test="payCommissionAmount != null" >
+        pay_commission_amount,
+      </if>
+      <if test="buyWays != null" >
+        buy_ways,
+      </if>
+      <if test="creditPayedAmount != null" >
+        credit_payed_amount,
+      </if>
+      <if test="balancePayedAmount != null" >
+        balance_payed_amount,
+      </if>
+      <if test="salesmanUserId != null" >
+        salesman_user_id,
+      </if>
+      <if test="remainderReceivables != null" >
+        remainder_receivables,
+      </if>
+      <if test="retractedMoney != null" >
+        retracted_money,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="buyCreditDetailId != null" >
+        #{buyCreditDetailId,jdbcType=BIGINT},
+      </if>
+      <if test="creditStatus != null" >
+        #{creditStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="county != null" >
+        #{county,jdbcType=VARCHAR},
+      </if>
+      <if test="detailAddress != null" >
+        #{detailAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="drawerName != null" >
+        #{drawerName,jdbcType=VARCHAR},
+      </if>
+      <if test="drawerNumber != null" >
+        #{drawerNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="drawerTel != null" >
+        #{drawerTel,jdbcType=VARCHAR},
+      </if>
+      <if test="zipCode != null" >
+        #{zipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="saleTypeO2o != null" >
+        #{saleTypeO2o,jdbcType=VARCHAR},
+      </if>
+      <if test="saleTypeB2c != null" >
+        #{saleTypeB2c,jdbcType=VARCHAR},
+      </if>
+      <if test="facade != null" >
+        #{facade,jdbcType=VARCHAR},
+      </if>
+      <if test="specialExplain != null" >
+        #{specialExplain,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentMethod != null" >
+        #{paymentMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="orderStatus != null" >
+        #{orderStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="orderType != null" >
+        #{orderType,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="buyerNickname != null" >
+        #{buyerNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorId != null" >
+        #{operatorId,jdbcType=BIGINT},
+      </if>
+      <if test="operatorTime != null" >
+        #{operatorTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="areaCode != null" >
+        #{areaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierName != null" >
+        #{supplierName,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierId != null" >
+        #{supplierId,jdbcType=BIGINT},
+      </if>
+      <if test="salePlatformId != null" >
+        #{salePlatformId,jdbcType=BIGINT},
+      </if>
+      <if test="resortsBusinessId != null" >
+        #{resortsBusinessId,jdbcType=BIGINT},
+      </if>
+      <if test="resortsBusinessName != null" >
+        #{resortsBusinessName,jdbcType=VARCHAR},
+      </if>
+      <if test="resortsBusinessRealName != null" >
+        #{resortsBusinessRealName,jdbcType=VARCHAR},
+      </if>
+      <if test="postFee != null" >
+        #{postFee,jdbcType=BIGINT},
+      </if>
+      <if test="postType != null" >
+        #{postType,jdbcType=VARCHAR},
+      </if>
+      <if test="totalAmount != null" >
+        #{totalAmount,jdbcType=BIGINT},
+      </if>
+      <if test="isPayed != null" >
+        #{isPayed,jdbcType=VARCHAR},
+      </if>
+      <if test="payedTime != null" >
+        #{payedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="confirmReceiptTime != null" >
+        #{confirmReceiptTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="takeWays != null" >
+        #{takeWays,jdbcType=VARCHAR},
+      </if>
+      <if test="takegoodsId != null" >
+        #{takegoodsId,jdbcType=BIGINT},
+      </if>
+      <if test="workflowStatus != null" >
+        #{workflowStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="refundStatus != null" >
+        #{refundStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerMemo != null" >
+        #{sellerMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerDelete != null" >
+        #{sellerDelete,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerDelete != null" >
+        #{buyerDelete,jdbcType=VARCHAR},
+      </if>
+      <if test="rawAddTime != null" >
+        #{rawAddTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rawUpdateTime != null" >
+        #{rawUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="groupPurchaseEndTime != null" >
+        #{groupPurchaseEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="groupPurchaseBeginTime != null" >
+        #{groupPurchaseBeginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delStatus != null" >
+        #{delStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="qrCode != null" >
+        #{qrCode,jdbcType=VARCHAR},
+      </if>
+      <if test="sendStatus != null" >
+        #{sendStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="validationStatus != null" >
+        #{validationStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="sendTime != null" >
+        #{sendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="validationTime != null" >
+        #{validationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderNo != null" >
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentFlowId != null" >
+        #{paymentFlowId,jdbcType=VARCHAR},
+      </if>
+      <if test="gainMoney != null" >
+        #{gainMoney,jdbcType=BIGINT},
+      </if>
+      <if test="giftMoney != null" >
+        #{giftMoney,jdbcType=BIGINT},
+      </if>
+      <if test="userPoint != null" >
+        #{userPoint,jdbcType=BIGINT},
+      </if>
+      <if test="userPointAmount != null" >
+        #{userPointAmount,jdbcType=BIGINT},
+      </if>
+      <if test="batchNo != null" >
+        #{batchNo,jdbcType=BIGINT},
+      </if>
+      <if test="paymentWay != null" >
+        #{paymentWay,jdbcType=VARCHAR},
+      </if>
+      <if test="addUpPay != null" >
+        #{addUpPay,jdbcType=BIGINT},
+      </if>
+      <if test="downPayment != null" >
+        #{downPayment,jdbcType=BIGINT},
+      </if>
+      <if test="brokerageAmount != null" >
+        #{brokerageAmount,jdbcType=BIGINT},
+      </if>
+      <if test="firstPayAmount != null" >
+        #{firstPayAmount,jdbcType=REAL},
+      </if>
+      <if test="invoiceTaxAmount != null" >
+        #{invoiceTaxAmount,jdbcType=BIGINT},
+      </if>
+      <if test="payCount != null" >
+        #{payCount,jdbcType=BIGINT},
+      </if>
+      <if test="isInvoicing != null" >
+        #{isInvoicing,jdbcType=VARCHAR},
+      </if>
+      <if test="isBuy != null" >
+        #{isBuy,jdbcType=VARCHAR},
+      </if>
+      <if test="isSpecialOrders != null" >
+        #{isSpecialOrders,jdbcType=VARCHAR},
+      </if>
+      <if test="specialOrdersUrl != null" >
+        #{specialOrdersUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="isPointLogistics != null" >
+        #{isPointLogistics,jdbcType=VARCHAR},
+      </if>
+      <if test="logisticsCompanyName != null" >
+        #{logisticsCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="activityId != null" >
+        #{activityId,jdbcType=BIGINT},
+      </if>
+      <if test="saleType != null" >
+        #{saleType,jdbcType=VARCHAR},
+      </if>
+      <if test="isNotice != null" >
+        #{isNotice,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryTime != null" >
+        #{deliveryTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="traceCode != null" >
+        #{traceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceOrderId != null" >
+        #{sourceOrderId,jdbcType=BIGINT},
+      </if>
+      <if test="sourceSupplierId != null" >
+        #{sourceSupplierId,jdbcType=BIGINT},
+      </if>
+      <if test="isFreezing != null" >
+        #{isFreezing,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceOrderAmount != null" >
+        #{sourceOrderAmount,jdbcType=BIGINT},
+      </if>
+      <if test="platformServiceAmount != null" >
+        #{platformServiceAmount,jdbcType=BIGINT},
+      </if>
+      <if test="payCommissionAmount != null" >
+        #{payCommissionAmount,jdbcType=BIGINT},
+      </if>
+      <if test="buyWays != null" >
+        #{buyWays,jdbcType=VARCHAR},
+      </if>
+      <if test="creditPayedAmount != null" >
+        #{creditPayedAmount,jdbcType=BIGINT},
+      </if>
+      <if test="balancePayedAmount != null" >
+        #{balancePayedAmount,jdbcType=BIGINT},
+      </if>
+      <if test="salesmanUserId != null" >
+        #{salesmanUserId,jdbcType=BIGINT},
+      </if>
+      <if test="remainderReceivables != null" >
+        #{remainderReceivables,jdbcType=BIGINT},
+      </if>
+      <if test="retractedMoney != null" >
+        #{retractedMoney,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shusheng.tihuzhai.dao.entity.auto.TblOrderInfoExample" resultType="java.lang.Integer" >
+    select count(*) from tbl_order_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tbl_order_info
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.buyCreditDetailId != null" >
+        buy_credit_detail_id = #{record.buyCreditDetailId,jdbcType=BIGINT},
+      </if>
+      <if test="record.creditStatus != null" >
+        credit_status = #{record.creditStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.province != null" >
+        province = #{record.province,jdbcType=VARCHAR},
+      </if>
+      <if test="record.city != null" >
+        city = #{record.city,jdbcType=VARCHAR},
+      </if>
+      <if test="record.county != null" >
+        county = #{record.county,jdbcType=VARCHAR},
+      </if>
+      <if test="record.detailAddress != null" >
+        detail_address = #{record.detailAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.drawerName != null" >
+        drawer_name = #{record.drawerName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.drawerNumber != null" >
+        drawer_number = #{record.drawerNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.drawerTel != null" >
+        drawer_tel = #{record.drawerTel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zipCode != null" >
+        zip_code = #{record.zipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.saleTypeO2o != null" >
+        sale_type_o2o = #{record.saleTypeO2o,jdbcType=VARCHAR},
+      </if>
+      <if test="record.saleTypeB2c != null" >
+        sale_type_b2c = #{record.saleTypeB2c,jdbcType=VARCHAR},
+      </if>
+      <if test="record.facade != null" >
+        facade = #{record.facade,jdbcType=VARCHAR},
+      </if>
+      <if test="record.specialExplain != null" >
+        special_explain = #{record.specialExplain,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paymentMethod != null" >
+        payment_method = #{record.paymentMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderStatus != null" >
+        order_status = #{record.orderStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderType != null" >
+        order_type = #{record.orderType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=BIGINT},
+      </if>
+      <if test="record.buyerNickname != null" >
+        buyer_nickname = #{record.buyerNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operatorId != null" >
+        operator_id = #{record.operatorId,jdbcType=BIGINT},
+      </if>
+      <if test="record.operatorTime != null" >
+        operator_time = #{record.operatorTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.areaCode != null" >
+        area_code = #{record.areaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.supplierName != null" >
+        supplier_name = #{record.supplierName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.supplierId != null" >
+        supplier_id = #{record.supplierId,jdbcType=BIGINT},
+      </if>
+      <if test="record.salePlatformId != null" >
+        sale_platform_id = #{record.salePlatformId,jdbcType=BIGINT},
+      </if>
+      <if test="record.resortsBusinessId != null" >
+        resorts_business_id = #{record.resortsBusinessId,jdbcType=BIGINT},
+      </if>
+      <if test="record.resortsBusinessName != null" >
+        resorts_business_name = #{record.resortsBusinessName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.resortsBusinessRealName != null" >
+        resorts_business_real_name = #{record.resortsBusinessRealName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.postFee != null" >
+        post_fee = #{record.postFee,jdbcType=BIGINT},
+      </if>
+      <if test="record.postType != null" >
+        post_type = #{record.postType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.totalAmount != null" >
+        total_amount = #{record.totalAmount,jdbcType=BIGINT},
+      </if>
+      <if test="record.isPayed != null" >
+        is_payed = #{record.isPayed,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payedTime != null" >
+        payed_time = #{record.payedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.confirmReceiptTime != null" >
+        confirm_receipt_time = #{record.confirmReceiptTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.takeWays != null" >
+        take_ways = #{record.takeWays,jdbcType=VARCHAR},
+      </if>
+      <if test="record.takegoodsId != null" >
+        takegoods_id = #{record.takegoodsId,jdbcType=BIGINT},
+      </if>
+      <if test="record.workflowStatus != null" >
+        workflow_status = #{record.workflowStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.refundStatus != null" >
+        refund_status = #{record.refundStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sellerMemo != null" >
+        seller_memo = #{record.sellerMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sellerDelete != null" >
+        seller_delete = #{record.sellerDelete,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buyerDelete != null" >
+        buyer_delete = #{record.buyerDelete,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rawAddTime != null" >
+        raw_add_time = #{record.rawAddTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.rawUpdateTime != null" >
+        raw_update_time = #{record.rawUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.groupPurchaseEndTime != null" >
+        group_purchase_end_time = #{record.groupPurchaseEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.groupPurchaseBeginTime != null" >
+        group_purchase_begin_time = #{record.groupPurchaseBeginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.delStatus != null" >
+        del_status = #{record.delStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.qrCode != null" >
+        qr_code = #{record.qrCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sendStatus != null" >
+        send_status = #{record.sendStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.validationStatus != null" >
+        validation_status = #{record.validationStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sendTime != null" >
+        send_time = #{record.sendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.validationTime != null" >
+        validation_time = #{record.validationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.orderNo != null" >
+        order_no = #{record.orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paymentFlowId != null" >
+        payment_flow_id = #{record.paymentFlowId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gainMoney != null" >
+        gain_money = #{record.gainMoney,jdbcType=BIGINT},
+      </if>
+      <if test="record.giftMoney != null" >
+        gift_money = #{record.giftMoney,jdbcType=BIGINT},
+      </if>
+      <if test="record.userPoint != null" >
+        user_point = #{record.userPoint,jdbcType=BIGINT},
+      </if>
+      <if test="record.userPointAmount != null" >
+        user_point_amount = #{record.userPointAmount,jdbcType=BIGINT},
+      </if>
+      <if test="record.batchNo != null" >
+        batch_No = #{record.batchNo,jdbcType=BIGINT},
+      </if>
+      <if test="record.paymentWay != null" >
+        payment_way = #{record.paymentWay,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addUpPay != null" >
+        add_up_pay = #{record.addUpPay,jdbcType=BIGINT},
+      </if>
+      <if test="record.downPayment != null" >
+        down_payment = #{record.downPayment,jdbcType=BIGINT},
+      </if>
+      <if test="record.brokerageAmount != null" >
+        brokerage_amount = #{record.brokerageAmount,jdbcType=BIGINT},
+      </if>
+      <if test="record.firstPayAmount != null" >
+        first_pay_amount = #{record.firstPayAmount,jdbcType=REAL},
+      </if>
+      <if test="record.invoiceTaxAmount != null" >
+        invoice_tax_amount = #{record.invoiceTaxAmount,jdbcType=BIGINT},
+      </if>
+      <if test="record.payCount != null" >
+        pay_count = #{record.payCount,jdbcType=BIGINT},
+      </if>
+      <if test="record.isInvoicing != null" >
+        is_invoicing = #{record.isInvoicing,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isBuy != null" >
+        is_buy = #{record.isBuy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isSpecialOrders != null" >
+        is_special_orders = #{record.isSpecialOrders,jdbcType=VARCHAR},
+      </if>
+      <if test="record.specialOrdersUrl != null" >
+        special_orders_url = #{record.specialOrdersUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isPointLogistics != null" >
+        is_point_logistics = #{record.isPointLogistics,jdbcType=VARCHAR},
+      </if>
+      <if test="record.logisticsCompanyName != null" >
+        logistics_company_name = #{record.logisticsCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.activityId != null" >
+        activity_id = #{record.activityId,jdbcType=BIGINT},
+      </if>
+      <if test="record.saleType != null" >
+        sale_type = #{record.saleType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isNotice != null" >
+        is_notice = #{record.isNotice,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deliveryTime != null" >
+        delivery_time = #{record.deliveryTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.traceCode != null" >
+        trace_code = #{record.traceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sourceOrderId != null" >
+        source_order_id = #{record.sourceOrderId,jdbcType=BIGINT},
+      </if>
+      <if test="record.sourceSupplierId != null" >
+        source_supplier_id = #{record.sourceSupplierId,jdbcType=BIGINT},
+      </if>
+      <if test="record.isFreezing != null" >
+        is_freezing = #{record.isFreezing,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sourceOrderAmount != null" >
+        source_order_amount = #{record.sourceOrderAmount,jdbcType=BIGINT},
+      </if>
+      <if test="record.platformServiceAmount != null" >
+        platform_service_amount = #{record.platformServiceAmount,jdbcType=BIGINT},
+      </if>
+      <if test="record.payCommissionAmount != null" >
+        pay_commission_amount = #{record.payCommissionAmount,jdbcType=BIGINT},
+      </if>
+      <if test="record.buyWays != null" >
+        buy_ways = #{record.buyWays,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creditPayedAmount != null" >
+        credit_payed_amount = #{record.creditPayedAmount,jdbcType=BIGINT},
+      </if>
+      <if test="record.balancePayedAmount != null" >
+        balance_payed_amount = #{record.balancePayedAmount,jdbcType=BIGINT},
+      </if>
+      <if test="record.salesmanUserId != null" >
+        salesman_user_id = #{record.salesmanUserId,jdbcType=BIGINT},
+      </if>
+      <if test="record.remainderReceivables != null" >
+        remainder_receivables = #{record.remainderReceivables,jdbcType=BIGINT},
+      </if>
+      <if test="record.retractedMoney != null" >
+        retracted_money = #{record.retractedMoney,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tbl_order_info
+    set id = #{record.id,jdbcType=BIGINT},
+      buy_credit_detail_id = #{record.buyCreditDetailId,jdbcType=BIGINT},
+      credit_status = #{record.creditStatus,jdbcType=VARCHAR},
+      province = #{record.province,jdbcType=VARCHAR},
+      city = #{record.city,jdbcType=VARCHAR},
+      county = #{record.county,jdbcType=VARCHAR},
+      detail_address = #{record.detailAddress,jdbcType=VARCHAR},
+      drawer_name = #{record.drawerName,jdbcType=VARCHAR},
+      drawer_number = #{record.drawerNumber,jdbcType=VARCHAR},
+      drawer_tel = #{record.drawerTel,jdbcType=VARCHAR},
+      zip_code = #{record.zipCode,jdbcType=VARCHAR},
+      sale_type_o2o = #{record.saleTypeO2o,jdbcType=VARCHAR},
+      sale_type_b2c = #{record.saleTypeB2c,jdbcType=VARCHAR},
+      facade = #{record.facade,jdbcType=VARCHAR},
+      special_explain = #{record.specialExplain,jdbcType=VARCHAR},
+      payment_method = #{record.paymentMethod,jdbcType=VARCHAR},
+      order_status = #{record.orderStatus,jdbcType=VARCHAR},
+      order_type = #{record.orderType,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      user_id = #{record.userId,jdbcType=BIGINT},
+      buyer_nickname = #{record.buyerNickname,jdbcType=VARCHAR},
+      operator_id = #{record.operatorId,jdbcType=BIGINT},
+      operator_time = #{record.operatorTime,jdbcType=TIMESTAMP},
+      area_code = #{record.areaCode,jdbcType=VARCHAR},
+      supplier_name = #{record.supplierName,jdbcType=VARCHAR},
+      supplier_id = #{record.supplierId,jdbcType=BIGINT},
+      sale_platform_id = #{record.salePlatformId,jdbcType=BIGINT},
+      resorts_business_id = #{record.resortsBusinessId,jdbcType=BIGINT},
+      resorts_business_name = #{record.resortsBusinessName,jdbcType=VARCHAR},
+      resorts_business_real_name = #{record.resortsBusinessRealName,jdbcType=VARCHAR},
+      post_fee = #{record.postFee,jdbcType=BIGINT},
+      post_type = #{record.postType,jdbcType=VARCHAR},
+      total_amount = #{record.totalAmount,jdbcType=BIGINT},
+      is_payed = #{record.isPayed,jdbcType=VARCHAR},
+      payed_time = #{record.payedTime,jdbcType=TIMESTAMP},
+      confirm_receipt_time = #{record.confirmReceiptTime,jdbcType=TIMESTAMP},
+      take_ways = #{record.takeWays,jdbcType=VARCHAR},
+      takegoods_id = #{record.takegoodsId,jdbcType=BIGINT},
+      workflow_status = #{record.workflowStatus,jdbcType=VARCHAR},
+      refund_status = #{record.refundStatus,jdbcType=VARCHAR},
+      seller_memo = #{record.sellerMemo,jdbcType=VARCHAR},
+      seller_delete = #{record.sellerDelete,jdbcType=VARCHAR},
+      buyer_delete = #{record.buyerDelete,jdbcType=VARCHAR},
+      raw_add_time = #{record.rawAddTime,jdbcType=TIMESTAMP},
+      raw_update_time = #{record.rawUpdateTime,jdbcType=TIMESTAMP},
+      group_purchase_end_time = #{record.groupPurchaseEndTime,jdbcType=TIMESTAMP},
+      group_purchase_begin_time = #{record.groupPurchaseBeginTime,jdbcType=TIMESTAMP},
+      del_status = #{record.delStatus,jdbcType=VARCHAR},
+      qr_code = #{record.qrCode,jdbcType=VARCHAR},
+      send_status = #{record.sendStatus,jdbcType=VARCHAR},
+      validation_status = #{record.validationStatus,jdbcType=VARCHAR},
+      send_time = #{record.sendTime,jdbcType=TIMESTAMP},
+      validation_time = #{record.validationTime,jdbcType=TIMESTAMP},
+      order_no = #{record.orderNo,jdbcType=VARCHAR},
+      payment_flow_id = #{record.paymentFlowId,jdbcType=VARCHAR},
+      gain_money = #{record.gainMoney,jdbcType=BIGINT},
+      gift_money = #{record.giftMoney,jdbcType=BIGINT},
+      user_point = #{record.userPoint,jdbcType=BIGINT},
+      user_point_amount = #{record.userPointAmount,jdbcType=BIGINT},
+      batch_No = #{record.batchNo,jdbcType=BIGINT},
+      payment_way = #{record.paymentWay,jdbcType=VARCHAR},
+      add_up_pay = #{record.addUpPay,jdbcType=BIGINT},
+      down_payment = #{record.downPayment,jdbcType=BIGINT},
+      brokerage_amount = #{record.brokerageAmount,jdbcType=BIGINT},
+      first_pay_amount = #{record.firstPayAmount,jdbcType=REAL},
+      invoice_tax_amount = #{record.invoiceTaxAmount,jdbcType=BIGINT},
+      pay_count = #{record.payCount,jdbcType=BIGINT},
+      is_invoicing = #{record.isInvoicing,jdbcType=VARCHAR},
+      is_buy = #{record.isBuy,jdbcType=VARCHAR},
+      is_special_orders = #{record.isSpecialOrders,jdbcType=VARCHAR},
+      special_orders_url = #{record.specialOrdersUrl,jdbcType=VARCHAR},
+      is_point_logistics = #{record.isPointLogistics,jdbcType=VARCHAR},
+      logistics_company_name = #{record.logisticsCompanyName,jdbcType=VARCHAR},
+      activity_id = #{record.activityId,jdbcType=BIGINT},
+      sale_type = #{record.saleType,jdbcType=VARCHAR},
+      is_notice = #{record.isNotice,jdbcType=VARCHAR},
+      delivery_time = #{record.deliveryTime,jdbcType=TIMESTAMP},
+      trace_code = #{record.traceCode,jdbcType=VARCHAR},
+      source_order_id = #{record.sourceOrderId,jdbcType=BIGINT},
+      source_supplier_id = #{record.sourceSupplierId,jdbcType=BIGINT},
+      is_freezing = #{record.isFreezing,jdbcType=VARCHAR},
+      source_order_amount = #{record.sourceOrderAmount,jdbcType=BIGINT},
+      platform_service_amount = #{record.platformServiceAmount,jdbcType=BIGINT},
+      pay_commission_amount = #{record.payCommissionAmount,jdbcType=BIGINT},
+      buy_ways = #{record.buyWays,jdbcType=VARCHAR},
+      credit_payed_amount = #{record.creditPayedAmount,jdbcType=BIGINT},
+      balance_payed_amount = #{record.balancePayedAmount,jdbcType=BIGINT},
+      salesman_user_id = #{record.salesmanUserId,jdbcType=BIGINT},
+      remainder_receivables = #{record.remainderReceivables,jdbcType=BIGINT},
+      retracted_money = #{record.retractedMoney,jdbcType=BIGINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shusheng.tihuzhai.dao.entity.auto.TblOrderInfo" >
+    update tbl_order_info
+    <set >
+      <if test="buyCreditDetailId != null" >
+        buy_credit_detail_id = #{buyCreditDetailId,jdbcType=BIGINT},
+      </if>
+      <if test="creditStatus != null" >
+        credit_status = #{creditStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="county != null" >
+        county = #{county,jdbcType=VARCHAR},
+      </if>
+      <if test="detailAddress != null" >
+        detail_address = #{detailAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="drawerName != null" >
+        drawer_name = #{drawerName,jdbcType=VARCHAR},
+      </if>
+      <if test="drawerNumber != null" >
+        drawer_number = #{drawerNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="drawerTel != null" >
+        drawer_tel = #{drawerTel,jdbcType=VARCHAR},
+      </if>
+      <if test="zipCode != null" >
+        zip_code = #{zipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="saleTypeO2o != null" >
+        sale_type_o2o = #{saleTypeO2o,jdbcType=VARCHAR},
+      </if>
+      <if test="saleTypeB2c != null" >
+        sale_type_b2c = #{saleTypeB2c,jdbcType=VARCHAR},
+      </if>
+      <if test="facade != null" >
+        facade = #{facade,jdbcType=VARCHAR},
+      </if>
+      <if test="specialExplain != null" >
+        special_explain = #{specialExplain,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentMethod != null" >
+        payment_method = #{paymentMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="orderStatus != null" >
+        order_status = #{orderStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="orderType != null" >
+        order_type = #{orderType,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="buyerNickname != null" >
+        buyer_nickname = #{buyerNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorId != null" >
+        operator_id = #{operatorId,jdbcType=BIGINT},
+      </if>
+      <if test="operatorTime != null" >
+        operator_time = #{operatorTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="areaCode != null" >
+        area_code = #{areaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierName != null" >
+        supplier_name = #{supplierName,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierId != null" >
+        supplier_id = #{supplierId,jdbcType=BIGINT},
+      </if>
+      <if test="salePlatformId != null" >
+        sale_platform_id = #{salePlatformId,jdbcType=BIGINT},
+      </if>
+      <if test="resortsBusinessId != null" >
+        resorts_business_id = #{resortsBusinessId,jdbcType=BIGINT},
+      </if>
+      <if test="resortsBusinessName != null" >
+        resorts_business_name = #{resortsBusinessName,jdbcType=VARCHAR},
+      </if>
+      <if test="resortsBusinessRealName != null" >
+        resorts_business_real_name = #{resortsBusinessRealName,jdbcType=VARCHAR},
+      </if>
+      <if test="postFee != null" >
+        post_fee = #{postFee,jdbcType=BIGINT},
+      </if>
+      <if test="postType != null" >
+        post_type = #{postType,jdbcType=VARCHAR},
+      </if>
+      <if test="totalAmount != null" >
+        total_amount = #{totalAmount,jdbcType=BIGINT},
+      </if>
+      <if test="isPayed != null" >
+        is_payed = #{isPayed,jdbcType=VARCHAR},
+      </if>
+      <if test="payedTime != null" >
+        payed_time = #{payedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="confirmReceiptTime != null" >
+        confirm_receipt_time = #{confirmReceiptTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="takeWays != null" >
+        take_ways = #{takeWays,jdbcType=VARCHAR},
+      </if>
+      <if test="takegoodsId != null" >
+        takegoods_id = #{takegoodsId,jdbcType=BIGINT},
+      </if>
+      <if test="workflowStatus != null" >
+        workflow_status = #{workflowStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="refundStatus != null" >
+        refund_status = #{refundStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerMemo != null" >
+        seller_memo = #{sellerMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerDelete != null" >
+        seller_delete = #{sellerDelete,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerDelete != null" >
+        buyer_delete = #{buyerDelete,jdbcType=VARCHAR},
+      </if>
+      <if test="rawAddTime != null" >
+        raw_add_time = #{rawAddTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rawUpdateTime != null" >
+        raw_update_time = #{rawUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="groupPurchaseEndTime != null" >
+        group_purchase_end_time = #{groupPurchaseEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="groupPurchaseBeginTime != null" >
+        group_purchase_begin_time = #{groupPurchaseBeginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delStatus != null" >
+        del_status = #{delStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="qrCode != null" >
+        qr_code = #{qrCode,jdbcType=VARCHAR},
+      </if>
+      <if test="sendStatus != null" >
+        send_status = #{sendStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="validationStatus != null" >
+        validation_status = #{validationStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="sendTime != null" >
+        send_time = #{sendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="validationTime != null" >
+        validation_time = #{validationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderNo != null" >
+        order_no = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="paymentFlowId != null" >
+        payment_flow_id = #{paymentFlowId,jdbcType=VARCHAR},
+      </if>
+      <if test="gainMoney != null" >
+        gain_money = #{gainMoney,jdbcType=BIGINT},
+      </if>
+      <if test="giftMoney != null" >
+        gift_money = #{giftMoney,jdbcType=BIGINT},
+      </if>
+      <if test="userPoint != null" >
+        user_point = #{userPoint,jdbcType=BIGINT},
+      </if>
+      <if test="userPointAmount != null" >
+        user_point_amount = #{userPointAmount,jdbcType=BIGINT},
+      </if>
+      <if test="batchNo != null" >
+        batch_No = #{batchNo,jdbcType=BIGINT},
+      </if>
+      <if test="paymentWay != null" >
+        payment_way = #{paymentWay,jdbcType=VARCHAR},
+      </if>
+      <if test="addUpPay != null" >
+        add_up_pay = #{addUpPay,jdbcType=BIGINT},
+      </if>
+      <if test="downPayment != null" >
+        down_payment = #{downPayment,jdbcType=BIGINT},
+      </if>
+      <if test="brokerageAmount != null" >
+        brokerage_amount = #{brokerageAmount,jdbcType=BIGINT},
+      </if>
+      <if test="firstPayAmount != null" >
+        first_pay_amount = #{firstPayAmount,jdbcType=REAL},
+      </if>
+      <if test="invoiceTaxAmount != null" >
+        invoice_tax_amount = #{invoiceTaxAmount,jdbcType=BIGINT},
+      </if>
+      <if test="payCount != null" >
+        pay_count = #{payCount,jdbcType=BIGINT},
+      </if>
+      <if test="isInvoicing != null" >
+        is_invoicing = #{isInvoicing,jdbcType=VARCHAR},
+      </if>
+      <if test="isBuy != null" >
+        is_buy = #{isBuy,jdbcType=VARCHAR},
+      </if>
+      <if test="isSpecialOrders != null" >
+        is_special_orders = #{isSpecialOrders,jdbcType=VARCHAR},
+      </if>
+      <if test="specialOrdersUrl != null" >
+        special_orders_url = #{specialOrdersUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="isPointLogistics != null" >
+        is_point_logistics = #{isPointLogistics,jdbcType=VARCHAR},
+      </if>
+      <if test="logisticsCompanyName != null" >
+        logistics_company_name = #{logisticsCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="activityId != null" >
+        activity_id = #{activityId,jdbcType=BIGINT},
+      </if>
+      <if test="saleType != null" >
+        sale_type = #{saleType,jdbcType=VARCHAR},
+      </if>
+      <if test="isNotice != null" >
+        is_notice = #{isNotice,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryTime != null" >
+        delivery_time = #{deliveryTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="traceCode != null" >
+        trace_code = #{traceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceOrderId != null" >
+        source_order_id = #{sourceOrderId,jdbcType=BIGINT},
+      </if>
+      <if test="sourceSupplierId != null" >
+        source_supplier_id = #{sourceSupplierId,jdbcType=BIGINT},
+      </if>
+      <if test="isFreezing != null" >
+        is_freezing = #{isFreezing,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceOrderAmount != null" >
+        source_order_amount = #{sourceOrderAmount,jdbcType=BIGINT},
+      </if>
+      <if test="platformServiceAmount != null" >
+        platform_service_amount = #{platformServiceAmount,jdbcType=BIGINT},
+      </if>
+      <if test="payCommissionAmount != null" >
+        pay_commission_amount = #{payCommissionAmount,jdbcType=BIGINT},
+      </if>
+      <if test="buyWays != null" >
+        buy_ways = #{buyWays,jdbcType=VARCHAR},
+      </if>
+      <if test="creditPayedAmount != null" >
+        credit_payed_amount = #{creditPayedAmount,jdbcType=BIGINT},
+      </if>
+      <if test="balancePayedAmount != null" >
+        balance_payed_amount = #{balancePayedAmount,jdbcType=BIGINT},
+      </if>
+      <if test="salesmanUserId != null" >
+        salesman_user_id = #{salesmanUserId,jdbcType=BIGINT},
+      </if>
+      <if test="remainderReceivables != null" >
+        remainder_receivables = #{remainderReceivables,jdbcType=BIGINT},
+      </if>
+      <if test="retractedMoney != null" >
+        retracted_money = #{retractedMoney,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shusheng.tihuzhai.dao.entity.auto.TblOrderInfo" >
+    update tbl_order_info
+    set buy_credit_detail_id = #{buyCreditDetailId,jdbcType=BIGINT},
+      credit_status = #{creditStatus,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      county = #{county,jdbcType=VARCHAR},
+      detail_address = #{detailAddress,jdbcType=VARCHAR},
+      drawer_name = #{drawerName,jdbcType=VARCHAR},
+      drawer_number = #{drawerNumber,jdbcType=VARCHAR},
+      drawer_tel = #{drawerTel,jdbcType=VARCHAR},
+      zip_code = #{zipCode,jdbcType=VARCHAR},
+      sale_type_o2o = #{saleTypeO2o,jdbcType=VARCHAR},
+      sale_type_b2c = #{saleTypeB2c,jdbcType=VARCHAR},
+      facade = #{facade,jdbcType=VARCHAR},
+      special_explain = #{specialExplain,jdbcType=VARCHAR},
+      payment_method = #{paymentMethod,jdbcType=VARCHAR},
+      order_status = #{orderStatus,jdbcType=VARCHAR},
+      order_type = #{orderType,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      user_id = #{userId,jdbcType=BIGINT},
+      buyer_nickname = #{buyerNickname,jdbcType=VARCHAR},
+      operator_id = #{operatorId,jdbcType=BIGINT},
+      operator_time = #{operatorTime,jdbcType=TIMESTAMP},
+      area_code = #{areaCode,jdbcType=VARCHAR},
+      supplier_name = #{supplierName,jdbcType=VARCHAR},
+      supplier_id = #{supplierId,jdbcType=BIGINT},
+      sale_platform_id = #{salePlatformId,jdbcType=BIGINT},
+      resorts_business_id = #{resortsBusinessId,jdbcType=BIGINT},
+      resorts_business_name = #{resortsBusinessName,jdbcType=VARCHAR},
+      resorts_business_real_name = #{resortsBusinessRealName,jdbcType=VARCHAR},
+      post_fee = #{postFee,jdbcType=BIGINT},
+      post_type = #{postType,jdbcType=VARCHAR},
+      total_amount = #{totalAmount,jdbcType=BIGINT},
+      is_payed = #{isPayed,jdbcType=VARCHAR},
+      payed_time = #{payedTime,jdbcType=TIMESTAMP},
+      confirm_receipt_time = #{confirmReceiptTime,jdbcType=TIMESTAMP},
+      take_ways = #{takeWays,jdbcType=VARCHAR},
+      takegoods_id = #{takegoodsId,jdbcType=BIGINT},
+      workflow_status = #{workflowStatus,jdbcType=VARCHAR},
+      refund_status = #{refundStatus,jdbcType=VARCHAR},
+      seller_memo = #{sellerMemo,jdbcType=VARCHAR},
+      seller_delete = #{sellerDelete,jdbcType=VARCHAR},
+      buyer_delete = #{buyerDelete,jdbcType=VARCHAR},
+      raw_add_time = #{rawAddTime,jdbcType=TIMESTAMP},
+      raw_update_time = #{rawUpdateTime,jdbcType=TIMESTAMP},
+      group_purchase_end_time = #{groupPurchaseEndTime,jdbcType=TIMESTAMP},
+      group_purchase_begin_time = #{groupPurchaseBeginTime,jdbcType=TIMESTAMP},
+      del_status = #{delStatus,jdbcType=VARCHAR},
+      qr_code = #{qrCode,jdbcType=VARCHAR},
+      send_status = #{sendStatus,jdbcType=VARCHAR},
+      validation_status = #{validationStatus,jdbcType=VARCHAR},
+      send_time = #{sendTime,jdbcType=TIMESTAMP},
+      validation_time = #{validationTime,jdbcType=TIMESTAMP},
+      order_no = #{orderNo,jdbcType=VARCHAR},
+      payment_flow_id = #{paymentFlowId,jdbcType=VARCHAR},
+      gain_money = #{gainMoney,jdbcType=BIGINT},
+      gift_money = #{giftMoney,jdbcType=BIGINT},
+      user_point = #{userPoint,jdbcType=BIGINT},
+      user_point_amount = #{userPointAmount,jdbcType=BIGINT},
+      batch_No = #{batchNo,jdbcType=BIGINT},
+      payment_way = #{paymentWay,jdbcType=VARCHAR},
+      add_up_pay = #{addUpPay,jdbcType=BIGINT},
+      down_payment = #{downPayment,jdbcType=BIGINT},
+      brokerage_amount = #{brokerageAmount,jdbcType=BIGINT},
+      first_pay_amount = #{firstPayAmount,jdbcType=REAL},
+      invoice_tax_amount = #{invoiceTaxAmount,jdbcType=BIGINT},
+      pay_count = #{payCount,jdbcType=BIGINT},
+      is_invoicing = #{isInvoicing,jdbcType=VARCHAR},
+      is_buy = #{isBuy,jdbcType=VARCHAR},
+      is_special_orders = #{isSpecialOrders,jdbcType=VARCHAR},
+      special_orders_url = #{specialOrdersUrl,jdbcType=VARCHAR},
+      is_point_logistics = #{isPointLogistics,jdbcType=VARCHAR},
+      logistics_company_name = #{logisticsCompanyName,jdbcType=VARCHAR},
+      activity_id = #{activityId,jdbcType=BIGINT},
+      sale_type = #{saleType,jdbcType=VARCHAR},
+      is_notice = #{isNotice,jdbcType=VARCHAR},
+      delivery_time = #{deliveryTime,jdbcType=TIMESTAMP},
+      trace_code = #{traceCode,jdbcType=VARCHAR},
+      source_order_id = #{sourceOrderId,jdbcType=BIGINT},
+      source_supplier_id = #{sourceSupplierId,jdbcType=BIGINT},
+      is_freezing = #{isFreezing,jdbcType=VARCHAR},
+      source_order_amount = #{sourceOrderAmount,jdbcType=BIGINT},
+      platform_service_amount = #{platformServiceAmount,jdbcType=BIGINT},
+      pay_commission_amount = #{payCommissionAmount,jdbcType=BIGINT},
+      buy_ways = #{buyWays,jdbcType=VARCHAR},
+      credit_payed_amount = #{creditPayedAmount,jdbcType=BIGINT},
+      balance_payed_amount = #{balancePayedAmount,jdbcType=BIGINT},
+      salesman_user_id = #{salesmanUserId,jdbcType=BIGINT},
+      remainder_receivables = #{remainderReceivables,jdbcType=BIGINT},
+      retracted_money = #{retractedMoney,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
