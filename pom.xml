@@ -21,7 +21,6 @@
     <url>http://maven.apache.org</url>
 
     <properties>
-
         <tihuzhai.assemble.version>1.0.2018122501</tihuzhai.assemble.version>
         <tihuzhai.biz.version>1.0.2018122501</tihuzhai.biz.version>
         <tihuzhai.common.version>1.0.2018122501</tihuzhai.common.version>
@@ -33,10 +32,12 @@
         <tihuzhai.test.version>1.0.2018122501</tihuzhai.test.version>
         <tihuzhai.web.version>1.0.2018122501</tihuzhai.web.version>
 
-        <java.version>1.8</java.version>
         <javax.serverlet.version>3.1.0</javax.serverlet.version>
         <shiro.version>1.2.4</shiro.version>
 
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
 
     <dependencies>

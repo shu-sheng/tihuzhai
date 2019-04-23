@@ -19,20 +19,18 @@
             <artifactId>tihuzhai-common</artifactId>
         </dependency>
 
-        <!--springboot/mybatis   start-->
+        <!--springboot集成mybatis  start-->
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
-            <version>1.1.1</version>
+            <version>1.2.0</version>
         </dependency>
-        <!--springboot/mybatis   end-->
-        <!--添加mysql驱动   start-->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.34</version>
         </dependency>
-        <!--添加mysql驱动   end-->
+        <!--springboot集成mybatis   end-->
+
         <!-- 添加阿里巴巴druid连接池   start-->
         <dependency>
             <groupId>com.alibaba</groupId>
