@@ -2,12 +2,8 @@ package com.shusheng.tihuzhai.web.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpRequest;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
 
 /**
  * @author shusheng
@@ -22,6 +18,7 @@ public class HelloController {
 
     @RequestMapping(value="/")
     public String home() {
+        log.info("这是我们的系统首页");
         return "这是我们第一个页面";
     }
 

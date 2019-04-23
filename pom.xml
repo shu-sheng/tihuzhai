@@ -69,6 +69,14 @@
         </dependency>
         <!-- springboot集成swagger2 end-->
 
+        <!-- 引入springboot对aop的支持 start-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+        <!-- 引入springboot对aop的支持 end-->
+
+
 
         <!--阿里巴巴fastjson依赖 start-->
         <dependency>

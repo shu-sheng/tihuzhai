@@ -41,6 +41,9 @@ spring:
     username: c_hichina
     password: efH123K1dKh3sd
 
+logging:
+  file: D:/var/log/webapps/hichina.log
+
 ---
 #spring:
 spring:
