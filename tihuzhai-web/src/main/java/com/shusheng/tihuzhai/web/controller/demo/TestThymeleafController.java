@@ -1,4 +1,4 @@
-package com.shusheng.tihuzhai.web.controller;
+package com.shusheng.tihuzhai.web.controller.demo;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
