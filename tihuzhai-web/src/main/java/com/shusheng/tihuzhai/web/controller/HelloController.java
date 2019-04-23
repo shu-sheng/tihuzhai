@@ -20,10 +20,14 @@ public class HelloController {
 
     private static Logger log = LoggerFactory.getLogger(HelloController.class);
 
+    @RequestMapping(value="/")
+    public String home() {
+        return "这是我们第一个页面";
+    }
+
     @RequestMapping(value="/toDemo")
     public String toDemo() {
         log.info("====>>跳转freemarker页面");
-
         return "Hello World";
     }
 

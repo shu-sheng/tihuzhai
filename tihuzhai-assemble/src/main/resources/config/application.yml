@@ -31,10 +31,6 @@ mybatis:
 
 server:
   port: 8899
-  servlet:
-      context-path: /tihuzhai
-  session:
-    timeout: 3600
 
 ---
 #spring:
@@ -44,8 +40,6 @@ spring:
     url: jdbc:mysql://47.106.102.151:3306/mandarin_test?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true
     username: root
     password: aaaa1111
-
-
 
 ---
 #spring:

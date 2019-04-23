@@ -3,9 +3,7 @@ package com.shusheng.tihuzhai;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.SpringApplicationRunListener;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 
 /**
  * @Description
@@ -23,9 +21,7 @@ public class Main {
 
         SpringApplication.run(Main.class, args);
 
-        if ("online".equals(System.getProperty("spring.profiles.active"))) {
-            LoggerFactory.getLogger(SpringApplicationRunListener.class).info("启动成功: http://xxx.tihuzhai.com");
-        } else {
+        if ("localhost".equals(System.getProperty("spring.profiles.active"))) {
             LoggerFactory.getLogger(SpringApplicationRunListener.class).info("启动成功: http://127.0.0.1:8899");
         }
         LoggerFactory.getLogger(SpringApplicationRunListener.class).info("当前环境:{}", System.getProperty("spring.profiles.active"));
