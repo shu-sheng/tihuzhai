@@ -15,8 +15,8 @@
 
         <!--数据库链接URL，用户名、密码 -->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://47.96.128.191:5600/born_hichina" userId="c_hichina"
-                        password="efH123K1dKh3sd">
+                        connectionURL="jdbc:mysql://47.106.102.151:3306/tihuzhai" userId="root"
+                        password="aaaa1111">
         </jdbcConnection>
 
         <javaTypeResolver>
@@ -30,7 +30,7 @@
         </javaModelGenerator>
 
         <!-- 生成映射文件的包名和位置-->
-        <sqlMapGenerator targetPackage="auto" targetProject="src/main/resources">
+        <sqlMapGenerator targetPackage="mapperxml/auto" targetProject="src/main/resources">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
 
