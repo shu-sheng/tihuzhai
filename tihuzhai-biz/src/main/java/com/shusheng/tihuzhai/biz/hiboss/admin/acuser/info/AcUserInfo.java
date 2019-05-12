@@ -1,17 +1,17 @@
-package com.shusheng.tihuzhai.biz.admin.user.info;
+package com.shusheng.tihuzhai.biz.hiboss.admin.acuser.info;
 
-import com.shusheng.tihuzhai.biz.base.TiHuZhaiOrderBase;
+import com.shusheng.tihuzhai.biz.base.TiHuZhaiInfoBase;
 
 import java.util.Date;
 
 /**
  * @author shusheng
  * @description
- * @Email shusheng@yiji.com
- * @date 2018/12/26 19:15
+ * @Email eric_wu_peng@126.com
+ * @date 2019/4/30 11:25
  */
-public class UserInfo extends TiHuZhaiOrderBase {
-    private static final long serialVersionUID = -1728609371204608432L;
+public class AcUserInfo extends TiHuZhaiInfoBase {
+    private static final long serialVersionUID = 8624772535255684988L;
 
     private Long id;
 
@@ -31,9 +31,9 @@ public class UserInfo extends TiHuZhaiOrderBase {
 
     private String memo;
 
-    private Date rawAddTime;
+    private Date rowAddTime;
 
-    private Date rawUpdateTime;
+    private Date rowUpdateTime;
 
     public Long getId() {
         return id;
@@ -107,36 +107,19 @@ public class UserInfo extends TiHuZhaiOrderBase {
         this.memo = memo;
     }
 
-    public Date getRawAddTime() {
-        return rawAddTime;
+    public Date getRowAddTime() {
+        return rowAddTime;
     }
 
-    public void setRawAddTime(Date rawAddTime) {
-        this.rawAddTime = rawAddTime;
+    public void setRowAddTime(Date rowAddTime) {
+        this.rowAddTime = rowAddTime;
     }
 
-    public Date getRawUpdateTime() {
-        return rawUpdateTime;
+    public Date getRowUpdateTime() {
+        return rowUpdateTime;
     }
 
-    public void setRawUpdateTime(Date rawUpdateTime) {
-        this.rawUpdateTime = rawUpdateTime;
-    }
-
-    @Override
-    public String toString() {
-        return "UserInfo{" +
-                "id=" + id +
-                ", userName='" + userName + '\'' +
-                ", userRealName='" + userRealName + '\'' +
-                ", password='" + password + '\'' +
-                ", email='" + email + '\'' +
-                ", mobile='" + mobile + '\'' +
-                ", passwordErrorTimes=" + passwordErrorTimes +
-                ", status='" + status + '\'' +
-                ", memo='" + memo + '\'' +
-                ", rawAddTime=" + rawAddTime +
-                ", rawUpdateTime=" + rawUpdateTime +
-                '}';
+    public void setRowUpdateTime(Date rowUpdateTime) {
+        this.rowUpdateTime = rowUpdateTime;
     }
 }

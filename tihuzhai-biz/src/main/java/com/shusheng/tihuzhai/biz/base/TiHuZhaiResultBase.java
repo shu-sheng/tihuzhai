@@ -1,5 +1,6 @@
 package com.shusheng.tihuzhai.biz.base;
 
+import com.shusheng.tihuzhai.enums.StatusEnum;
 import com.shusheng.tihuzhai.enums.TiHuZhaiResultEnum;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
@@ -15,37 +16,37 @@ import java.io.Serializable;
 public class TiHuZhaiResultBase implements Serializable {
     private static final long serialVersionUID = -6510311788884425848L;
 
-    /** 成功状态 */
-    private boolean success = false;
+    /** 描述 */
+    protected Boolean isSuccess=false;
 
-    /** 辅助客户端翻译处理结果代码的描述，包括各层处理结果描述 */
-    private String message = "";
+    /** 结果状态 */
+    protected TiHuZhaiResultEnum status;
 
-    /** 返回结果码 */
-    TiHuZhaiResultEnum tiHuZhaiResultEnum = TiHuZhaiResultEnum.UN_KNOWN_EXCEPTION;
+    /** 描述 */
+    protected String description;
 
-    public boolean isSuccess() {
-        return success;
+    public TiHuZhaiResultEnum getStatus() {
+        return status;
     }
 
-    public void setSuccess(boolean success) {
-        this.success = success;
+    public void setStatus(TiHuZhaiResultEnum status) {
+        this.status = status;
     }
 
-    public String getMessage() {
-        return message;
+    public String getDescription() {
+        return description;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public TiHuZhaiResultEnum getTiHuZhaiResultEnum() {
-        return tiHuZhaiResultEnum;
+    public Boolean getSuccess() {
+        return isSuccess;
     }
 
-    public void setTiHuZhaiResultEnum(TiHuZhaiResultEnum tiHuZhaiResultEnum) {
-        this.tiHuZhaiResultEnum = tiHuZhaiResultEnum;
+    public void setSuccess(Boolean success) {
+        isSuccess = success;
     }
 
     @Override
