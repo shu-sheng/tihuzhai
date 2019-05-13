@@ -1,6 +1,7 @@
 package com.shusheng.tihuzhai.web.controller.demo;
 
 import com.shusheng.tihuzhai.biz.demo.TestExceptionService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/test/exception")
+@Api(description = "测试:全局异常处理")
 public class TestExceptionController {
     @Autowired
     private TestExceptionService testExceptionService;
