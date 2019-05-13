@@ -1,5 +1,6 @@
-package com.shusheng.tihuzhai.web.controller.swagger;
+package com.shusheng.tihuzhai.web.controller.demo;
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +19,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping(value="/swagger")
+@Api(description = "测试：集成API可视化工具SWAGGER")
 public class TestSwaggerController {
 
     @ApiOperation(value="获取用户信息", notes="根据id来获取用户详细信息")
