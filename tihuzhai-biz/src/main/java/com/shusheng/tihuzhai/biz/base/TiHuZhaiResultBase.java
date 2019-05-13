@@ -1,6 +1,5 @@
 package com.shusheng.tihuzhai.biz.base;
 
-import com.shusheng.tihuzhai.enums.StatusEnum;
 import com.shusheng.tihuzhai.enums.TiHuZhaiResultEnum;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
@@ -13,15 +12,13 @@ import java.io.Serializable;
  * @Email shusheng@yiji.com
  * @date 2018/12/26 18:59
  */
-public class TiHuZhaiResultBase implements Serializable {
+public abstract class TiHuZhaiResultBase implements Serializable {
     private static final long serialVersionUID = -6510311788884425848L;
 
     /** 描述 */
     protected Boolean isSuccess=false;
-
     /** 结果状态 */
     protected TiHuZhaiResultEnum status;
-
     /** 描述 */
     protected String description;
 
