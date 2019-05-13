@@ -76,7 +76,18 @@
         </dependency>
         <!-- 引入springboot对aop的支持 end-->
 
-
+        <!-- springboot整合shiro end-->
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-spring</artifactId>
+            <version>1.4.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-ehcache</artifactId>
+            <version>1.4.0</version>
+        </dependency>
+        <!-- springboot整合shiro end-->
 
         <!--阿里巴巴fastjson依赖 start-->
         <dependency>
