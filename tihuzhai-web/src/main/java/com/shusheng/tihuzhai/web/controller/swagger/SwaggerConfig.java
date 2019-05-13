@@ -30,13 +30,13 @@ public class SwaggerConfig {
                 .paths(PathSelectors.any())
                 .build();
     }
+
     // 创建api的基本信息
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("集成Swagger2构建RESTful APIs")
-                .description("集成Swagger2构建RESTful APIs")
+                .title("嗨中文")
+                .description("集成SWAGGER构建RESTful APIs")
                 .termsOfServiceUrl("https://github.com/shu-sheng")
-                .contact(new Contact("shusheng","https://github.com/shu-sheng","eric_wu_peng@126.com"))
                 .version("1.0.0")
                 .build();
     }
