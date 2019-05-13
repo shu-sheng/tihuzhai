@@ -1,9 +1,11 @@
 package com.shusheng.tihuzhai.web.controller.hiboss.admin.user;
 
-import com.shusheng.tihuzhai.biz.hiboss.admin.acuser.order.AcUserListQueryOrder;
-import com.shusheng.tihuzhai.biz.hiboss.base.DataResultBase;
 import com.shusheng.tihuzhai.biz.hiboss.admin.acuser.AcUserService;
-import com.shusheng.tihuzhai.biz.hiboss.admin.acuser.info.AcUserInfo;
+import com.shusheng.tihuzhai.biz.hiboss.admin.acuser.order.AcUserAddOrder;
+import com.shusheng.tihuzhai.biz.hiboss.admin.acuser.order.AcUserListQueryOrder;
+import com.shusheng.tihuzhai.biz.hiboss.admin.acuser.order.AcUserUpdateOrder;
+import com.shusheng.tihuzhai.biz.base.DataPageResultBase;
+import com.shusheng.tihuzhai.biz.base.DataResultBase;
 import com.shusheng.tihuzhai.enums.TiHuZhaiResultEnum;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -11,8 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.lang.reflect.InvocationTargetException;
 
 /**
  * @author shusheng
@@ -31,10 +31,10 @@ public class AcUserController {
     @RequestMapping("add.htm")
     @ResponseBody
     @ApiOperation(value = "添加用户",httpMethod = "POST")
-    public Object addAcUser(AcUserInfo acUserInfo){
+    public Object addAcUser(AcUserAddOrder acUserAddOrder){
         DataResultBase addResult = new DataResultBase();
         try {
-            addResult = acUserService.addAcUser(acUserInfo);
+            addResult = acUserService.addAcUser(acUserAddOrder);
         } catch (Exception e) {
             e.printStackTrace();
             addResult.setSuccess(false);
@@ -57,9 +57,9 @@ public class AcUserController {
     @RequestMapping("update.htm")
     @ResponseBody
     @ApiOperation(value = "更新用户",httpMethod = "POST")
-    public Object updateAcUser(AcUserInfo acUserInfo){
+    public Object updateAcUser(AcUserUpdateOrder acUserUpdateOrder){
         DataResultBase updateResult = new DataResultBase();
-        updateResult = acUserService.updateAcUser(acUserInfo);
+        updateResult = acUserService.updateAcUser(acUserUpdateOrder);
         return updateResult;
     }
 
@@ -67,7 +67,7 @@ public class AcUserController {
     @ResponseBody
     @ApiOperation(value = "用户列表",httpMethod = "POST")
     public Object getAcUserList(AcUserListQueryOrder acUserListQueryOrder){
-        DataResultBase acUserListResult = new DataResultBase();
+        DataPageResultBase acUserListResult = new DataPageResultBase();
         acUserListResult = acUserService.getAcUserList(acUserListQueryOrder);
         return acUserListResult;
     }
