@@ -1,5 +1,6 @@
 package com.shusheng.tihuzhai.biz.hiboss.admin.acuser;
 
+import com.shusheng.tihuzhai.biz.hiboss.admin.acuser.order.AcUserListQueryOrder;
 import com.shusheng.tihuzhai.biz.hiboss.base.DataResultBase;
 import com.shusheng.tihuzhai.biz.hiboss.admin.acuser.info.AcUserInfo;
 
@@ -17,13 +18,13 @@ public interface AcUserService {
     public DataResultBase addAcUser(AcUserInfo acUserInfo) throws InvocationTargetException, IllegalAccessException;
 
     /**删除用户*/
-    public int deleteAcUser(Long id);
+    public DataResultBase deleteAcUser(Long id);
 
     /**更新用户信息*/
-    public int updateAcUser(AcUserInfo acUserInfo);
+    public DataResultBase updateAcUser(AcUserInfo acUserInfo);
 
     /**查询用户列表*/
-    public DataResultBase<AcUserInfo> getAcUserList(AcUserInfo acUserInfo);
+    public DataResultBase<AcUserInfo> getAcUserList(AcUserListQueryOrder acUserListQueryOrder);
 
     /**根据用户名得到用户*/
     public DataResultBase<AcUserInfo> getAcUserByName(String username) throws InvocationTargetException, IllegalAccessException;

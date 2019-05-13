@@ -1,18 +1,22 @@
 package com.shusheng.tihuzhai.biz.hiboss.admin.acuser.impl;
 
-import com.shusheng.tihuzhai.biz.hiboss.base.DataResultBase;
 import com.shusheng.tihuzhai.biz.hiboss.admin.acuser.AcUserService;
 import com.shusheng.tihuzhai.biz.hiboss.admin.acuser.info.AcUserInfo;
+import com.shusheng.tihuzhai.biz.hiboss.admin.acuser.order.AcUserListQueryOrder;
+import com.shusheng.tihuzhai.biz.hiboss.base.DataResultBase;
 import com.shusheng.tihuzhai.dao.entity.auto.AcUser;
 import com.shusheng.tihuzhai.dao.entity.auto.AcUserExample;
 import com.shusheng.tihuzhai.dao.mappers.auto.AcUserMapper;
 import com.shusheng.tihuzhai.enums.TiHuZhaiResultEnum;
 import com.shusheng.tihuzhai.enums.UserStateEnum;
 import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -35,10 +39,12 @@ public class AcUserServiceImpl implements AcUserService {
         AcUser acUser = new AcUser();
         try {
             BeanUtils.copyProperties(acUser, acUserInfo);
-        } catch (IllegalAccessException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
+            addUserResult.setSuccess(false);
+            addUserResult.setStatus(TiHuZhaiResultEnum.EXECUTE_FAILURE);
+            addUserResult.setDescription("新增用户失败");
+            return addUserResult;
         }
         acUser.setRowAddTime(new Date());
         acUser.setRowUpdateTime(new Date());
@@ -59,18 +65,117 @@ public class AcUserServiceImpl implements AcUserService {
     }
 
     @Override
-    public int deleteAcUser(Long id) {
-        return 0;
+    public DataResultBase deleteAcUser(Long id) {
+        DataResultBase deleteUserResult = new DataResultBase();
+
+        int result = acUserMapper.deleteByPrimaryKey(id);
+        if(result==1){
+            deleteUserResult.setSuccess(true);
+            deleteUserResult.setStatus(TiHuZhaiResultEnum.EXECUTE_SUCCESS);
+            deleteUserResult.setDescription("删除用户成功");
+        }else{
+            deleteUserResult.setSuccess(false);
+            deleteUserResult.setStatus(TiHuZhaiResultEnum.EXECUTE_FAILURE);
+            deleteUserResult.setDescription("删除用户失败");
+        }
+
+        return deleteUserResult;
     }
 
     @Override
-    public int updateAcUser(AcUserInfo acUserInfo) {
-        return 0;
+    public DataResultBase updateAcUser(AcUserInfo acUserInfo) {
+        DataResultBase updateUserResult = new DataResultBase();
+
+        AcUser acUser = new AcUser();
+        try {
+            BeanUtils.copyProperties(acUser, acUserInfo);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
+        acUser.setRowUpdateTime(new Date());
+
+        int result = acUserMapper.insert(acUser);
+        if(result==1){
+            updateUserResult.setSuccess(true);
+            updateUserResult.setStatus(TiHuZhaiResultEnum.EXECUTE_SUCCESS);
+            updateUserResult.setDescription("新增用户成功");
+        }else{
+            updateUserResult.setSuccess(false);
+            updateUserResult.setStatus(TiHuZhaiResultEnum.EXECUTE_FAILURE);
+            updateUserResult.setDescription("新增用户失败");
+        }
+        return updateUserResult;
     }
 
     @Override
-    public DataResultBase<AcUserInfo> getAcUserList(AcUserInfo acUserInfo) {
-        return null;
+    public DataResultBase<AcUserInfo> getAcUserList(AcUserListQueryOrder acUserListQueryOrder) {
+        DataResultBase getAcUserListResult = new DataResultBase();
+
+        /**加入查询条件*/
+        AcUserExample acUserExample = new AcUserExample();
+        AcUserExample.Criteria criteria = acUserExample.createCriteria();
+        if (StringUtils.isNotEmpty(acUserListQueryOrder.getUserName())) {
+            criteria.andStatusEqualTo(acUserListQueryOrder.getUserName());
+        }
+        if (StringUtils.isNotEmpty(acUserListQueryOrder.getStatus())) {
+            criteria.andStatusEqualTo(acUserListQueryOrder.getStatus());
+        }
+        if (StringUtils.isNotEmpty(acUserListQueryOrder.getStartTime())) {
+            criteria.andRowAddTimeGreaterThan(new Date(acUserListQueryOrder.getStartTime()));
+        }
+        if (StringUtils.isNotEmpty(acUserListQueryOrder.getEndTime())) {
+            criteria.andRowAddTimeLessThan(new Date(acUserListQueryOrder.getEndTime()));
+        }
+        acUserExample.setOrderByClause("row_add_time desc");
+
+        /**加入分页参数*/
+        RowBounds rowBounds = null;
+        Integer pageNumber = acUserListQueryOrder.getPageNumber();
+        Integer pageSize = acUserListQueryOrder.getPageSize();
+        Integer startIndex = null;
+        if (pageNumber != null && pageSize != null) {
+            startIndex = pageNumber > 0 ? (pageNumber - 1) * pageSize : 0;
+            rowBounds = new RowBounds(startIndex, pageSize);
+        }
+
+        /**查出满足条件的数据条数*/
+        long totalCount = acUserMapper.countByExample(acUserExample);
+        /**查出满足条件的数据*/
+        if(totalCount>0){
+            List<AcUser> acUsers = acUserMapper.selectByExampleWithRowbounds(acUserExample,new RowBounds(startIndex,pageSize));
+            List<AcUserInfo> acUserInfolist = new ArrayList<AcUserInfo>();
+            if(acUsers!=null&&acUsers.size()>0){
+                for(AcUser acuser:acUsers){
+                    AcUserInfo acUserInfo = new AcUserInfo();
+                    try {
+                        BeanUtils.copyProperties(acUserInfo,acuser);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        getAcUserListResult.setSuccess(false);
+                        getAcUserListResult.setStatus(TiHuZhaiResultEnum.EXECUTE_FAILURE);
+                        getAcUserListResult.setDescription("查询用户列表失败，对象复制操作出错");
+                        return getAcUserListResult;
+                    }
+                    acUserInfolist.add(acUserInfo);
+                }
+            }else if(totalCount==0){
+                getAcUserListResult.setSuccess(false);
+                getAcUserListResult.setStatus(TiHuZhaiResultEnum.EXECUTE_FAILURE);
+                getAcUserListResult.setDescription("查询用户列表失败,返回数量为0");
+                return getAcUserListResult;
+            }
+            getAcUserListResult.setSuccess(true);
+            getAcUserListResult.setStatus(TiHuZhaiResultEnum.EXECUTE_SUCCESS);
+            getAcUserListResult.setDescription("查询用户列表成功");
+            return getAcUserListResult;
+        }
+
+        getAcUserListResult.setSuccess(false);
+        getAcUserListResult.setStatus(TiHuZhaiResultEnum.EXECUTE_FAILURE);
+        getAcUserListResult.setDescription("查询用户列表失败");
+        return getAcUserListResult;
     }
 
     @Override
