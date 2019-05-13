@@ -1,8 +1,11 @@
 package com.shusheng.tihuzhai.biz.hiboss.admin.acuser;
 
-import com.shusheng.tihuzhai.biz.hiboss.admin.acuser.order.AcUserListQueryOrder;
-import com.shusheng.tihuzhai.biz.hiboss.base.DataResultBase;
 import com.shusheng.tihuzhai.biz.hiboss.admin.acuser.info.AcUserInfo;
+import com.shusheng.tihuzhai.biz.hiboss.admin.acuser.order.AcUserAddOrder;
+import com.shusheng.tihuzhai.biz.hiboss.admin.acuser.order.AcUserListQueryOrder;
+import com.shusheng.tihuzhai.biz.hiboss.admin.acuser.order.AcUserUpdateOrder;
+import com.shusheng.tihuzhai.biz.base.DataPageResultBase;
+import com.shusheng.tihuzhai.biz.base.DataResultBase;
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -15,16 +18,16 @@ import java.lang.reflect.InvocationTargetException;
 public interface AcUserService {
 
     /**添加用户*/
-    public DataResultBase addAcUser(AcUserInfo acUserInfo) throws InvocationTargetException, IllegalAccessException;
+    public DataResultBase addAcUser(AcUserAddOrder acUserAddOrder) throws InvocationTargetException, IllegalAccessException;
 
     /**删除用户*/
     public DataResultBase deleteAcUser(Long id);
 
     /**更新用户信息*/
-    public DataResultBase updateAcUser(AcUserInfo acUserInfo);
+    public DataResultBase updateAcUser(AcUserUpdateOrder acUserUpdateOrder);
 
     /**查询用户列表*/
-    public DataResultBase<AcUserInfo> getAcUserList(AcUserListQueryOrder acUserListQueryOrder);
+    public DataPageResultBase<AcUserInfo> getAcUserList(AcUserListQueryOrder acUserListQueryOrder);
 
     /**根据用户名得到用户*/
     public DataResultBase<AcUserInfo> getAcUserByName(String username) throws InvocationTargetException, IllegalAccessException;

@@ -2,8 +2,11 @@ package com.shusheng.tihuzhai.biz.hiboss.admin.acuser.impl;
 
 import com.shusheng.tihuzhai.biz.hiboss.admin.acuser.AcUserService;
 import com.shusheng.tihuzhai.biz.hiboss.admin.acuser.info.AcUserInfo;
+import com.shusheng.tihuzhai.biz.hiboss.admin.acuser.order.AcUserAddOrder;
 import com.shusheng.tihuzhai.biz.hiboss.admin.acuser.order.AcUserListQueryOrder;
-import com.shusheng.tihuzhai.biz.hiboss.base.DataResultBase;
+import com.shusheng.tihuzhai.biz.hiboss.admin.acuser.order.AcUserUpdateOrder;
+import com.shusheng.tihuzhai.biz.base.DataPageResultBase;
+import com.shusheng.tihuzhai.biz.base.DataResultBase;
 import com.shusheng.tihuzhai.dao.entity.auto.AcUser;
 import com.shusheng.tihuzhai.dao.entity.auto.AcUserExample;
 import com.shusheng.tihuzhai.dao.mappers.auto.AcUserMapper;
@@ -33,12 +36,25 @@ public class AcUserServiceImpl implements AcUserService {
     private AcUserMapper acUserMapper;
 
     @Override
-    public DataResultBase addAcUser(AcUserInfo acUserInfo){
+    public DataResultBase addAcUser(AcUserAddOrder acUserAddOrder){
         DataResultBase addUserResult = new DataResultBase();
+
+        /**判断该用户是否己存在*/
+        AcUserExample acUserExample = new AcUserExample();
+        AcUserExample.Criteria criteria = acUserExample.createCriteria();
+        criteria.andUserNameEqualTo(acUserAddOrder.getUserName());
+        criteria.andStatusNotEqualTo(UserStateEnum.DELETED.code());
+        List<AcUser> acUserList = acUserMapper.selectByExample(acUserExample);
+        if(acUserList.size()>0){
+            addUserResult.setSuccess(false);
+            addUserResult.setStatus(TiHuZhaiResultEnum.USER_EXIST);
+            addUserResult.setDescription("该用户己存在");
+            return addUserResult;
+        }
 
         AcUser acUser = new AcUser();
         try {
-            BeanUtils.copyProperties(acUser, acUserInfo);
+            BeanUtils.copyProperties(acUser, acUserAddOrder);
         } catch (Exception e) {
             e.printStackTrace();
             addUserResult.setSuccess(false);
@@ -68,7 +84,24 @@ public class AcUserServiceImpl implements AcUserService {
     public DataResultBase deleteAcUser(Long id) {
         DataResultBase deleteUserResult = new DataResultBase();
 
-        int result = acUserMapper.deleteByPrimaryKey(id);
+        /**判断该用户是否存在*/
+        AcUserExample acUserExample = new AcUserExample();
+        AcUserExample.Criteria criteria = acUserExample.createCriteria();
+        criteria.andIdEqualTo(id);
+        criteria.andStatusNotEqualTo(UserStateEnum.DELETED.code());
+        List<AcUser> acUserList = acUserMapper.selectByExample(acUserExample);
+        if(acUserList.size()<1){
+            deleteUserResult.setSuccess(false);
+            deleteUserResult.setStatus(TiHuZhaiResultEnum.USER_NOEXIST);
+            deleteUserResult.setDescription("该用户不存在");
+            return deleteUserResult;
+        }
+
+        AcUser acUser = new AcUser();
+        acUser.setId(id);
+        acUser.setStatus("deleted");
+        acUser.setRowUpdateTime(new Date());
+        int result = acUserMapper.updateByPrimaryKeySelective(acUser);
         if(result==1){
             deleteUserResult.setSuccess(true);
             deleteUserResult.setStatus(TiHuZhaiResultEnum.EXECUTE_SUCCESS);
@@ -83,12 +116,12 @@ public class AcUserServiceImpl implements AcUserService {
     }
 
     @Override
-    public DataResultBase updateAcUser(AcUserInfo acUserInfo) {
+    public DataResultBase updateAcUser(AcUserUpdateOrder acUserUpdateOrder) {
         DataResultBase updateUserResult = new DataResultBase();
 
         AcUser acUser = new AcUser();
         try {
-            BeanUtils.copyProperties(acUser, acUserInfo);
+            BeanUtils.copyProperties(acUser, acUserUpdateOrder);
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         } catch (InvocationTargetException e) {
@@ -96,22 +129,22 @@ public class AcUserServiceImpl implements AcUserService {
         }
         acUser.setRowUpdateTime(new Date());
 
-        int result = acUserMapper.insert(acUser);
+        int result = acUserMapper.updateByPrimaryKeySelective(acUser);
         if(result==1){
             updateUserResult.setSuccess(true);
             updateUserResult.setStatus(TiHuZhaiResultEnum.EXECUTE_SUCCESS);
-            updateUserResult.setDescription("新增用户成功");
+            updateUserResult.setDescription("用户更新成功");
         }else{
             updateUserResult.setSuccess(false);
             updateUserResult.setStatus(TiHuZhaiResultEnum.EXECUTE_FAILURE);
-            updateUserResult.setDescription("新增用户失败");
+            updateUserResult.setDescription("用户更新失败");
         }
         return updateUserResult;
     }
 
     @Override
-    public DataResultBase<AcUserInfo> getAcUserList(AcUserListQueryOrder acUserListQueryOrder) {
-        DataResultBase getAcUserListResult = new DataResultBase();
+    public DataPageResultBase<AcUserInfo> getAcUserList(AcUserListQueryOrder acUserListQueryOrder) {
+        DataPageResultBase getAcUserListResult = new DataPageResultBase();
 
         /**加入查询条件*/
         AcUserExample acUserExample = new AcUserExample();
@@ -128,6 +161,7 @@ public class AcUserServiceImpl implements AcUserService {
         if (StringUtils.isNotEmpty(acUserListQueryOrder.getEndTime())) {
             criteria.andRowAddTimeLessThan(new Date(acUserListQueryOrder.getEndTime()));
         }
+        criteria.andStatusNotEqualTo("deleted");
         acUserExample.setOrderByClause("row_add_time desc");
 
         /**加入分页参数*/
@@ -166,9 +200,13 @@ public class AcUserServiceImpl implements AcUserService {
                 getAcUserListResult.setDescription("查询用户列表失败,返回数量为0");
                 return getAcUserListResult;
             }
+            getAcUserListResult.setDatas(acUserInfolist);
             getAcUserListResult.setSuccess(true);
             getAcUserListResult.setStatus(TiHuZhaiResultEnum.EXECUTE_SUCCESS);
             getAcUserListResult.setDescription("查询用户列表成功");
+            getAcUserListResult.setPageNumber(pageNumber);
+            getAcUserListResult.setPageSize(pageSize);
+            getAcUserListResult.setTotalCount(totalCount);
             return getAcUserListResult;
         }
 
@@ -185,6 +223,7 @@ public class AcUserServiceImpl implements AcUserService {
         AcUserExample acUserExample = new AcUserExample();
         AcUserExample.Criteria criteria = acUserExample.createCriteria();
         criteria.andUserNameEqualTo(username);
+        criteria.andStatusNotEqualTo("deleted");
 
         List<AcUser> acUserList = acUserMapper.selectByExample(acUserExample);
         if (acUserList.size() <= 0) {
@@ -203,6 +242,7 @@ public class AcUserServiceImpl implements AcUserService {
             userInfoResult.setData(acUserInfo);
             userInfoResult.setDescription("查询成功！");
             userInfoResult.setStatus(TiHuZhaiResultEnum.EXECUTE_SUCCESS);
+            userInfoResult.setSuccess(true);
             return userInfoResult;
         } else {
             userInfoResult.setDescription("未知错误！");
