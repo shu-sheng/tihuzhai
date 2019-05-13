@@ -1,5 +1,6 @@
 package com.shusheng.tihuzhai.web.controller.demo;
 
+import io.swagger.annotations.Api;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 @RequestMapping("/tpl")
+@Api(description = "测试:集成Thymeleaf模板引擎")
 public class TestThymeleafController {
     @RequestMapping("/testThymeleaf")
     public String testThymeleaf(ModelMap map) {
