@@ -24,6 +24,7 @@ public class SwaggerConfig {
     @Bean
     public Docket createRestApi() {
         return new Docket(DocumentationType.SWAGGER_2)
+                .groupName("全部接口")
                 .apiInfo(apiInfo())
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.shusheng.tihuzhai.web.controller"))// 指定扫描包下面的注解
@@ -36,8 +37,24 @@ public class SwaggerConfig {
         return new ApiInfoBuilder()
                 .title("嗨中文")
                 .description("集成SWAGGER构建RESTful APIs")
-                .termsOfServiceUrl("https://github.com/shu-sheng")
                 .version("1.0.0")
+                .build();
+    }
+
+    @Bean
+    public Docket createAdminRestApi() {
+        return new Docket(DocumentationType.SWAGGER_2)
+                .groupName("超级管理员操作接口")
+                .apiInfo(adminApiInfo())
+                .select()
+                .apis(RequestHandlerSelectors.basePackage("com.shusheng.tihuzhai.web.controller.hiboss.admin"))// 指定扫描包下面的注解
+                .paths(PathSelectors.any())
+                .build();
+    }
+    private ApiInfo adminApiInfo() {
+        return new ApiInfoBuilder()
+                .title("嗨中文")
+                .description("超级管理员操作API")
                 .build();
     }
 
