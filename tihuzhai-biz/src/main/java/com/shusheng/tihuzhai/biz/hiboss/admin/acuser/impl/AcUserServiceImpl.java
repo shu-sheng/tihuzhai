@@ -154,6 +154,8 @@ public class AcUserServiceImpl implements AcUserService {
         }
         if (StringUtils.isNotEmpty(acUserListQueryOrder.getStatus())) {
             criteria.andStatusEqualTo(acUserListQueryOrder.getStatus());
+        }else{
+            criteria.andStatusNotEqualTo("deleted");
         }
         if (StringUtils.isNotEmpty(acUserListQueryOrder.getStartTime())) {
             criteria.andRowAddTimeGreaterThan(new Date(acUserListQueryOrder.getStartTime()));
@@ -161,7 +163,6 @@ public class AcUserServiceImpl implements AcUserService {
         if (StringUtils.isNotEmpty(acUserListQueryOrder.getEndTime())) {
             criteria.andRowAddTimeLessThan(new Date(acUserListQueryOrder.getEndTime()));
         }
-        criteria.andStatusNotEqualTo("deleted");
         acUserExample.setOrderByClause("row_add_time desc");
 
         /**加入分页参数*/

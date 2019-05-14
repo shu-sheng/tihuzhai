@@ -3,7 +3,6 @@ package com.shusheng.tihuzhai.biz.hiboss.admin.acuser.order;
 import com.shusheng.tihuzhai.biz.base.TiHuZhaiOrderBase;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import io.swagger.annotations.ApiParam;
 
 /**
  * @author shusheng
