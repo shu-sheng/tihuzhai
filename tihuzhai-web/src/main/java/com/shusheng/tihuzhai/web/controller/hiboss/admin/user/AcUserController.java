@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 @RequestMapping("/acUser/")
-@Api(description = "管理后台：用户：添加用户")
+@Api(description = "管理后台：用户管理")
 public class AcUserController {
 
     @Autowired
