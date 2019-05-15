@@ -4,24 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @Description
- * @Author Created by shusheng.
- * @Email shusheng@yiji.com
- * @Date 2016/4/13
+ * @author shusheng
+ * @description
+ * @Email eric_wu_peng@126.com
+ * @date 2019/4/24 17:07
  */
-public enum UserTypeEnum {
+public enum RoleStateEnum {
 
-    /** 系统管理员*/
-    SYSTEM_ADMIN("SYSTEM_ADMIN", "系统管理员"),
-    /** 部门管理员*/
-    DEPT_ADMIN("DEPT_ADMIN", "部门管理员"),
-    /** 普通人员*/
-    OPERATOR("OPERATOR", "普通人员");
+    NORMAL("normal", "正常"),
+    DELETED("deleted", "己删除");
 
     private final String code;
     private final String message;
 
-    UserTypeEnum(String code, String message) {
+    private RoleStateEnum(String code, String message) {
         this.code = code;
         this.message = message;
     }
@@ -54,8 +50,8 @@ public enum UserTypeEnum {
      * @param code
      * @return LogResultEnum
      */
-    public static UserTypeEnum getByCode(String code) {
-        for (UserTypeEnum _enum : values()) {
+    public static RoleStateEnum getByCode(String code) {
+        for (RoleStateEnum _enum : values()) {
             if (_enum.getCode().equalsIgnoreCase(code)) {
                 return _enum;
             }
@@ -68,9 +64,9 @@ public enum UserTypeEnum {
      *
      * @return List<LogResultEnum>
      */
-    public List<UserTypeEnum> getAllEnum() {
-        List<UserTypeEnum> list = new ArrayList<UserTypeEnum>();
-        for (UserTypeEnum _enum : values()) {
+    public static List<RoleStateEnum> getAllEnum() {
+        List<RoleStateEnum> list = new ArrayList<RoleStateEnum>();
+        for (RoleStateEnum _enum : values()) {
             list.add(_enum);
         }
         return list;
@@ -83,10 +79,10 @@ public enum UserTypeEnum {
      */
     public List<String> getAllEnumCode() {
         List<String> list = new ArrayList<String>();
-        for (UserTypeEnum _enum : values()) {
+        for (RoleStateEnum _enum : values()) {
             list.add(_enum.code());
         }
         return list;
     }
-}
 
+}

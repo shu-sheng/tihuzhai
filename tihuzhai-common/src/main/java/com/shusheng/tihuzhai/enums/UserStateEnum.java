@@ -11,11 +11,10 @@ import java.util.List;
  */
 public enum UserStateEnum {
 
-    FREEZE("freeze", "冻结"),
     INACTIVE("inactive", "未激活"),
-    DISABLE("disable", "禁用"),
+    NORMAL("normal", "正常"),
     LOCKED("locked", "锁定"),
-    NORMAL("normal", "正常");
+    DELETED("deleted", "己删除");
 
     private final String code;
     private final String message;
