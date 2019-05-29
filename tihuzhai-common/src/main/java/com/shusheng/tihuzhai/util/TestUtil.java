@@ -1,7 +1,5 @@
 package com.shusheng.tihuzhai.util;
 
-import java.util.concurrent.FutureTask;
-
 /**
  * @author shusheng
  * @description
@@ -12,8 +10,11 @@ public class TestUtil {
 
     public static void main(String[] args) {
 
-
-
+//        int x,y;
+//        for(x=30,y=0;x>=10||y<10;x--,y++){
+//            x/=2;y+=2;
+//        }
+//        System.out.println(x+","+y);
     }
 
 }
