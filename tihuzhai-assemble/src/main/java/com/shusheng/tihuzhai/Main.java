@@ -1,5 +1,6 @@
 package com.shusheng.tihuzhai;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.SpringApplicationRunListener;
@@ -12,6 +13,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @Date 2017-01-17
  */
 @SpringBootApplication
+@MapperScan("com.shusheng.tihuzhai.dao.mappers")
 public class Main {
 
     public static void main(String[] args) {
