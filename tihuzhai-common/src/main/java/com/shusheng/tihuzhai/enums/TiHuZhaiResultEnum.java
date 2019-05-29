@@ -39,8 +39,16 @@ public enum TiHuZhaiResultEnum {
     EXECUTE_SUCCESS("EXECUTE_SUCCESS", "执行成功"),
     /** 用户已经存在 */
     USER_EXIST("USER_EXIST", "用户已经存在"),
+    /** 角色已经存在 */
+    ROLE_EXIST("ROLE_EXIST", "角色已经存在"),
+    /** 菜单已经存在 */
+    MENU_EXIST("MENU_EXIST", "菜单已经存在"),
     /** 不存在该用户 */
-    USER_NOEXIST("USER_EXIST", "不存在该用户"),
+    USER_NOEXIST("USER_NOEXIST", "不存在该用户"),
+    /** 不存在该角色 */
+    ROLE_NOEXIST("ROLE_NOEXIST", "不存在该角色"),
+    /** 不存在该菜单 */
+    MENU_NOEXIST("MENU_NOEXIST", "不存在该角色"),
     /** 执行失败 */
     EXECUTE_FAILURE("EXECUTE_FAILURE", "执行失败");
 
