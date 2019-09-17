@@ -21,7 +21,7 @@ public interface AcMenuService {
     public DataResultBase addAcMenu(AcMenuAddOrder acMenuAddOrder) throws InvocationTargetException, IllegalAccessException;
 
     /**删除菜单*/
-    public DataResultBase deleteAcMenu(Long id);
+    public DataResultBase deleteAcMenu(String id);
 
     /**更新菜单信息*/
     public DataResultBase updateAcMenu(AcMenuUpdateOrder acMenuUpdateOrder);

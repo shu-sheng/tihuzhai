@@ -25,40 +25,41 @@ spring:
         login-username: druid
         login-password: druid
 
-mybatis:
-  mapper-locations: classpath:mapperxml/**/*.xml
-  type-aliases-package: com.shusheng.tihuzhai.dao.entity
-
 server:
   port: 8899
+
+mybatis:
+  mapper-locations: classpath:mapperxml/pgsql/**/*.xml
+  type-aliases-package: com.shusheng.tihuzhai.dao.pgsql.entity
 
 ---
 #spring:
 spring:
   profiles: localhost
   datasource:
-    url: jdbc:mysql://localhost:3306/tihuzhai?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true&serverTimezone=GMT%2B8
-    username: root
-    password: aaaa1111
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://47.106.102.151:5432/tihuboss?useSSL=false
+    username: postgres
+    password: postgres
 
 logging:
-  file: D:/var/log/webapps/hichina.log
+  file: D:/var/log/webapps/tihuzhai.log
 
 ---
+##spring:
 #spring:
-spring:
-  profiles: test
-  datasource:
-    url: jdbc:mysql://47.106.102.151:3306/tihuzhai?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true&serverTimezone=GMT%2B8
-    username: root
-    password: aaaa1111
-
----
+#  profiles: test
+#  datasource:
+#    url: jdbc:mysql://47.106.102.151:3306/tihuzhai?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true&serverTimezone=GMT%2B8
+#    username: root
+#    password: aaaa1111
+#
+#---
+##spring:
 #spring:
-spring:
-  profiles: online
-  datasource:
-    url: jdbc:mysql://47.106.102.151:3306/tihuzhai?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true&serverTimezone=GMT%2B8
-    username: root
-    password: aaaa1111
+#  profiles: online
+#  datasource:
+#    url: jdbc:mysql://47.106.102.151:3306/tihuzhai?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true&serverTimezone=GMT%2B8
+#    username: root
+#    password: aaaa1111
 

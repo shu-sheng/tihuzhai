@@ -7,11 +7,10 @@ import com.shusheng.tihuzhai.biz.hiboss.admin.acmenu.info.AcMenuInfo;
 import com.shusheng.tihuzhai.biz.hiboss.admin.acmenu.order.AcMenuAddOrder;
 import com.shusheng.tihuzhai.biz.hiboss.admin.acmenu.order.AcMenuListQueryOrder;
 import com.shusheng.tihuzhai.biz.hiboss.admin.acmenu.order.AcMenuUpdateOrder;
-import com.shusheng.tihuzhai.dao.entity.auto.AcMenu;
-import com.shusheng.tihuzhai.dao.entity.auto.AcMenuExample;
-import com.shusheng.tihuzhai.dao.mappers.auto.AcMenuMapper;
+import com.shusheng.tihuzhai.dao.pgsql.entity.auto.AcMenu;
+import com.shusheng.tihuzhai.dao.pgsql.entity.auto.AcMenuExample;
+import com.shusheng.tihuzhai.dao.pgsql.mappers.auto.AcMenuMapper;
 import com.shusheng.tihuzhai.enums.MenuStateEnum;
-import com.shusheng.tihuzhai.enums.RoleStateEnum;
 import com.shusheng.tihuzhai.enums.TiHuZhaiResultEnum;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -44,7 +43,7 @@ public class AcMenuServiceImpl implements AcMenuService {
         AcMenuExample acMenuExample = new AcMenuExample();
         AcMenuExample.Criteria criteria = acMenuExample.createCriteria();
         criteria.andMenuCodeEqualTo(acMenuAddOrder.getMenuCode());
-        criteria.andStatusNotEqualTo(MenuStateEnum.DELETED.code());
+        criteria.andMenuStatusEqualTo(MenuStateEnum.DELETED.code());
         List<AcMenu> acMenuList = acMenuMapper.selectByExample(acMenuExample);
         if(acMenuList.size()>0){
             addRoleResult.setSuccess(false);
@@ -65,7 +64,7 @@ public class AcMenuServiceImpl implements AcMenuService {
         }
         acMenu.setRowAddTime(new Date());
         acMenu.setRowUpdateTime(new Date());
-        acMenu.setStatus(MenuStateEnum.NORMAL.code());
+        acMenu.setMenuStatus(MenuStateEnum.NORMAL.code());
 
         int result = acMenuMapper.insert(acMenu);
         if(result==1){
@@ -81,14 +80,14 @@ public class AcMenuServiceImpl implements AcMenuService {
     }
 
     @Override
-    public DataResultBase deleteAcMenu(Long id) {
+    public DataResultBase deleteAcMenu(String id) {
         DataResultBase deleteRoleResult = new DataResultBase();
 
         /**判断该菜单是否存在*/
         AcMenuExample acMenuExample = new AcMenuExample();
         AcMenuExample.Criteria criteria = acMenuExample.createCriteria();
         criteria.andIdEqualTo(id);
-        criteria.andStatusNotEqualTo(MenuStateEnum.DELETED.code());
+        criteria.andMenuStatusEqualTo(MenuStateEnum.DELETED.code());
         List<AcMenu> acMenuList = acMenuMapper.selectByExample(acMenuExample);
         if(acMenuList.size()<1){
             deleteRoleResult.setSuccess(false);
@@ -100,7 +99,7 @@ public class AcMenuServiceImpl implements AcMenuService {
         AcMenuExample acMenuExample1 = new AcMenuExample();
         AcMenuExample.Criteria criteria1 = acMenuExample.createCriteria();
         criteria.andParentIdEqualTo(id);
-        criteria.andStatusNotEqualTo(MenuStateEnum.DELETED.code());
+        criteria.andMenuStatusEqualTo(MenuStateEnum.DELETED.code());
         List<AcMenu> acMenuList1 = acMenuMapper.selectByExample(acMenuExample);
         if(acMenuList.size()>0){
             deleteRoleResult.setSuccess(false);
@@ -111,7 +110,7 @@ public class AcMenuServiceImpl implements AcMenuService {
 
         AcMenu acMenu = new AcMenu();
         acMenu.setId(id);
-        acMenu.setStatus("deleted");
+        acMenu.setMenuStatus("deleted");
         acMenu.setRowUpdateTime(new Date());
         int result = acMenuMapper.updateByPrimaryKeySelective(acMenu);
         if(result==1){
@@ -164,10 +163,10 @@ public class AcMenuServiceImpl implements AcMenuService {
         if (StringUtils.isNotEmpty(acMenuListQueryOrder.getMenuName())) {
             criteria.andMenuNameEqualTo(acMenuListQueryOrder.getMenuName());
         }
-        if (StringUtils.isNotEmpty(acMenuListQueryOrder.getStatus())) {
-            criteria.andStatusEqualTo(acMenuListQueryOrder.getStatus());
+        if (StringUtils.isNotEmpty(acMenuListQueryOrder.getMenuStatus())) {
+            criteria.andMenuStatusEqualTo(acMenuListQueryOrder.getMenuStatus());
         }else{
-            criteria.andStatusNotEqualTo("deleted");
+            criteria.andMenuStatusEqualTo("deleted");
         }
         acMenuExample.setOrderByClause("row_add_time desc");
 
@@ -230,7 +229,7 @@ public class AcMenuServiceImpl implements AcMenuService {
         AcMenuExample acMenuExample = new AcMenuExample();
         AcMenuExample.Criteria criteria = acMenuExample.createCriteria();
         criteria.andMenuCodeEqualTo(menucode);
-        criteria.andStatusNotEqualTo("deleted");
+        criteria.andMenuStatusEqualTo("deleted");
 
         List<AcMenu> acMenuList = acMenuMapper.selectByExample(acMenuExample);
         if (acMenuList.size() <= 0) {

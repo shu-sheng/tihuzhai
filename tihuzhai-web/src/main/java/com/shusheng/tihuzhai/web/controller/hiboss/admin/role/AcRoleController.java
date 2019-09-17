@@ -48,7 +48,7 @@ public class AcRoleController {
     @RequestMapping("delete.htm")
     @ResponseBody
     @ApiOperation(value = "删除角色",httpMethod = "POST")
-    public Object deleteAcRole(Long id){
+    public Object deleteAcRole(String id){
         DataResultBase deleteResult = new DataResultBase();
         deleteResult = acRoleService.deleteAcRole(id);
         return deleteResult;

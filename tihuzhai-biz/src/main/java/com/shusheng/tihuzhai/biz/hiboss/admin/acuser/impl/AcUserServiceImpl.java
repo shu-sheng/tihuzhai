@@ -7,9 +7,9 @@ import com.shusheng.tihuzhai.biz.hiboss.admin.acuser.order.AcUserListQueryOrder;
 import com.shusheng.tihuzhai.biz.hiboss.admin.acuser.order.AcUserUpdateOrder;
 import com.shusheng.tihuzhai.biz.base.DataPageResultBase;
 import com.shusheng.tihuzhai.biz.base.DataResultBase;
-import com.shusheng.tihuzhai.dao.entity.auto.AcUser;
-import com.shusheng.tihuzhai.dao.entity.auto.AcUserExample;
-import com.shusheng.tihuzhai.dao.mappers.auto.AcUserMapper;
+import com.shusheng.tihuzhai.dao.pgsql.entity.auto.AcUser;
+import com.shusheng.tihuzhai.dao.pgsql.entity.auto.AcUserExample;
+import com.shusheng.tihuzhai.dao.pgsql.mappers.auto.AcUserMapper;
 import com.shusheng.tihuzhai.enums.TiHuZhaiResultEnum;
 import com.shusheng.tihuzhai.enums.UserStateEnum;
 import org.apache.commons.beanutils.BeanUtils;
@@ -43,7 +43,7 @@ public class AcUserServiceImpl implements AcUserService {
         AcUserExample acUserExample = new AcUserExample();
         AcUserExample.Criteria criteria = acUserExample.createCriteria();
         criteria.andUserNameEqualTo(acUserAddOrder.getUserName());
-        criteria.andStatusNotEqualTo(UserStateEnum.DELETED.code());
+        criteria.andUserStatusEqualTo(UserStateEnum.DELETED.code());
         List<AcUser> acUserList = acUserMapper.selectByExample(acUserExample);
         if(acUserList.size()>0){
             addUserResult.setSuccess(false);
@@ -65,7 +65,7 @@ public class AcUserServiceImpl implements AcUserService {
         acUser.setRowAddTime(new Date());
         acUser.setRowUpdateTime(new Date());
         acUser.setPasswordErrorTimes(0);
-        acUser.setStatus(UserStateEnum.NORMAL.code());
+        acUser.setUserStatus(UserStateEnum.NORMAL.code());
 
         int result = acUserMapper.insert(acUser);
         if(result==1){
@@ -81,14 +81,14 @@ public class AcUserServiceImpl implements AcUserService {
     }
 
     @Override
-    public DataResultBase deleteAcUser(Long id) {
+    public DataResultBase deleteAcUser(String id) {
         DataResultBase deleteUserResult = new DataResultBase();
 
         /**判断该用户是否存在*/
         AcUserExample acUserExample = new AcUserExample();
         AcUserExample.Criteria criteria = acUserExample.createCriteria();
         criteria.andIdEqualTo(id);
-        criteria.andStatusNotEqualTo(UserStateEnum.DELETED.code());
+        criteria.andUserStatusEqualTo(UserStateEnum.DELETED.code());
         List<AcUser> acUserList = acUserMapper.selectByExample(acUserExample);
         if(acUserList.size()<1){
             deleteUserResult.setSuccess(false);
@@ -99,7 +99,7 @@ public class AcUserServiceImpl implements AcUserService {
 
         AcUser acUser = new AcUser();
         acUser.setId(id);
-        acUser.setStatus("deleted");
+        acUser.setUserStatus("deleted");
         acUser.setRowUpdateTime(new Date());
         int result = acUserMapper.updateByPrimaryKeySelective(acUser);
         if(result==1){
@@ -150,12 +150,12 @@ public class AcUserServiceImpl implements AcUserService {
         AcUserExample acUserExample = new AcUserExample();
         AcUserExample.Criteria criteria = acUserExample.createCriteria();
         if (StringUtils.isNotEmpty(acUserListQueryOrder.getUserName())) {
-            criteria.andStatusEqualTo(acUserListQueryOrder.getUserName());
+            criteria.andUserStatusEqualTo(acUserListQueryOrder.getUserName());
         }
         if (StringUtils.isNotEmpty(acUserListQueryOrder.getStatus())) {
-            criteria.andStatusEqualTo(acUserListQueryOrder.getStatus());
+            criteria.andUserStatusEqualTo(acUserListQueryOrder.getStatus());
         }else{
-            criteria.andStatusNotEqualTo("deleted");
+            criteria.andUserStatusEqualTo("deleted");
         }
         if (StringUtils.isNotEmpty(acUserListQueryOrder.getStartTime())) {
             criteria.andRowAddTimeGreaterThan(new Date(acUserListQueryOrder.getStartTime()));
@@ -224,7 +224,7 @@ public class AcUserServiceImpl implements AcUserService {
         AcUserExample acUserExample = new AcUserExample();
         AcUserExample.Criteria criteria = acUserExample.createCriteria();
         criteria.andUserNameEqualTo(username);
-        criteria.andStatusNotEqualTo("deleted");
+        criteria.andUserStatusEqualTo("deleted");
 
         List<AcUser> acUserList = acUserMapper.selectByExample(acUserExample);
         if (acUserList.size() <= 0) {

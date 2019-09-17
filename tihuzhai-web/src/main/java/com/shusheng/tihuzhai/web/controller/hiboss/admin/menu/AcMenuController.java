@@ -48,7 +48,7 @@ public class AcMenuController {
     @RequestMapping("delete.htm")
     @ResponseBody
     @ApiOperation(value = "删除菜单",httpMethod = "POST")
-    public Object deleteAcMenu(Long id){
+    public Object deleteAcMenu(String id){
         DataResultBase deleteResult = new DataResultBase();
         deleteResult = acMenuService.deleteAcMenu(id);
         return deleteResult;

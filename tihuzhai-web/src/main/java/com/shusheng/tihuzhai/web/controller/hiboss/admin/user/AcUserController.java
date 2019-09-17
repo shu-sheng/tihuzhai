@@ -48,7 +48,7 @@ public class AcUserController {
     @RequestMapping("delete.htm")
     @ResponseBody
     @ApiOperation(value = "删除用户",httpMethod = "POST")
-    public Object deleteAcUser(Long id){
+    public Object deleteAcUser(String id){
         DataResultBase deleteResult = new DataResultBase();
         deleteResult = acUserService.deleteAcUser(id);
         return deleteResult;

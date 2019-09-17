@@ -21,7 +21,7 @@ public interface AcUserService {
     public DataResultBase addAcUser(AcUserAddOrder acUserAddOrder) throws InvocationTargetException, IllegalAccessException;
 
     /**删除用户*/
-    public DataResultBase deleteAcUser(Long id);
+    public DataResultBase deleteAcUser(String id);
 
     /**更新用户信息*/
     public DataResultBase updateAcUser(AcUserUpdateOrder acUserUpdateOrder);

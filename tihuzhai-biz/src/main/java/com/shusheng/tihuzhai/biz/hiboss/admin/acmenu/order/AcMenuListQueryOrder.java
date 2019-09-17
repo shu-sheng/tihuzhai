@@ -17,7 +17,7 @@ public class AcMenuListQueryOrder extends TiHuZhaiPageOrderBase {
     @ApiModelProperty(value = "菜单类型")
     private String menuType;
     @ApiModelProperty(value = "菜单状态")
-    private String status;
+    private String menuStatus;
 
     public String getMenuName() {
         return menuName;
@@ -35,11 +35,11 @@ public class AcMenuListQueryOrder extends TiHuZhaiPageOrderBase {
         this.menuType = menuType;
     }
 
-    public String getStatus() {
-        return status;
+    public String getMenuStatus() {
+        return menuStatus;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setMenuStatus(String menuStatus) {
+        this.menuStatus = menuStatus;
     }
 }

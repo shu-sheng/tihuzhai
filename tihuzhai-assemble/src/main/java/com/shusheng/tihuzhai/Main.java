@@ -13,7 +13,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @Date 2017-01-17
  */
 @SpringBootApplication
-@MapperScan("com.shusheng.tihuzhai.dao.mappers")
+@MapperScan("com.shusheng.tihuzhai.dao")
 public class Main {
 
     public static void main(String[] args) {

@@ -7,9 +7,9 @@ import com.shusheng.tihuzhai.biz.hiboss.admin.acrole.info.AcRoleInfo;
 import com.shusheng.tihuzhai.biz.hiboss.admin.acrole.order.AcRoleAddOrder;
 import com.shusheng.tihuzhai.biz.hiboss.admin.acrole.order.AcRoleListQueryOrder;
 import com.shusheng.tihuzhai.biz.hiboss.admin.acrole.order.AcRoleUpdateOrder;
-import com.shusheng.tihuzhai.dao.entity.auto.AcRole;
-import com.shusheng.tihuzhai.dao.entity.auto.AcRoleExample;
-import com.shusheng.tihuzhai.dao.mappers.auto.AcRoleMapper;
+import com.shusheng.tihuzhai.dao.pgsql.entity.auto.AcRole;
+import com.shusheng.tihuzhai.dao.pgsql.entity.auto.AcRoleExample;
+import com.shusheng.tihuzhai.dao.pgsql.mappers.auto.AcRoleMapper;
 import com.shusheng.tihuzhai.enums.RoleStateEnum;
 import com.shusheng.tihuzhai.enums.TiHuZhaiResultEnum;
 import org.apache.commons.beanutils.BeanUtils;
@@ -80,7 +80,7 @@ public class AcRoleServiceImpl implements AcRoleService {
     }
 
     @Override
-    public DataResultBase deleteAcRole(Long id) {
+    public DataResultBase deleteAcRole(String id) {
         DataResultBase deleteRoleResult = new DataResultBase();
 
         /**判断该角色是否存在*/

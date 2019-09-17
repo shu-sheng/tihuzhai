@@ -21,7 +21,7 @@ public interface AcRoleService {
     public DataResultBase addAcRole(AcRoleAddOrder acRoleAddOrder) throws InvocationTargetException, IllegalAccessException;
 
     /**删除角色*/
-    public DataResultBase deleteAcRole(Long id);
+    public DataResultBase deleteAcRole(String id);
 
     /**更新角色信息*/
     public DataResultBase updateAcRole(AcRoleUpdateOrder acRoleUpdateOrder);
